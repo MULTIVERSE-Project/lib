@@ -1,3 +1,5 @@
+![](https://github.com/MULTIVERSE-Project/lib/blob/main/materials/mvp/m_icons/base.png)
+
 This is the library for our scripts. It does not contain any game content.
 
 To open the configurator type `!mvp` into the chat.
