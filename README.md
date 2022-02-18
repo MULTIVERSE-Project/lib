@@ -71,7 +71,7 @@ end)
 ```
 
 Another important folder is "config", in this folder you can add your files with config options. I suggest use diffrent files for diffrent features of your module, but it can be all in 1 file. As you like. 
-#### 📜sh_module.lua
+#### 📂config/📜vars.lua
 ```lua
 mvp.config.Add('nameOfVariable', 'Default data', 'Description', callbackFunction, {
     category = 'Category', -- you can use MODULE.Name here
