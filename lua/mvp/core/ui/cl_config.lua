@@ -921,31 +921,33 @@ function mvp.config.ui.Permissions()
     end
 end
 
-function mvp.config.ui.Open(shouldReturn)
-    local buttons = {
-        {
-            name = mvp.language.Get('config#MenuConfig'),
-            icon = Material('mvp/config.png', 'smooth mips'),
-            click = function()
-                mvp.config.ui.Config()
-            end
-        },
-        {
-            name = mvp.language.Get('config#MenuModules'),
-            icon = Material('mvp/modules.png', 'smooth mips'),
-            click = function()
-                mvp.config.ui.Modules()
-            end
-        },
-        {
-            name = mvp.language.Get('config#MenuPermissions'),
-            icon = Material('mvp/permissions.png', 'smooth mips'),
-            click = function()
-                mvp.config.ui.Permissions()
-            end
-        }
+local buttons = {
+    {
+        name = 'config#MenuConfig',
+        icon = Material('mvp/config.png', 'smooth mips'),
+        click = function()
+            mvp.config.ui.Config()
+        end
+    },
+    {
+        name = 'config#MenuModules',
+        icon = Material('mvp/modules.png', 'smooth mips'),
+        click = function()
+            mvp.config.ui.Modules()
+        end
+    },
+    {
+        name = 'config#MenuPermissions',
+        icon = Material('mvp/permissions.png', 'smooth mips'),
+        click = function()
+            mvp.config.ui.Permissions()
+        end
     }
+}
 
+
+function mvp.config.ui.Open(shouldReturn)
+    
     local frame
 
     if shouldReturn then
@@ -1011,7 +1013,7 @@ function mvp.config.ui.Open(shouldReturn)
             self.textOpacity = Lerp(FrameTime() * 15, self.textOpacity, 0)
         end
 
-        draw.SimpleText('Close', 'mvp.Button', 32, h * .5, Color(255, 255, 255, self.textOpacity), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.language.Get('close'), 'mvp.Button', 32, h * .5, Color(255, 255, 255, self.textOpacity), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
     function menuToggle:DoClick()
@@ -1058,8 +1060,6 @@ function mvp.config.ui.Open(shouldReturn)
             sideblock.opened = false
         end)
 
-        
-
         if IsValid(frame.blur) then
             frame.blur:AlphaTo(0, .3, nil, function(_, self)
                 self:Remove()
@@ -1085,7 +1085,7 @@ function mvp.config.ui.Open(shouldReturn)
                 self.textOpacity = Lerp(FrameTime() * 15, self.textOpacity, 0)
             end
     
-            draw.SimpleText(v.name, 'mvp.Button', 32, h * .5, Color(255, 255, 255, self.textOpacity), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.language.Get(v.name), 'mvp.Button', 32, h * .5, Color(255, 255, 255, self.textOpacity), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         function button:DoClick()
