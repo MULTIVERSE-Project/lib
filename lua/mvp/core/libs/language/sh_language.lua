@@ -1,75 +1,57 @@
 mvp = mvp or {}
 mvp.language = mvp.language or {}
-mvp.language.loaded = {}
-mvp.language.avaibleIDs = {}
-mvp.language.languageParams = {}
+mvp.language.keys = mvp.language.keys or {}
+mvp.language.list = mvp.language.list or {}
 
-function mvp.language.Register(id)
-    mvp.language.loaded[id] = {}
-    mvp.language.avaibleIDs[id] = true
+FALLBACK_LANGUAGE = 'en'
+
+function mvp.language.RegisterKey(key)
+    mvp.language.keys[key] = true
 end
 
-function mvp.language.Set(id, param, value)
-    mvp.language.loaded[id][param].translation = value
+function mvp.language.AddTranslation(lang, tbl)
+    
+    for k, v in tbl do
+        if not mvp.language.keys[k] then 
+            tbl[k] = nil
+        end
+    end
 
-    mvp.language.Save()
+    if mvp.language.list[lang] then
+        table.Merge(mvp.language.list[lang], tbl)
+        return 
+    end
+
+    mvp.language.list[lang] = tbl
 end
 
-function mvp.language.Add(param, default)
-    mvp.language.languageParams[param] = default
-end
+function mvp.language.Get(key)
+    local selectedLanguage = mvp.language.GetActiveLanguage() 
 
-function mvp.language.Save()
-    local values = mvp.language.GetChangedVars()
+    if not mvp.language.list[selectedLanguage] then
+        return key .. '#noLanguageFinded'
+    end
 
-    mvp.data.Set('language', values, true)
+    local lang = mvp.language.list[selectedLanguage]
+
+    if not lang[key] then
+        return mvp.language.list[FALLBACK_LANGUAGE][key] or key
+    end
 end
 
 function mvp.language.Load()
-    local data = mvp.data.Get('language', {}, true, true)
-
-    for id, params in pairs(data) do
-        if not mvp.language.loaded[id] then
-            mvp.language.Register(id) -- register this lang
-        end
-
-        for param, translation in pairs(params) do
-            if not mvp.language.languageParams[param] then continue end -- this param no longer in use
-
-            mvp.language.loaded[id][param] = translation
-        end
-    end
+    mvp.utils.IncludeFolder('languages', false, false)
 end
 
-function mvp.language.GetChangedVars()
-    local result = {}
-    for id, lang in pairs(mvp.language.loaded) do
-        for param, value in pairs(lang) do
-            if value.translation and value.translation ~= '' then
-                if not result[id] then result[id] = {} end
+function mvp.language.GetActiveLanguage() 
+    return mvp.config.Get('language')
+end
 
-                result[id][param] = value.translation
-            end
-        end
+function mvp.language.GetLoadedLanguages()
+    local result = {}
+    for k, v in pairs(mvp.language.list) do
+        result[k] = true
     end
 
     return result
-end
-
-function mvp.language.Get(param)
-    local activeLanguage = mvp.language.GetActiveLanguage()
-
-    if not mvp.language.loaded[activeLanguage] then
-        return mvp.language.languageParams[param] or param
-    end
-
-    if mvp.language.loaded[activeLanguage][param] and mvp.language.loaded[activeLanguage].translation then
-        return mvp.language.loaded[activeLanguage][param].translation
-    end
-
-    return mvp.language.loaded[activeLanguage][param].default or param
-end
-
-function mvp.language.GetActiveLanguage()
-    return mvp.config.Get('lang', 'en') 
 end

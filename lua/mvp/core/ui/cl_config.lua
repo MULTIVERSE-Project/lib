@@ -680,29 +680,7 @@ end
 local menuMat = Material('mvp/menu.png', 'smooth mips')
 local blur = Material('pp/blurscreen')
 
-local buttons = {
-    {
-        name = 'Config',
-        icon = Material('mvp/config.png', 'smooth mips'),
-        click = function()
-            mvp.config.ui.Config()
-        end
-    },
-    {
-        name = 'Modules',
-        icon = Material('mvp/modules.png', 'smooth mips'),
-        click = function()
-            mvp.config.ui.Modules()
-        end
-    },
-    {
-        name = 'Permissions',
-        icon = Material('mvp/permissions.png', 'smooth mips'),
-        click = function()
-            mvp.config.ui.Permissions()
-        end
-    }
-}
+
 
 function mvp.config.ui.Config()
     local categories = {}
@@ -718,7 +696,7 @@ function mvp.config.ui.Config()
         end
 
         if not configValue.data.category then
-            local otherCategoryLocal = mvp.language.Get('otherCategory')
+            local otherCategoryLocal = mvp.language.Get('config#Other')
 
             if not categories[otherCategoryLocal] then
                 categories[otherCategoryLocal] = {}
@@ -746,7 +724,7 @@ function mvp.config.ui.Config()
     disclaimer:SetTall(30)
 
     function disclaimer:Paint(w, h)
-        draw.SimpleText('Configuration for base and modules', 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.language.Get('config#Configuration'), 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     for categoryTitle, configItems in pairs(categories) do
@@ -801,7 +779,6 @@ end
 
 function mvp.config.ui.Modules()
     if not mvp.config.ui.versionsCache then
-        print('fetching..')
         http.Fetch('https://raw.githubusercontent.com/Kotyarishka/mvp-versions/main/info.json', function(data)
             mvp.config.ui.versionsCache = util.JSONToTable(data)
         end)
@@ -826,13 +803,13 @@ function mvp.config.ui.Modules()
     disclaimer:SetTall(30)
 
     function disclaimer:Paint(w, h)
-        draw.SimpleText('This needs server restart to apply!', 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.language.Get('config#Modules'), 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     local refresh = vgui.Create('mvp.Button', mvp.config.ui.content)
     refresh:Dock(TOP)
     refresh:DockMargin(2, 5, 2, 5)
-    refresh:SetText('Refresh versions data')
+    refresh:SetText(mvp.language.Get('config#ModulesRefresh'))
     refresh:SetTall(30)
 
     function refresh:DoClick()
@@ -872,24 +849,24 @@ function mvp.config.ui.Modules()
 
             draw.DrawText(self.text or 'Module doesn\'t have description yet!', 'mvp.Config.Description', 128 + 5, 25, COLOR_WHITE)
 
-            draw.SimpleText('Author ' .. author, 'mvp.Config.Description', 128 + 5, h - 35, COLOR_WHITE, TEXT_ALIGN_BOTTOM)
+            draw.SimpleText(Format(mvp.language.Get('config#ModulesAuthor'), author), 'mvp.Config.Description', 128 + 5, h - 35, COLOR_WHITE, TEXT_ALIGN_BOTTOM)
 
             draw.SimpleText(version, 'mvp.Config.Description', 128 + 10 + nameWidth, 11, COLOR_WHITE)
 
             
 
             if mvp.config.ui.versionsCache == nil then
-                draw.SimpleText('Fetching versions data', 'mvp.Config.Description', 128 + 5, h - 5, COLOR_WHITE, nil, TEXT_ALIGN_BOTTOM)
+                draw.SimpleText(mvp.language.Get('config#ModulesFetching'), 'mvp.Config.Description', 128 + 5, h - 5, COLOR_WHITE, nil, TEXT_ALIGN_BOTTOM)
                 return 
             end
 
             local isUpToDate = version == versionsCache[id]
             local color = COLOR_RED
-            local text = 'No information about module'
+            local text = mvp.language.Get('config#ModulesNoInformation')
 
             if versionsCache[id] then
                 color = isUpToDate and COLOR_GREEN or COLOR_YELLOW
-                text = isUpToDate and 'Up-to-date' or 'Needs update! New version ' .. versionsCache[id]
+                text = isUpToDate and mvp.language.Get('config#ModulesUpToDate') or mvp.language.Get('config#ModulesNeedsUpdate') .. Format(mvp.language.Get('config#ModulesNewVersion'), versionsCache[id])
             end
 
             draw.NoTexture()
@@ -918,7 +895,7 @@ function mvp.config.ui.Permissions()
     disclaimer:SetTall(30)
 
     function disclaimer:Paint(w, h)
-        draw.SimpleText('List of CAMI permissions registered by base and modules', 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.language.Get('config#Permissions'), 'mvp.Config.Title', w * .5, h * .5, COLOR_WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     local function addPermission(name, description, default)
@@ -934,7 +911,7 @@ function mvp.config.ui.Permissions()
 
             draw.SimpleText(name, 'mvp.Config.Title', 5, 5, COLOR_WHITE)
             draw.SimpleText(description or 'Module doesn\'t have description yet!', 'mvp.Config.Description', 5, 25, COLOR_WHITE)
-            draw.SimpleText('Default access: ' .. default, 'mvp.Config.Description', 5, 40, COLOR_WHITE)
+            draw.SimpleText(Format(mvp.language.Get('config#PermissionsDefaultAccess'), default), 'mvp.Config.Description', 5, 40, COLOR_WHITE)
             
         end
     end
@@ -945,6 +922,30 @@ function mvp.config.ui.Permissions()
 end
 
 function mvp.config.ui.Open(shouldReturn)
+    local buttons = {
+        {
+            name = mvp.language.Get('config#MenuConfig'),
+            icon = Material('mvp/config.png', 'smooth mips'),
+            click = function()
+                mvp.config.ui.Config()
+            end
+        },
+        {
+            name = mvp.language.Get('config#MenuModules'),
+            icon = Material('mvp/modules.png', 'smooth mips'),
+            click = function()
+                mvp.config.ui.Modules()
+            end
+        },
+        {
+            name = mvp.language.Get('config#MenuPermissions'),
+            icon = Material('mvp/permissions.png', 'smooth mips'),
+            click = function()
+                mvp.config.ui.Permissions()
+            end
+        }
+    }
+
     local frame
 
     if shouldReturn then
