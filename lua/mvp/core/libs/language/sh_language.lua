@@ -43,6 +43,14 @@ function mvp.language.Load()
     mvp.utils.IncludeFolder('languages', false, false)
 end
 
+function mvp.language.LoadFromDir(path)
+    local files, folders = file.Find(path .. '/*.lua', 'LUA')
+
+    for k, v in pairs(files) do
+        mvp.utils.Include(path .. '/' .. v, 'shared')
+    end
+end
+
 function mvp.language.GetActiveLanguage() 
     return mvp.config.Get('language')
 end

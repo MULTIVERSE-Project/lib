@@ -71,6 +71,7 @@ function mvp.module.Load(id, path, single, var)
     mvp.utils.Include(single and path or path .. '/sh_' .. var:lower() .. '.lua')
 
     if not single then
+        mvp.language.LoadFromDir(path .. '/languages')
         mvp.config.LoadFromFile(path .. '/config') -- загружаем конфиги
         mvp.module.LoadFromDir(path .. '/modules') -- загрузить модули модуля (да и такое бывает хули)
         -- mvp.faction.LoadFromDir(path .. '/factions') -- загрузить фракции модуля
