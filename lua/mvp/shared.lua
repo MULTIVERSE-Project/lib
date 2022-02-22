@@ -19,6 +19,7 @@ mvp.utils.IncludeFolder('interface', false, true)
 
 mvp.module.Init() 
 mvp.config.Load()
+mvp.language.Load()
 
 concommand.Add('mvp_hotreload', function(ply)
     if IsValid(ply) then
@@ -39,10 +40,11 @@ concommand.Add('mvp_hotreload', function(ply)
 
     mvp.utils.IncludeFolder('core/ui', false, true)
     mvp.utils.IncludeFolder('interface', false, true)
-
+    
     mvp.module.Init() 
     mvp.config.Load()
-
+    mvp.language.Load()
+    
     net.Start('mvpHotReload')
     net.Broadcast()
 end)

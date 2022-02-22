@@ -7,6 +7,7 @@ local lang = {}
 lang['#tagDescription'] = 'Tag that base will use'
 lang['#menuCommandDescription'] = 'Command that will open this menu'
 lang['#configPopupsDescription'] = 'Determines if base should show config changes to all players, or only to admins'
+lang['#languageDescription'] = 'Select the language in which the interfaces will be displayed'
 
 /*
     Config categories

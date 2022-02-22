@@ -1,7 +1,7 @@
 mvp = mvp or {}
 mvp.language = mvp.language or {}
 mvp.language.keys = mvp.language.keys or {}
-mvp.language.list = mvp.language.list or {}
+mvp.language.list = {}
 
 FALLBACK_LANGUAGE = 'en'
 
@@ -9,10 +9,15 @@ function mvp.language.RegisterKey(key)
     mvp.language.keys[key] = true
 end
 
-function mvp.language.AddTranslation(lang, tbl)
-    
-    for k, v in tbl do
-        if not mvp.language.keys[k] then 
+function mvp.language.AddTranslation(lang, tbl)    
+    for k, v in pairs(tbl) do
+        if lang == FALLBACK_LANGUAGE then 
+            mvp.language.RegisterKey(k)
+
+            continue
+        end
+
+        if not mvp.language.keys[k] then
             tbl[k] = nil
         end
     end
@@ -37,10 +42,12 @@ function mvp.language.Get(key)
     if not lang[key] then
         return mvp.language.list[FALLBACK_LANGUAGE][key] or key
     end
+
+    return lang[key]
 end
 
 function mvp.language.Load()
-    mvp.utils.IncludeFolder('languages', false, false)
+    mvp.language.LoadFromDir('mvp/languages')
 end
 
 function mvp.language.LoadFromDir(path)
@@ -57,8 +64,12 @@ end
 
 function mvp.language.GetLoadedLanguages()
     local result = {}
+    local keysCount = table.Count(mvp.language.keys)
+
     for k, v in pairs(mvp.language.list) do
-        result[k] = true
+        local keysInLanguageCount = table.Count(v)
+
+        result[k] = string.upper(k) .. ', translated ' .. (math.Round((keysInLanguageCount / keysCount) * 100)) .. '%'
     end
 
     return result
