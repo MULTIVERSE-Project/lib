@@ -2,7 +2,7 @@ mvp = mvp or {}
 
 mvp.name = 'MULTIVERSE Project Base'
 mvp.description = 'A set of utilities and interfaces for MVP scripts.'
-mvp.version = '1.0.0'
+mvp.version = '1.1.0'
 mvp.author = 'Kot'
 
 include('mvp/core/sh_utils.lua')
