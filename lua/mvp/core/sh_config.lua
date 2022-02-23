@@ -1,12 +1,3 @@
---[[--
-Конфигурация режима
-
-Эта библиотека помогает в обработке конфигов, на ней держаться абсолютна вся
-система конфигурации режима.
-Крутая штука вообщем. Отвечаю.
-]]
--- @module mvp.config 
-
 if SERVER then
     util.AddNetworkString('mvpConfigSet')
     util.AddNetworkString('mvpConfigList')
@@ -31,15 +22,6 @@ mvp.config.validators = {
     end,
 }
 
---- Добавляет поле в конфиг
--- @realm shared
--- @string key
--- @param value
--- @string description
--- @func[opt=nil] callback
--- @tab[opt=nil] data
--- @bool[opt=false] onlySchema
--- @bool[opt=false] onlyServer
 function mvp.config.Add(key, value, description, callback, data, onlySchema, onlyServer)
     data = istable(data) and data or {}
 
@@ -47,7 +29,6 @@ function mvp.config.Add(key, value, description, callback, data, onlySchema, onl
 
     local default = value
 
-    -- Если это уже было сохранено, то нехуй его просто так менять
     if oldConfig ~= nil then
         if oldConfig.value ~= nil then
             value = oldConfig.value
@@ -68,10 +49,6 @@ function mvp.config.Add(key, value, description, callback, data, onlySchema, onl
     }
 end
 
---- Устанавливает значение поля в конфиге и сохраняет его
--- @realm shared
--- @string key Ключ для сохранения
--- @param value Данные для сохранения
 function mvp.config.Set(key, value)
     local config = mvp.config.stored[key]
     
@@ -114,11 +91,6 @@ function mvp.config.Set(key, value)
     end
 end
 
---- Получает поле с конфига
--- @realm shared
--- @string key Ключ для получения
--- @param default Стандартное значение
--- @return Полученно поле
 function mvp.config.Get(key, default) 
     local config = mvp.config.stored[key]
 
@@ -133,9 +105,6 @@ function mvp.config.Get(key, default)
     return default
 end
 
---- Загружает конфиг из файлов
--- @realm shared
--- @internal
 function mvp.config.Load()
     mvp.permission.Add('mvp/EditConfigs', 'superadmin', 'It is used to determine who can edit the config. THIS RIGHT ALLOWS YOU TO VIEW SENSITIVE INFORMATION')
     
@@ -161,9 +130,6 @@ function mvp.config.Load()
     end
 end
 
---- Загружает конфиг из файлов
--- @realm shared
--- @internal
 function mvp.config.LoadFromFile(path)
     local files, folders = file.Find(path .. '/*.lua', 'LUA')
 
@@ -177,10 +143,6 @@ function mvp.config.LoadFromFile(path)
 end
 
 if SERVER then
-    --- Получает изменненые поля с конфига
-    -- @realm server
-    -- @bool sanitaze[opt=false] Уберёт все поля с флагом `onlyServer`. Полезно делать перед тем как отправить на клиент.
-    -- @treturn table Измененные поля
     function mvp.config.GetChangedValues(sanitize)
         local data = {}
 
@@ -197,19 +159,12 @@ if SERVER then
         return data
     end
 
-    --- Отправляет конфиг на клиент
-    -- @realm server
-    -- @tparam Player client Игрок, которому отправить конфиг
-    -- @internal
     function mvp.config.Send(client)
         net.Start('mvpConfigList')
             net.WriteTable(mvp.config.GetChangedValues(true))
         net.Send(client)
     end
 
-    --- Сохраняет конфиг
-    -- @realm server
-    -- @internal
     function mvp.config.Save()
         local globals = {}
         local data = {}

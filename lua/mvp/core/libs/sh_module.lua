@@ -72,13 +72,12 @@ function mvp.module.Load(id, path, single, var)
 
     if not single then
         mvp.language.LoadFromDir(path .. '/languages')
-        mvp.config.LoadFromFile(path .. '/config') -- загружаем конфиги
-        mvp.module.LoadFromDir(path .. '/modules') -- загрузить модули модуля (да и такое бывает хули)
-        -- mvp.faction.LoadFromDir(path .. '/factions') -- загрузить фракции модуля
-        mvp.module.LoadEntites(path .. '/entities') -- загружаем ентити
+        mvp.config.LoadFromFile(path .. '/config')
+        mvp.module.LoadFromDir(path .. '/modules')
+        mvp.module.LoadEntites(path .. '/entities')
     end
 
-    MODULE.loading = false -- сообщим о том что модуль больше не загружаеться
+    MODULE.loading = false
 
     function MODULE:SetData(value, global, ignoreMap)
         mvp.data.Set(id, value, global, ignoreMap)
