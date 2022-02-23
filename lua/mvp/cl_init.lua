@@ -17,6 +17,7 @@ net.Receive('mvpHotReload', function()
 
     mvp.module.Init() 
     mvp.config.Load()
+    mvp.language.Load()
 
     mvp.utils.Popup(5, nil, nil, 'MVP lib reloaded!')
 end)

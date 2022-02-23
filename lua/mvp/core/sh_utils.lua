@@ -55,19 +55,19 @@ function mvp.utils.Include(fileName, realm, silent)
     end
 end
 
-function mvp.utils.IncludeFolder(dir, fromLua, recursive, ignore)
+function mvp.utils.IncludeFolder(dir, fromLua, recursive, ignore, realm)
     local rel = 'mvp/'
 
     local files, folders = file.Find((fromLua and '' or rel) .. dir .. '/*', 'LUA')
     for k, v in pairs(files) do
         if ignore and ignore[v] then continue end
-        mvp.utils.Include((fromLua and '' or rel) .. dir .. '/' .. v)
+        mvp.utils.Include((fromLua and '' or rel) .. dir .. '/' .. v, realm, false)
     end
 
     if recursive then
         for k, v in pairs(folders) do
             if ignore and ignore[v] then continue end
-            mvp.utils.IncludeFolder((fromLua and '' or rel) .. dir .. '/' .. v, true, true)
+            mvp.utils.IncludeFolder((fromLua and '' or rel) .. dir .. '/' .. v, true, true, ignore, realm)
         end
     end
 end
