@@ -4,14 +4,14 @@ mvp.permission.list = mvp.permission.list or {}
 
 function mvp.permission.Add(name, minAccess, description)
     if not name then
-        Error('Попытка зарегистрировать привелегию без названия.')
+        Error('Trying to register privilege without name!')
         return 
     end
     
     local privilege = {
         Name = name,
         MinAccess = minAccess or 'admin',
-        Description = description or 'Без описания'
+        Description = description or 'without description'
     }
 
     mvp.permission.list[name] = privilege
