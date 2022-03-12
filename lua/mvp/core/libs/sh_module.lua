@@ -72,7 +72,7 @@ function mvp.module.Load(id, path, single, var)
 
     if not single then
         mvp.language.LoadFromDir(path .. '/languages')
-        mvp.config.LoadFromFile(path .. '/config')
+        mvp.config.LoadFromDir(path .. '/config')
         mvp.module.LoadFromDir(path .. '/modules')
         mvp.module.LoadEntites(path .. '/entities')
     end

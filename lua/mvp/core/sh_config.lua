@@ -123,14 +123,14 @@ function mvp.config.Load()
         end
     end
 
-    mvp.config.LoadFromFile('mvp/core/config')
+    mvp.config.LoadFromDir('mvp/core/config')
 
     if SERVER then
         hook.Run('InitializedConfig')
     end
 end
 
-function mvp.config.LoadFromFile(path)
+function mvp.config.LoadFromDir(path)
     local files, folders = file.Find(path .. '/*.lua', 'LUA')
 
     for k, v in pairs(files) do
