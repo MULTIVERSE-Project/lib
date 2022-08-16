@@ -1,0 +1,362 @@
+
+
+<html>
+	<head>
+		<title>mvp - Library Docs</title>
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="mvp - Library Docs" />
+		<meta property="og:site_name" content="MULTIVERSE Documentation" />
+
+			<meta property="og:description" content="Top-level library containing all MVP libraries." />
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
+		<link rel="stylesheet" href="../../ldoc.css" />
+		<link rel="stylesheet" href="../../highlight.css" />
+	</head>
+
+	<body>
+		<main>
+
+
+<nav>
+	<header>
+			<h1><a href="../../">MULTIVERSE Documentation</a></h1>
+		<input id="search" type="search" autocomplete="off" placeholder="Search..." />
+	</header>
+
+	<section>
+				<details class="category" open>
+					<summary>
+						<h2>Libraries</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details open>
+									<summary><a href="../../libraries/mvp/">mvp</a></summary>
+
+									<ul>
+
+
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
+						<h2>Classes</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../classes/panel/">Panel</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm client"></span>
+											<a href="../../classes/panel/#Lerp">
+Lerp
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../classes/panel/#LerpColor">
+LerpColor
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../classes/panel/#On">
+On
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
+									<summary><a href="../../classes/theme/">Theme</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetAuthor">
+GetAuthor
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetColor">
+GetColor
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetDescription">
+GetDescription
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetName">
+GetName
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetURL">
+GetURL
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#GetVersion">
+GetVersion
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#IsTheme">
+IsTheme
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetAuthor">
+SetAuthor
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetColor">
+SetColor
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetDescription">
+SetDescription
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetName">
+SetName
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetURL">
+SetURL
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/theme/#SetVersion">
+SetVersion
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+	</section>
+</nav>
+
+
+			<article>
+					<div class="wrapper">
+
+<header class="module">
+	<h1>mvp</h1>
+	<h2>Top-level library containing all MVP libraries.</h2>
+</header>
+
+<p> A large majority of the library is split into respective libraries that
+ reside within <a href="../../libraries/mvp/#">mvp</a>.</p>
+
+	<h1 class="title">Tables</h1>
+
+		<section class="method">
+			<header>
+				<a class="anchor" id="type">
+					<h1><span class="realm shared"></span></span>type</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/main/lua/mvp/sh_init.lua#L34">View source &raquo;</a>
+
+					<p>A table of variable types that are used throughout the framework.  It represents types as a table with the keys being the
+ name of the type, and the values being some number value. <strong>You should never directly use these number values!</strong> Using the
+ values from this table will ensure backwards compatibility if the values in this table change.</p>
+
+<p> This table also contains the numerical values of the types as keys. This means that if you need to check if a type exists, or
+ if you need to get the name of a type, you can do a table lookup with a numerical value. Note that special types are not
+ included since they are not real types that can be compared with.</p>
+			</header>
+
+
+					<h3>Fields</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">string</span>
+
+
+
+								<p> A regular string. In the case of <code>mvp.command.Add</code>, this represents one word.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">text</span>
+
+
+
+								<p> A regular string. In the case of <code>mvp.command.Add</code>, this represents all words concatenated into a string.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">number</span>
+
+
+
+								<p> Any number.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">player</span>
+
+
+
+								<p> Any player that matches the given query string in <code>mvp.util.FindPlayer</code>.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">steamid</span>
+
+
+
+								<p> A string that matches the Steam ID format of <code>STEAM_X:X:XXXXXXXX</code>.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">bool</span>
+
+
+
+								<p> A string representation of a bool - <code>false</code> and <code>0</code> will return <code>false</code>, anything else will return <code>true</code>.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">color</span>
+
+
+
+								<p> A color represented by its red/green/blue/alpha values.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">vector</span>
+
+
+
+								<p> A 3D vector represented by its x/y/z values.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">optional</span>
+
+
+
+								<p> This is a special type that can be bitwise OR'd with any other type to make it optional.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">array</span>
+
+
+
+								<p> This is a special type that can be bitwise OR'd with any other type to make it an array of that type. Currently
+ only supported in <code>mvp.option.Add</code>.</p>
+							</li>
+					</ul>
+
+
+				<h3>Example Usage</h3>
+					<pre><code>-- checking if type exists
+print(mvp.type[2] ~= nil)
+> true
+
+-- getting name of type
+print(mvp.type[mvp.type.string])
+> "string"
+</code></pre>
+
+		</section>
+
+					</div>
+			</article>
+		</main>
+
+		<script type="text/javascript" src="../../app.js"></script>
+		<script type="text/javascript" src="../../highlight.min.js"></script>
+		<script type="text/javascript">
+			var elements = document.querySelectorAll("pre code")
+
+			hljs.configure({
+				languages: ["lua"]
+			});
+
+			for (var i = 0; i < elements.length; i++)
+			{
+				hljs.highlightBlock(elements[i]);
+			}
+		</script>
+	</body>
+</html>
