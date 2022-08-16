@@ -50,10 +50,19 @@ end
 												else
 													echo((v.name:gsub(currentMod.name .. ".", "")))
 												end %}
+
+												{% if(v.tags.internal) then %}
+													<span class="internal">internal</span>
+												{% end %}
+												{% if(v.tags.callback) then %}
+													<span class="callback">callback</span>
+												{% end %}
 											</a>
 										</li>
 									{% end %}
 								{% end %}
+
+								
 
 								{% if (isKindExpandable(kind)) then %}
 									</ul>

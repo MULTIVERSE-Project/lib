@@ -1,6 +1,5 @@
-
 :root {
-	--content-width: 1200px;
+	--content-width: 100%;
 	--sidebar-width: 330px;
 
 	--padding-big: 48px;
@@ -17,14 +16,14 @@
 	--font-style-normal: Segoe UI, Helvetica, Arial, sans-serif;
 	--font-style-code: Consolas, monospace;
 
-	--color-accent: rgb(115, 53, 142);
-	--color-accent-dark: rgb(85, 39, 105);
+	--color-accent: rgb(5, 134, 209);
+	--color-accent-dark: rgb(39, 57, 105);
 	--color-white: rgb(255, 255, 255);
 	--color-offwhite: rgb(200, 200, 200);
 	--color-white-accent: rgb(203, 190, 209);
 	--color-black: rgb(0, 0, 0);
 	--color-lightgrey: rgb(160, 160, 160);
-	--color-background-light: rgb(240, 240, 240);
+	--color-background-light: #141438;
 	--color-background-dark: rgb(33, 33, 33);
 }
 
@@ -36,6 +35,8 @@
 
 body {
 	background-color: var(--color-background-light);
+
+	
 	font-family: var(--font-style-normal);
 
 	display: flex;
@@ -95,6 +96,10 @@ code {
 	background-color: rgb(33, 33, 33, 0.1);
 }
 
+pre code {
+	padding: 0;
+}
+
 pre {
 	background-color: rgb(33, 33, 33, 0.1);
 	margin-top: var(--padding-small);
@@ -104,6 +109,32 @@ pre {
 
 pre code {
 	background-color: transparent;
+}
+
+span.internal {
+	width: fit-content;
+	border-radius: 3px;
+	display: inline-block;
+	margin-right: 6px;
+	background-color: #CE6C6C;
+	font-size: 11px;
+	padding: 0px 2px;
+	text-transform: uppercase;
+	position: relative;
+	top: -5px;
+}
+
+span.callback {
+	width: fit-content;
+	border-radius: 3px;
+	display: inline-block;
+	margin-right: 6px;
+	background-color: #0586D1;
+	font-size: 11px;
+	padding: 0px 2px;
+	text-transform: uppercase;
+	position: relative;
+	top: -5px;
 }
 
 span.realm {
@@ -252,7 +283,7 @@ nav section details.category summary h2 {
 
 /* content */
 article {
-	background-color: rgb(255, 255, 255);
+	background-color: var(--color-white);
 
 	width: calc(100% - var(--sidebar-width));
 	min-height: 100vh;
@@ -266,7 +297,7 @@ article .wrapper > *:first-child {
 /* header */
 article header {
 	color: rgb(255, 255, 255);
-	background-color: rgb(115, 53, 142);
+	background-color: rgb(53, 81, 142);
 	padding: var(--padding-tiny);
 }
 
@@ -313,7 +344,7 @@ article h2 {
 }
 
 article h3 {
-	color: rgb(115, 53, 142);
+	color: rgb(53, 81, 142);
 	margin-top: var(--padding-tiny);
 	text-transform: uppercase;
 }
@@ -326,13 +357,13 @@ article p a,
 article ul li a,
 article h1 a,
 article h2 a {
-	color: rgb(115, 53, 142);
+	color: rgb(53, 81, 142);
 	font-weight: 600;
 }
 
 article h1.title {
 	color: rgb(255, 255, 255);
-	background-color: rgb(115, 53, 142);
+	background-color: rgb(53, 81, 142);
 	margin-top: var(--padding-small);
 	margin-bottom: 0;
 	padding: var(--padding-tiny);
@@ -344,7 +375,7 @@ article h1.title {
 }
 
 a.reference {
-	color: rgb(115, 53, 142);
+	color: rgb(53, 81, 142);
 	float: right;
 	margin-top: 8px;
 	padding-left: 8px;
@@ -361,7 +392,7 @@ a.reference {
 }
 
 .notice.error {
-	--color-notice-background: rgb(194, 52, 130);
+	--color-notice-background: rgb(206, 108, 108);
 }
 
 .notice.warning {
@@ -409,7 +440,7 @@ a.reference {
 }
 
 .method header .anchor:target h1 {
-	background-color: rgba(115, 53, 142, 0.2);
+	background-color: rgba(53, 102, 142, 0.2);
 	background-clip: content-box;
 }
 
@@ -425,7 +456,7 @@ a.reference {
 }
 
 .method h3 {
-	color: rgb(115, 53, 142);
+	color: rgb(53, 109, 142);
 	font-size: var(--font-normal);
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -468,7 +499,7 @@ a.reference {
 }
 
 .method ul li a {
-	color: rgb(115, 53, 142);
+	color: rgb(53, 77, 142);
 	font-weight: 600;
 }
 
@@ -483,7 +514,7 @@ a.reference {
 }
 
 .parameter {
-	background-color: rgb(115, 53, 142);
+	background-color: rgb(53, 59, 142);
 }
 
 .type {
@@ -504,7 +535,7 @@ a.type {
 }
 
 .or {
-	color: rgba(115, 53, 142, 0.5);
+	color: rgba(53, 99, 142, 0.5);
 	background-color: inherit;
 
 	width: calc(100% - 32px);
@@ -513,7 +544,7 @@ a.type {
 
 	text-align: center;
 	font-weight: 600;
-	border-bottom: 1px solid rgba(115, 53, 142, 0.5);
+	border-bottom: 1px solid rgba(53, 99, 142, 0.5);
 }
 
 .or span {
