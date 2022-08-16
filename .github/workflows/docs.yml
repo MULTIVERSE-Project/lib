@@ -27,11 +27,11 @@ jobs:
         run: luarocks make
 
       - name: Build docs
-        working-directory: helix
+        working-directory: lib
         run: ldoc . --fatalwarnings
 
       - name: Copy assets
-        working-directory: helix
+        working-directory: lib
         run: |
           cp -v docs/css/* docs/html
           cp -v docs/js/* docs/html
@@ -40,5 +40,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: helix/docs/html
-          cname: docs.gethelix.co
+          publish_dir: lib/docs/html
+          cname: multiverse-project.github.io
