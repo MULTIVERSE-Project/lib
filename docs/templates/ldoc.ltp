@@ -22,7 +22,7 @@ function ldoc.is_kind_classmethod(kind)
 end
 
 function ldoc.repo_reference(item)
-	return repo .. "blob/main" .. item.file.filename:gsub(item.file.base, "/lua/mvp") .. "#L" .. item.lineno
+	return repo .. "blob/v2" .. item.file.filename:gsub(item.file.base, "/lua/mvp") .. "#L" .. item.lineno
 end
 
 local function moduleDescription(mod)
