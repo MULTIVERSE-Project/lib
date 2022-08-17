@@ -32,9 +32,9 @@ end
 -- @treturn Color Lerped color.
 function mvp.utils.LerpColor(fract, from, to)
     return Color(
-		Lerp(frac, from.r, to.r),
-		Lerp(frac, from.g, to.g),
-		Lerp(frac, from.b, to.b),
-		Lerp(frac, from.a, to.a)
+        Lerp(fract, from.r or 255, to.r or 255),
+		Lerp(fract, from.g or 255, to.g or 255),
+		Lerp(fract, from.b or 255, to.b or 255),
+		Lerp(fract, from.a or 255, to.a or 255)
 	)
 end
