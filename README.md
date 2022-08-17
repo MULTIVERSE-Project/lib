@@ -19,13 +19,13 @@
 
 </div>
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<h3 align="center">MULTIVERSE Project Library</h3>
 
+  <img src="/images/mvp_base_glyph.png" width="256" height="256"/>
+
+  <h3 align="center">MULTIVERSE Project Library</h3>
   <p align="center">
     This is library for our scripts, this has no game content, only set of functions.
     <br />
@@ -36,59 +36,93 @@
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
+
 <!-- GETTING STARTED -->
+
 ## Getting Started
-### Installation
+
+* Subscribe to addon on the steam workshop page.
+* Start/restart your server.
+* Base will do all necessary things by itself.
+
+### Configurating
+
+* Type `!mvp` in chat.
+* Select in left sidebar "Config" option.
+* You should see all avaible config options for base and instaled modules.
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Our base provides a tons of functionality. You can create your own modules using our API and docs.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Let's create a simple connect/disconnect chat notifier.
+
+Firs of all, create your module folder in `addons/<your_addon_folder>/mvp/modules/<your_module_folder>/` in that folder you should put `sh_module.lua` file, it's serves as entry point for our brand new module.
+
+:page_facing_up: Contents of: `sh_module.lua`
+```lua
+local MODULE = mvp.modules.New({id = 'joinLeaveAnnouncer'})
+--                              ^ optional values
+-- id - replaces MODULE id. def: folder name
+-- table - indecates if module should be registered as part of main table e.g. mvp.joinLeaveAnnouncer. def: true
+
+--[[
+  Module details
+]]--
+MODULE:SetName('Join/Leave messages') -- Module "fancy" title
+MODULE:SetDescription('Sends a chat message when someone leaves or joins.') -- Module description
+MODULE:SetAuthor('Myself') -- Module author
+MODULE:SetVersion('1.0.0') -- Module version
+
+gameevent.Listen('player_connect') -- Otherwise we will not recieve hooks about player connect
+-- Creating a hook, this can be treated as hook.Add(...), but for modules.
+MODULE:Hook('player_connect', function(self, data)
+--                               MODULE^     ^ Hook variables
+  for i, ply in ipairs( player.GetAll() ) do
+		ply:ChatPrint( data.name .. ' has connected to server!' )
+	end
+end)
+
+gameevent.Listen('player_disconnect')
+MODULE:Hook('player_disconnect', function(self, data)
+  for i, ply in ipairs( player.GetAll() ) do
+		ply:ChatPrint( data.name .. ' disconnected!' )
+	end
+end)
 
 
+
+```
+
+_For more examples, please refer to the [Documentation](https://docs.multiverse-project.com)_
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] In-game config
+- [x] Modules system
+- [ ] Complete UI set
+  - [ ] Buttons
+  - [x] Categories
+  - [x] Text inputs
+  - [x] Frames
+  - [ ] Pop-ups
+  - [ ] Modal windows
+- [x] Font Manager
+  - [x] Font Awesome integration
+
 
 See the [open issues](https://github.com/MULTIVERSE-Project/lib/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -103,20 +137,23 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MPL-2.0 license. See `LICENSE` for more information.
 
 <!-- ACKNOWLEDGMENTS -->
+
+<!-- 
 ## Acknowledgments
 
-* []()
-* []()
-* []()
-
+- []()
+- []()
+- []() -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/MULTIVERSE-Project/lib.svg?style=for-the-badge
 [contributors-url]: https://github.com/MULTIVERSE-Project/lib/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/MULTIVERSE-Project/lib.svg?style=for-the-badge
