@@ -109,7 +109,7 @@ _For more examples, please refer to the [Documentation](https://docs.multiverse-
 - [x] In-game config
 - [x] Modules system
 - [ ] Complete UI set
-  - [ ] Buttons
+  - [x] Buttons
   - [x] Categories
   - [x] Text inputs
   - [x] Frames
