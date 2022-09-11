@@ -38,3 +38,7 @@ function mvp.utils.LerpColor(fract, from, to)
 		Lerp(fract, from.a or 255, to.a or 255)
 	)
 end
+
+function mvp.utils.GetColor(key)
+    return mvp.themes.GetActive():GetColor(key)
+end

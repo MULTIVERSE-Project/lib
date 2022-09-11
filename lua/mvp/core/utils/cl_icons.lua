@@ -101,23 +101,23 @@ function mvp.utils.DrawIcon(x, y, unicode, size, color, style)
 end
 
 concommand.Add('mvp_fa_icons', function()
-    local frame = vgui.Create('DFrame')
+    local frame = vgutils.Create('DFrame')
     frame:SetSize(ScrW() * .5, ScrH() * .7)
     frame:Center()
     frame:MakePopup()
     frame:SetTitle('Font Awesome Icons')
 
-    local scroll = vgui.Create('DScrollPanel', frame)
+    local scroll = vgutils.Create('DScrollPanel', frame)
     scroll:Dock(FILL)
     scroll:DockMargin(5, 5, 5, 5)
 
-    local hint = vgui.Create('DLabel', frame)
+    local hint = vgutils.Create('DLabel', frame)
     hint:SetText('Click on the icon to copy it to clipboard')
     hint:SetFont(mvp.utils.GetFont(24, 'Proxima Nova Regular', 200))
     hint:SetTextColor(color_white)
     hint:Dock(TOP)
 
-    local list = vgui.Create('DIconLayout', scroll)
+    local list = vgutils.Create('DIconLayout', scroll)
     list:Dock(FILL)
     list:DockMargin(5, 5, 5, 5)
     list:SetSpaceY(10)

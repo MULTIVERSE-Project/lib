@@ -35,12 +35,12 @@ function PANEL:Lerp(var, to, duration, callback)
     a.value = to
     a.Think = function(anim, pnl, fraction)
 
-        local newFraction = mvp.ui.Ease(fraction, 0, 0, 1)
+        local newFraction = mvp.ui.Ease(fraction, 0, 1, 1)
         
         if not anim.startValue then
-            anim.startValue = value
+            anim.startValue = self[var]
         end
-                
+        
         local newColor = Lerp(newFraction, anim.startValue, anim.value)
         self[var] = newColor
     end
@@ -60,10 +60,10 @@ function PANEL:LerpColor(var, to, duration, callback)
     a.color = to
     a.Think = function(anim, pnl, fraction)
 
-        local newFraction = mvp.ui.Ease(fraction, 0, 0, 1)
+        local newFraction = mvp.ui.Ease(fraction, 0, 1, 1)
         
         if not anim.startColor then
-            anim.startColor = color
+            anim.startColor = self[var]
         end
                 
         local newColor = mvp.utils.LerpColor(newFraction, anim.startColor, anim.color)

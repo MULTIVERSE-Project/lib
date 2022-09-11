@@ -12,4 +12,4 @@ else
     include('mvp/cl_init.lua')
 end
 
-include('mvp/sh_init.lua')    
+include('mvp/sh_init.lua')
