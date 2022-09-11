@@ -2,13 +2,13 @@
 
 <html>
 	<head>
-		<title>mvp - Library Docs</title>
+		<title>mvp.ui - Library Docs</title>
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="mvp - Library Docs" />
+		<meta property="og:title" content="mvp.ui - Library Docs" />
 		<meta property="og:site_name" content="MULTIVERSE Documentation" />
 
-			<meta property="og:description" content="" />
+			<meta property="og:description" content="UI helper functions." />
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
 		<link rel="stylesheet" href="../../ldoc.css" />
@@ -33,7 +33,7 @@
 
 					<ul>
 							<li>
-									<details open>
+									<details >
 									<summary><a href="../../libraries/mvp/">mvp</a></summary>
 
 									<ul>
@@ -165,7 +165,7 @@ Register
 									</details>
 							</li>
 							<li>
-									<details >
+									<details open>
 									<summary><a href="../../libraries/mvp.ui/">mvp.ui</a></summary>
 
 									<ul>
@@ -409,161 +409,144 @@ SetVersion
 					<div class="wrapper">
 
 <header class="module">
-	<h1>mvp</h1>
-	<h2>
-
-</h2>
+	<h1>mvp.ui</h1>
+	<h2>UI helper functions.</h2>
 </header>
 
 <p>
 
 </p>
 
-	<h1 class="title">Tables</h1>
+	<h1 class="title">Functions</h1>
 
 		<section class="method">
 			<header>
-				<a class="anchor" id="type">
-					<h1><span class="realm shared"></span></span>type</h1>
+				<a class="anchor" id="mvp.ui.Ease">
+					<h1><span class="realm client"></span></span>mvp.ui.Ease(t, b, c, d)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/sh_init.lua#L34">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/ui/cl_easing.lua#L10">View source &raquo;</a>
 
-					<p>A table of variable types that are used throughout the framework.  It represents types as a table with the keys being the
- name of the type, and the values being some number value. <strong>You should never directly use these number values!</strong> Using the
- values from this table will ensure backwards compatibility if the values in this table change.</p>
-
-<p> This table also contains the numerical values of the types as keys. This means that if you need to check if a type exists, or
- if you need to get the name of a type, you can do a table lookup with a numerical value. Note that special types are not
- included since they are not real types that can be compared with.</p>
+					<p>Default easing function</p>
 			</header>
 
 
-					<h3>Fields</h3>
+					<h3>Parameters</h3>
 
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">string</span>
+								<span class="tag parameter">t</span>
+
+									<span class="tag"><span class="type">number</span></span>
 
 
+								<p>
 
-								<p> A regular string. In the case of <code>mvp.command.Add</code>, this represents one word.</p>
+</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">text</span>
+								<span class="tag parameter">b</span>
+
+									<span class="tag"><span class="type">number</span></span>
 
 
+								<p>
 
-								<p> A regular string. In the case of <code>mvp.command.Add</code>, this represents all words concatenated into a string.</p>
+</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">number</span>
+								<span class="tag parameter">c</span>
+
+									<span class="tag"><span class="type">number</span></span>
 
 
+								<p>
 
-								<p> Any number.</p>
+</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">player</span>
+								<span class="tag parameter">d</span>
+
+									<span class="tag"><span class="type">number</span></span>
+
+
+								<p>
+
+</p>
+							</li>
+					</ul>
 
 
 
-								<p> Any player that matches the given query string in <code>mvp.util.FindPlayer</code>.</p>
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.ui.Register">
+					<h1><span class="realm client"></span></span>mvp.ui.Register(name, panel, basePanel)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/ui/cl_vgui.lua#L10">View source &raquo;</a>
+
+					<p>Registers a new panel, and make sure it's can be reloded using concommand.  Uses <code>vgui.Register</code> internally.</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">name</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The name of the panel.</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">steamid</span>
+								<span class="tag parameter">panel</span>
+
+									<span class="tag"><a class="type" href="../../classes/panel/#">Panel</a></span>
 
 
-
-								<p> A string that matches the Steam ID format of <code>STEAM_X:X:XXXXXXXX</code>.</p>
+								<p> The panel to register.</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">bool</span>
+								<span class="tag parameter">basePanel</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
 
 
-
-								<p> A string representation of a bool - <code>false</code> and <code>0</code> will return <code>false</code>, anything else will return <code>true</code>.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">color</span>
-
-
-
-								<p> A color represented by its red/green/blue/alpha values.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">vector</span>
-
-
-
-								<p> A 3D vector represented by its x/y/z values.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">optional</span>
-
-
-
-								<p> This is a special type that can be bitwise OR'd with any other type to make it optional.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">array</span>
-
-
-
-								<p> This is a special type that can be bitwise OR'd with any other type to make it an array of that type. Currently
- only supported in <code>mvp.option.Add</code>.</p>
+								<p> The base panel to use.</p>
 							</li>
 					</ul>
 
 
-				<h3>Example Usage</h3>
-					<pre><code>-- checking if type exists
-print(mvp.type[2] ~= nil)
-> true
-
--- getting name of type
-print(mvp.type[mvp.type.string])
-> "string"
-</code></pre>
 
 		</section>
 
