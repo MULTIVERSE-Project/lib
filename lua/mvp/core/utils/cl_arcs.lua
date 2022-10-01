@@ -1,4 +1,6 @@
 --- @module mvp.utils
+mvp.utils = mvp.utils or {}
+
 function mvp.utils.DrawCircle(x, y, r, step, cache)
     local positions = {}
 

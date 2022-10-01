@@ -54,4 +54,8 @@ mvp.loader.LoadFolder('core/ui')
 -- Load UI elements
 mvp.loader.LoadFolder('vgui')
 
+-- Load modules
+mvp.loader.LoadFolder('core/modules')
+mvp.modules.Load()
+
 

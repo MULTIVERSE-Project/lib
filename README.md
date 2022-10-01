@@ -107,7 +107,7 @@ _For more examples, please refer to the [Documentation](https://docs.multiverse-
 ## Roadmap
 
 - [x] In-game config
-- [x] Modules system
+- [ ] Modules system
 - [ ] Complete UI set
   - [x] Buttons
   - [x] Categories
