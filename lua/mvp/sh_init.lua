@@ -38,6 +38,8 @@ mvp.loader.LoadFolder('thirdparty')
 mvp.loader.LoadFolder('core/utils')
 -- Load data manager
 mvp.loader.LoadFolder('core/data')
+-- Load permissions manager
+mvp.loader.LoadFolder('core/permissions')
 
 -- Load metatables
 mvp.loader.LoadFolder('core/meta')
@@ -48,14 +50,15 @@ mvp.config.Load()
 -- Load themes
 mvp.loader.LoadFolder('core/theme')
 mvp.themes.Load() 
-
+ 
 -- Load UI system
 mvp.loader.LoadFolder('core/ui')
 -- Load UI elements
 mvp.loader.LoadFolder('vgui')
+mvp.loader.LoadFolder('menus')
 
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
 mvp.modules.Load()
 
-
+mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')

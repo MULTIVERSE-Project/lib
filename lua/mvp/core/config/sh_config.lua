@@ -3,13 +3,15 @@ mvp.config = mvp.config or {}
 
 mvp.config.stored = mvp.config.stored or {}
 
-if (SERVER) then
-    util.AddNetworkString('mvpConfigList')
-    util.AddNetworkString('mvpConfigSet')
-
-    util.AddNetworkString('mvpConfigRequestFullConfig')
-end
-
+--- Creates a new config entry
+-- @realm shared
+-- @tparam string key The key of the config entry
+-- @tparam any value the default value of the config entry
+-- @tparam string description The description of the config entry
+-- @tparam func callback The callback to run when the config entry is changed
+-- @tparam table data Extra data to store with the config entry
+-- @tparam bool isServerOnly Whether or not the config entry is server only
+-- @tparam bool isMapOnly Whether or not the config entry is map only
 function mvp.config.Add(key, value, description, callback, data, isServerOnly, isMapOnly)
     data = istable(data) and data or {}
 
@@ -50,6 +52,11 @@ function mvp.config.Add(key, value, description, callback, data, isServerOnly, i
     }
 end
 
+--- Gets a config value
+-- @realm shared
+-- @tparam string key The key of the config entry
+-- @tparam any default The default value to return if the config entry doesn't exist
+-- @treturn any The value of the config entry
 function mvp.config.Get(key, default)
     local config = mvp.config.stored[key]
 
@@ -66,6 +73,10 @@ function mvp.config.Get(key, default)
     return default
 end
 
+--- Sets and saves a config value
+-- @realm shared
+-- @tparam string key The key of the config entry
+-- @tparam any value The value to set the config entry to
 function mvp.config.Set(key, value)
     local config = mvp.config.stored[key]
 
@@ -89,9 +100,17 @@ function mvp.config.Set(key, value)
         end
 
         mvp.config.Save()
+    else
+        net.Start('mvpConfigSet')
+            net.WriteString(key)
+            net.WriteType(value)
+        net.SendToServer()
     end
 end
 
+--- Loads the config from the config file
+-- @realm server
+-- @internal
 function mvp.config.Load()
     if SERVER then
         local globals = mvp.data.Get('config', nil, false) -- global configs

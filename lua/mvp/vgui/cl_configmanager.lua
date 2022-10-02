@@ -38,7 +38,11 @@ function PANEL:Init()
     saveButton:SetPos(self.savePopup:GetWide() - 64 - 16 - 5, self.savePopup:GetTall() * .5 - 32 * .5)
 
     saveButton.DoClick = function(s)
-
+        for k, v in pairs(self.inputs) do
+            if mvp.config.stored[k].value ~= v:GetValue() then
+                mvp.config.Set(k, v:GetValue())
+            end
+        end
     end
 
     local resetButton = vgui.Create('mvp.IconButton', self.savePopup)
@@ -231,9 +235,27 @@ function PANEL:Think()
         if v.inputs then
             local changed = false
             for k2, v2 in pairs(v.inputs) do
-                if v2:GetValue() ~= mvp.config.stored[k2].value then
-                    changed = true
-                    break
+                local configEntry = mvp.config.stored[k2]
+                if v2:GetValue() ~= configEntry.value then -- oh shit what i have done, pls dont kill me, better solution will be in the future ( or you can do it dor me :) )
+                    if configEntry.type == mvp.type.array then -- array is a special case
+                        for configKey, configValue in pairs(configEntry.value) do -- check if the value is the same
+                            local value = v2:GetValue()[configKey]
+                            if value == nil or value ~= configValue then
+                                changed = true
+                                break
+                            end
+                        end
+
+                        for k3, v3 in pairs(v2:GetValue()) do -- check if the value is the same x2
+                            if configEntry.value[k3] ~= v3 then
+                                changed = true
+                                break
+                            end
+                        end
+                    else
+                        changed = true
+                        break
+                    end
                 end
             end
 
