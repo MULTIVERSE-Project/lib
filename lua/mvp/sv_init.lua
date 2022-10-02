@@ -5,6 +5,11 @@ mvp = mvp or {}
 AddCSLuaFile('mvp/core/sh_loader.lua')
 include('mvp/core/sh_loader.lua')
 
+-- Force load font awesome for icons
+resource.AddFile('resource/fonts/fa-brands.ttf')
+resource.AddFile('resource/fonts/fa-regular.ttf')
+resource.AddFile('resource/fonts/fa-solid.ttf')
+
 util.AddNetworkString('mvpPlayerReady')
 util.AddNetworkString('mvpMenu')
 

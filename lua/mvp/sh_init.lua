@@ -57,4 +57,8 @@ mvp.loader.LoadFolder('core/ui')
 mvp.loader.LoadFolder('vgui')
 mvp.loader.LoadFolder('menus')
 
+-- Load modules
+mvp.loader.LoadFolder('core/modules')
+mvp.modules.Load()
+
 mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')
