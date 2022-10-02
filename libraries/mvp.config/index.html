@@ -52,6 +52,31 @@
 									<ul>
 
 
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.Add">
+Add
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.Get">
+Get
+											</a>
+										</li>
+										<li>
+											<span class="realm server"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.Load">
+Load
+													<span class="internal">internal</span>
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.Set">
+Set
+											</a>
+										</li>
 
 
 
@@ -118,6 +143,43 @@ LoadSHFile
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.loader/#mvp.loader.LoadSVFile">
 LoadSVFile
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
+									<summary><a href="../../libraries/mvp.permissions/">mvp.permissions</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.permissions/#mvp.permissions.Add">
+Add
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.permissions/#mvp.permissions.Check">
+Check
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.permissions/#mvp.permissions.Get">
+Get
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.permissions/#mvp.permissions.GetAll">
+GetAll
 											</a>
 										</li>
 
@@ -419,6 +481,228 @@ SetVersion
 
 </p>
 
+	<h1 class="title">Functions</h1>
+
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.config.Add">
+					<h1><span class="realm shared"></span></span>mvp.config.Add(key, value, description, callback, data, isServerOnly, isMapOnly)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L15">View source &raquo;</a>
+
+					<p>Creates a new config entry</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">key</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The key of the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">value</span>
+
+									<span class="tag"><span class="type">any</span></span>
+
+
+								<p> the default value of the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">description</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The description of the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">callback</span>
+
+									<span class="tag"><span class="type">func</span></span>
+
+
+								<p> The callback to run when the config entry is changed</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">data</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+
+
+								<p> Extra data to store with the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">isServerOnly</span>
+
+									<span class="tag"><span class="type">bool</span></span>
+
+
+								<p> Whether or not the config entry is server only</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">isMapOnly</span>
+
+									<span class="tag"><span class="type">bool</span></span>
+
+
+								<p> Whether or not the config entry is map only</p>
+							</li>
+					</ul>
+
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.config.Get">
+					<h1><span class="realm shared"></span></span>mvp.config.Get(key, default)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L60">View source &raquo;</a>
+
+					<p>Gets a config value</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">key</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The key of the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">default</span>
+
+									<span class="tag"><span class="type">any</span></span>
+
+
+								<p> The default value to return if the config entry doesn't exist</p>
+							</li>
+					</ul>
+
+
+				<h3>Returns</h3>
+				<ul>
+
+							<li>
+									<span class="type">any</span>
+
+								<p>The value of the config entry</p>
+							</li>
+
+				</ul>
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.config.Load">
+					<h1><span class="realm server"></span></span>mvp.config.Load()</h1>
+				</a>
+
+					<div class="notice error">
+						<div class="title">Internal</div>
+						<p>This is an internal function! You are able to use it, but you risk unintended side effects if used incorrectly.</p>
+					</div>
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L114">View source &raquo;</a>
+
+					<p>Loads the config from the config file</p>
+			</header>
+
+
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.config.Set">
+					<h1><span class="realm shared"></span></span>mvp.config.Set(key, value)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L80">View source &raquo;</a>
+
+					<p>Sets and saves a config value</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">key</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The key of the config entry</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">value</span>
+
+									<span class="tag"><span class="type">any</span></span>
+
+
+								<p> The value to set the config entry to</p>
+							</li>
+					</ul>
+
+
+
+		</section>
 
 					</div>
 			</article>
