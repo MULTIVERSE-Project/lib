@@ -34,6 +34,10 @@ local typesMap = {
     end,
 }
 
+--- Array manager from the lib. This thing keeps track of the array and allows you to add/remove items from it from the UI.
+-- @panel mvp.ArrayManager
+
+
 function PANEL:Init()
     self.startTime = SysTime()
 
@@ -80,6 +84,10 @@ function PANEL:Init()
     
 end
 
+--- Ads entry into the array manager, that can be edited by user.
+-- @tparam string key Key of the entry
+-- @tparam any value Value of the entry
+-- @treturn Panel EditablePanel with the entry 
 function PANEL:AddEntry(key, value)
     local pnl = vgui.Create('EditablePanel', self.scroll)
     pnl:Dock(TOP)
@@ -112,6 +120,8 @@ function PANEL:AddEntry(key, value)
     pnl.value:Dock(RIGHT)
 
     self.entries[#self.entries + 1] = pnl
+
+    return pnl
 end
 
 function PANEL:Think()
@@ -124,6 +134,9 @@ function PANEL:Paint(w, h)
     self:DefaultPaint(w, h)
 end
 
+--- Called when the array manager is closed/saved.
+-- @callback mvp.ArrayManager:OnSave
+-- @tparam table value Array that was edited by the user 
 function PANEL:OnSave(value)
     
 end
