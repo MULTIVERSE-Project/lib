@@ -1,4 +1,4 @@
----@modules mvp.modules
+---@module mvp.modules
 mvp = mvp or {}
 mvp.modules = mvp.modules or {}
 mvp.modules.list = mvp.modules.list or {}
