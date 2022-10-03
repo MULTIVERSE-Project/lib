@@ -47,6 +47,10 @@ mvp.loader.LoadFolder('core/meta')
 mvp.loader.LoadFolder('core/config')
 mvp.config.Load()
 
+-- Load languages
+mvp.loader.LoadFolder('core/languages')
+mvp.languages.Init()
+
 -- Load themes
 mvp.loader.LoadFolder('core/theme')
 mvp.themes.Load() 
@@ -56,6 +60,7 @@ mvp.loader.LoadFolder('core/ui')
 -- Load UI elements
 mvp.loader.LoadFolder('vgui')
 mvp.loader.LoadFolder('menus')
+
 
 -- Load modules
 mvp.loader.LoadFolder('core/modules')

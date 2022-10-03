@@ -1,5 +1,6 @@
 file = {
 	"lua/mvp",
+	"lua/mvp/vgui",
 	exclude = {"lua/mvp/thirdparty"}
 }
 

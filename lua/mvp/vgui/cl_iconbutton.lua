@@ -1,8 +1,9 @@
 local theme = mvp.themes.GetActive()
+--- Button with ability to render FontAwesome icons with text.
+-- Test
+-- @panel mvp.IconButton
 local PANEL = {}
 
---- Button with ability to render FontAwesome icons with text.
--- @panel mvp.IconButton
 
 --- Sets background color.
 -- @function SetBackgroundColor
