@@ -2,13 +2,13 @@
 
 <html>
 	<head>
-		<title>Theme - Library Docs</title>
+		<title>mvp.languages - Library Docs</title>
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Theme - Library Docs" />
+		<meta property="og:title" content="mvp.languages - Library Docs" />
 		<meta property="og:site_name" content="MULTIVERSE Documentation" />
 
-			<meta property="og:description" content="Theme class" />
+			<meta property="og:description" content="" />
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
 		<link rel="stylesheet" href="../../ldoc.css" />
@@ -115,7 +115,7 @@ Set
 									</details>
 							</li>
 							<li>
-									<details >
+									<details open>
 									<summary><a href="../../libraries/mvp.languages/">mvp.languages</a></summary>
 
 									<ul>
@@ -466,7 +466,7 @@ On
 									</details>
 							</li>
 							<li>
-									<details open>
+									<details >
 									<summary><a href="../../classes/theme/">Theme</a></summary>
 
 									<ul>
@@ -566,8 +566,10 @@ SetVersion
 					<div class="wrapper">
 
 <header class="module">
-	<h1>Theme</h1>
-	<h2>Theme class</h2>
+	<h1>mvp.languages</h1>
+	<h2>
+
+</h2>
 </header>
 
 <p>
@@ -578,41 +580,45 @@ SetVersion
 
 		<section class="method">
 			<header>
-				<a class="anchor" id="GetAuthor">
-					<h1><span class="realm shared"></span></span>Theme:GetAuthor()</h1>
+				<a class="anchor" id="mvp.languages.Get">
+					<h1><span class="realm shared"></span></span>mvp.languages.Get(id)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L28">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L31">View source &raquo;</a>
 
-					<p>Gets the theme's author.</p>
+					<p>Gets a language from the list of available languages.</p>
 			</header>
 
 
+					<h3>Parameters</h3>
 
-				<h3>Returns</h3>
-				<ul>
+
+					<ul>
 
 							<li>
-									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
+								<span class="tag parameter">id</span>
 
-								<p>The theme's author.</p>
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The language ID</p>
 							</li>
+					</ul>
 
-				</ul>
 
 
 		</section>
 		<section class="method">
 			<header>
-				<a class="anchor" id="GetColor">
-					<h1><span class="realm shared"></span></span>Theme:GetColor(key)</h1>
+				<a class="anchor" id="mvp.languages.GetString">
+					<h1><span class="realm shared"></span></span>mvp.languages.GetString(key, ...)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L75">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L39">View source &raquo;</a>
 
-					<p>Get's color by key from <a href="../../classes/theme/#ThemeColors">ThemeColors</a></p>
+					<p>Gets and formats a string from a language.</p>
 			</header>
 
 
@@ -627,169 +633,59 @@ SetVersion
 									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
 
 
-								<p> The key of the color.</p>
+								<p> The key of the string</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">...</span>
+
+									<span class="tag"><span class="type">any</span></span>
+
+
+								<p> The arguments to format the string with</p>
 							</li>
 					</ul>
 
 
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<span class="type">Color</span>
-
-								<p>The color.</p>
-							</li>
-
-				</ul>
-
 
 		</section>
 		<section class="method">
 			<header>
-				<a class="anchor" id="GetDescription">
-					<h1><span class="realm shared"></span></span>Theme:GetDescription()</h1>
+				<a class="anchor" id="mvp.languages.Init">
+					<h1><span class="realm shared"></span></span>mvp.languages.Init()</h1>
 				</a>
 
+					<div class="notice error">
+						<div class="title">Internal</div>
+						<p>This is an internal function! You are able to use it, but you risk unintended side effects if used incorrectly.</p>
+					</div>
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L39">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L66">View source &raquo;</a>
 
-					<p>Gets the theme's description.</p>
+					<p>Initializes the language system.</p>
 			</header>
 
 
 
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
-
-								<p>The theme's description.</p>
-							</li>
-
-				</ul>
-
 
 		</section>
 		<section class="method">
 			<header>
-				<a class="anchor" id="GetName">
-					<h1><span class="realm shared"></span></span>Theme:GetName()</h1>
+				<a class="anchor" id="mvp.languages.LoadFromFolder">
+					<h1><span class="realm shared"></span></span>mvp.languages.LoadFromFolder(path)</h1>
 				</a>
 
+					<div class="notice error">
+						<div class="title">Internal</div>
+						<p>This is an internal function! You are able to use it, but you risk unintended side effects if used incorrectly.</p>
+					</div>
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L17">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L59">View source &raquo;</a>
 
-					<p>Gets the theme's name.</p>
-			</header>
-
-
-
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
-
-								<p>The theme's name.</p>
-							</li>
-
-				</ul>
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="GetURL">
-					<h1><span class="realm shared"></span></span>Theme:GetURL()</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L61">View source &raquo;</a>
-
-					<p>Gets the theme's url.</p>
-			</header>
-
-
-
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
-
-								<p>The theme's url.</p>
-							</li>
-
-				</ul>
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="GetVersion">
-					<h1><span class="realm shared"></span></span>Theme:GetVersion()</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L50">View source &raquo;</a>
-
-					<p>Gets the theme's version.</p>
-			</header>
-
-
-
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
-
-								<p>The theme's version.</p>
-							</li>
-
-				</ul>
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="IsTheme">
-					<h1><span class="realm shared"></span></span>Theme:IsTheme()</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L82">View source &raquo;</a>
-
-					<p>Indicates if theme is valid</p>
-			</header>
-
-
-
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<span class="type">boolean</span>
-
-								<p>true if theme is valid</p>
-							</li>
-
-				</ul>
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="SetAuthor">
-					<h1><span class="realm shared"></span></span>Theme:SetAuthor(author)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L24">View source &raquo;</a>
-
-					<p>Set's the theme's author.</p>
+					<p>Loads all languages from the specified folder.</p>
 			</header>
 
 
@@ -799,12 +695,12 @@ SetVersion
 					<ul>
 
 							<li>
-								<span class="tag parameter">author</span>
+								<span class="tag parameter">path</span>
 
 									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
 
 
-								<p> The theme's author.</p>
+								<p> The path to the folder</p>
 							</li>
 					</ul>
 
@@ -813,14 +709,14 @@ SetVersion
 		</section>
 		<section class="method">
 			<header>
-				<a class="anchor" id="SetColor">
-					<h1><span class="realm shared"></span></span>Theme:SetColor(key, color)</h1>
+				<a class="anchor" id="mvp.languages.Register">
+					<h1><span class="realm shared"></span></span>mvp.languages.Register(id, lang)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L67">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L10">View source &raquo;</a>
 
-					<p>Set's color by key from <a href="../../classes/theme/#ThemeColors">ThemeColors</a></p>
+					<p>Adds a language to the list of available languages.</p>
 			</header>
 
 
@@ -830,191 +726,24 @@ SetVersion
 					<ul>
 
 							<li>
-								<span class="tag parameter">key</span>
+								<span class="tag parameter">id</span>
 
 									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
 
 
-								<p> The key of the color.</p>
+								<p> The language ID</p>
 							</li>
 					</ul>
 
 					<ul>
 
 							<li>
-								<span class="tag parameter">color</span>
+								<span class="tag parameter">lang</span>
 
-									<span class="tag"><span class="type">Color</span></span>
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
 
 
-								<p> The color.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="SetDescription">
-					<h1><span class="realm shared"></span></span>Theme:SetDescription(description)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L35">View source &raquo;</a>
-
-					<p>Set's the theme's description.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">description</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> The theme's description.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="SetName">
-					<h1><span class="realm shared"></span></span>Theme:SetName(name)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L13">View source &raquo;</a>
-
-					<p>Set's the theme's name.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">name</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> The theme's name.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="SetURL">
-					<h1><span class="realm shared"></span></span>Theme:SetURL(url)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L57">View source &raquo;</a>
-
-					<p>Set's the theme's url.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">url</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> The theme's url.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="SetVersion">
-					<h1><span class="realm shared"></span></span>Theme:SetVersion(version)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L46">View source &raquo;</a>
-
-					<p>Set's the theme's version.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">version</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> The theme's version.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-	<h1 class="title">Tables</h1>
-
-		<section class="method">
-			<header>
-				<a class="anchor" id="ThemeColors">
-					<h1><span class="realm shared"></span></span>ThemeColors</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_theme.lua#L91">View source &raquo;</a>
-
-					<p>Colors scheme</p>
-			</header>
-
-
-					<h3>Fields</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">primary</span>
-
-
-
-								<p> Primary color</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">secondary</span>
-
-
-
-								<p> Secondary color</p>
+								<p> The language table</p>
 							</li>
 					</ul>
 
