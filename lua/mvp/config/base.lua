@@ -1,16 +1,16 @@
-mvp.config.Add('chatCommand', '!mvp', 'Chat command to open MULTIVERSE menu', nil, {
+mvp.config.Add('chatCommand', '!mvp', nil, {
     category = 'base'
 })
 
-mvp.config.Add('configPopups', false, 'Controls if every player can see congig popups', nil, {
+mvp.config.Add('configPopups', false, nil, {
     category = 'base'
 })
 
-mvp.config.Add('allowConsoleCommand', true, 'Controls if menu console command enabled', nil, {
+mvp.config.Add('allowConsoleCommand', true, nil, {
     category = 'base' 
 })
 
-mvp.config.Add('language', 'en', 'Language to use', nil, {
+mvp.config.Add('language', 'en', nil, {
     category = 'base',
     type = 'select', -- type for UI
     
@@ -22,15 +22,15 @@ mvp.config.Add('language', 'en', 'Language to use', nil, {
     end
 })
 
-mvp.config.Add('tag', '[MVP]', 'Tag to show in chat when library (or module) send a message', nil, {
+mvp.config.Add('tag', '[MVP]', nil, {
     category = 'appearence'
 })
 
-mvp.config.Add('theme', 'default', 'Theme to use', nil, {
+mvp.config.Add('theme', 'default', nil, {
     category = 'appearence'
 }) 
 
-mvp.config.Add('testArrayStrings', {['hello'] = 'world'}, 'Test array', nil, {
+mvp.config.Add('testArrayStrings', {['hello'] = 'world'}, nil, {
     category = 'testing',
 
     type = mvp.type.array,
@@ -39,7 +39,7 @@ mvp.config.Add('testArrayStrings', {['hello'] = 'world'}, 'Test array', nil, {
     value = {type = mvp.type.string, hint = 'Value hint'},
 })
  
-mvp.config.Add('testArrayBools', {['hello'] = true, ['world'] = false}, 'Test array', nil, {
+mvp.config.Add('testArrayBools', {['hello'] = true, ['world'] = false}, nil, {
     category = 'testing',
 
     type = mvp.type.array,

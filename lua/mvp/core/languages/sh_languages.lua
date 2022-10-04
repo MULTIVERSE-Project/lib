@@ -66,13 +66,3 @@ end
 function mvp.languages.Init()
     mvp.languages.LoadFromFolder("mvp/languages")
 end
-
---- @module mvp
-
---- Shortcut for `mvp.languages.GetString`
--- @realm shared
--- @tparam string key Key of the language string
--- @tparam[opt] any ... Any values to be formatted into the string
-function mvp.Lang(key, ...)
-    return mvp.languages.GetString(key, ...)
-end

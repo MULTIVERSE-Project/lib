@@ -43,7 +43,7 @@ function PANEL:Init()
 
     self:SetDrawOnTop(true)
 
-    self:SetTitle('Array Manager Instance')
+    self:SetTitle(mvp.Lang('arrayManagerTitle'))
     self:SetSize(ScrW() * 0.5, ScrH() * 0.5)
     self:Center()
     self:MakePopup()
@@ -54,13 +54,13 @@ function PANEL:Init()
 
     self.hint.Paint = function(s, w, h)
         local y = 5
-        local _, th = draw.SimpleText('Here you can confgiure any data table (or array).', mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint1'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
         y = y + th
 
-        local _, th = draw.SimpleText('Use "plus" icon to add a new entry, or use "delete" icon next to existing entry to delete it.', mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint2'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
         y = y + th
 
-        draw.SimpleText('Values will be auto-saved to your config manager once you close this window.', mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        draw.SimpleText(mvp.Lang('arrayManagerHint3'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
     end
 
     self.add = vgui.Create('mvp.IconButton', self.hint)

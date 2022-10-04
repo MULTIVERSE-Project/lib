@@ -1,7 +1,7 @@
-local theme = mvp.themes.GetActive()
 --- Button with ability to render FontAwesome icons with text.
 -- Test
 -- @panel mvp.IconButton
+local theme = mvp.themes.GetActive()
 local PANEL = {}
 
 

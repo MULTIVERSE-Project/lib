@@ -67,8 +67,8 @@ local typesMap = {
         base.Paint = function(s, w, h)
             draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
 
-            draw.SimpleText(name, mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(config.description, mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('mvp.TextInput', base)
@@ -97,8 +97,8 @@ local typesMap = {
         base.Paint = function(s, w, h)
             draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
 
-            draw.SimpleText(name, mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(config.description, mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('mvp.Checkbox', base)
@@ -129,8 +129,8 @@ local typesMap = {
         base.Paint = function(s, w, h)
             draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
 
-            draw.SimpleText(name, mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(config.description, mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local manager
@@ -140,12 +140,12 @@ local typesMap = {
         local btn = vgui.Create('mvp.Button', base)
         btn:Dock(RIGHT)
         btn:SetIcon('marker')
-        btn:SetText('Edit')
+        btn:SetText(mvp.Lang('configEdit'))
  
         btn.DoClick = function()
             manager = vgui.Create('mvp.ArrayManager')
 
-            manager:SetTitle('Edit ' .. name)
+            manager:SetTitle(mvp.Lang('configEditField', name))
 
             manager:SetKeyType(config.data.key.type)
             manager:SetValueType(config.data.value.type)

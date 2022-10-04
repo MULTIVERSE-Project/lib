@@ -61,7 +61,6 @@ mvp.loader.LoadFolder('core/ui')
 mvp.loader.LoadFolder('vgui')
 mvp.loader.LoadFolder('menus')
 
-
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
 mvp.modules.Init()

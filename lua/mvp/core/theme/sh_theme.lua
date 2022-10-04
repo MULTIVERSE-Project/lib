@@ -54,13 +54,13 @@ function mvp.themes.GetActive()
     return mvp.themes.cache['MVP Default Dark Theme']
 end
 
+--- Gets color of the active theme.
+-- @realm shared
+-- @tparam string colorName The name of the color.
+-- @treturn Color The color.
 function mvp.themes.GetColor(colorName)
     local theme = mvp.themes.GetActive()
     return theme:GetColor(colorName)
-end
-
-function mvp.Color(colorName)
-    return mvp.themes.GetColor(colorName)
 end
 
 --- Loads all themes from `mvp.themes.path` variable.

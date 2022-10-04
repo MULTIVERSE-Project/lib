@@ -1,6 +1,5 @@
 file = {
 	"lua/mvp",
-	"lua/mvp/vgui",
 	exclude = {"lua/mvp/thirdparty"}
 }
 
@@ -43,6 +42,8 @@ custom_display_name_handler = function(item, default_handler)
 			return item.module.mod_name .. ":" .. default_handler(item)
 		elseif (item.module.type == "hooks") then
 			return item.module.mod_name:upper() .. ":" .. default_handler(item)
+		elseif (item.module.type == "ext") then
+			return item.module.mod_name .. ":" .. default_handler(item)
 		end
 	end
 
@@ -51,6 +52,7 @@ end
 
 new_type("hooks", "Hooks", true)
 new_type("panel", "Panels", true)
+new_type("ext", "Included Modules", true)
 
 -- MULTIVERSE types
 tparam_alias("mvptype", "mvp.type")

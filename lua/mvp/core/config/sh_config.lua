@@ -7,12 +7,11 @@ mvp.config.stored = mvp.config.stored or {}
 -- @realm shared
 -- @tparam string key The key of the config entry
 -- @tparam any value the default value of the config entry
--- @tparam string description The description of the config entry
 -- @tparam func callback The callback to run when the config entry is changed
 -- @tparam table data Extra data to store with the config entry
 -- @tparam bool isServerOnly Whether or not the config entry is server only
 -- @tparam bool isMapOnly Whether or not the config entry is map only
-function mvp.config.Add(key, value, description, callback, data, isServerOnly, isMapOnly)
+function mvp.config.Add(key, value, callback, data, isServerOnly, isMapOnly)
     data = istable(data) and data or {}
 
     local oldConfig = mvp.config.stored[key]
@@ -43,7 +42,6 @@ function mvp.config.Add(key, value, description, callback, data, isServerOnly, i
         data = data,
         value = value,
         default = default,
-        description = description,
 
         serverOnly = isServerOnly,
         mapOnly = isMapOnly,
@@ -141,6 +139,4 @@ end
 -- @internal
 function mvp.config.LoadFromFolder(path)
     mvp.loader.LoadFolder(path, true)
-
-    print(path)
 end
