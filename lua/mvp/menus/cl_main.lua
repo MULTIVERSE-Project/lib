@@ -23,6 +23,8 @@ function mvp.Menu()
 
         local manager = vgui.Create('mvp.ConfigManager', content)
         manager:Dock(FILL)
+
+        print('config')
     end)
     sidebar:AddButton('boxes-stacked', 'Modules', function()
         content:Clear()

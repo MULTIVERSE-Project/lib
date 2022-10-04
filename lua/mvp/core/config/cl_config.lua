@@ -10,7 +10,7 @@ net.Receive('mvpConfigList', function()
         end
     end
 
-    hook.Run('RecivedMVPConfigs')
+    hook.Run('mvp.hooks.configLoaded')
 end)
 
 net.Receive('mvpConfigSet', function()

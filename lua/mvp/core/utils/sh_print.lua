@@ -7,12 +7,12 @@ local function rgb(r, g, b, a)
 end
 
 function mvp.utils.Print(...)
-    MsgC(rgb(0, 168, 255), '[MVP] ', rgb(255, 255, 255), ...)
+    MsgC(Color(140, 122, 230), '[MVP]', Color(0, 255, 0), ' » ', Color(255, 255, 255), ...)
     MsgC('\n')
 end
 
 function mvp.utils.Error(...)
-    mvp.utils.Print(rgb(232, 65, 24), '[Error] ', ...)
+    mvp.utils.Print(Color(232, 65, 24), '[Error] ', ...)
 
     ErrorNoHalt('[MVP] ', ...)
 end

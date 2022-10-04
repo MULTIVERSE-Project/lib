@@ -50,6 +50,8 @@ function mvp.config.Add(key, value, description, callback, data, isServerOnly, i
 
         callback = callback
     }
+
+    mvp.utils.Print('Added config entry ', Color(140, 122, 230), key, color_white, '.')
 end
 
 --- Gets a config value
@@ -131,5 +133,14 @@ function mvp.config.Load()
         end
     end
 
-    mvp.loader.LoadFile('mvp/config/base.lua')
+    mvp.config.LoadFromFolder('mvp/config')
+end
+
+--- Loads configs from folder with configs files
+-- @realm shared
+-- @internal
+function mvp.config.LoadFromFolder(path)
+    mvp.loader.LoadFolder(path, true)
+
+    print(path)
 end

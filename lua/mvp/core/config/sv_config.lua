@@ -68,5 +68,5 @@ net.Receive('mvpConfigSet', function(_, ply)
 
     mvp.config.Set(key, value)
 
-    print(ply:Nick() .. ' changed config ' .. key .. ' to ' .. tostring(value))
+    mvp.utils.Print(Color(0, 0, 255), ply:Nick(), Color(255, 255, 255), ' changed ', Color(0, 255, 0), key, Color(255, 255, 255), ' to ', (type(value) == 'boolean' and (value and Color(0, 255, 0) or Color(255, 0, 0))) or Color(0, 0, 255), value)
 end)

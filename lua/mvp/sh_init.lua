@@ -31,8 +31,8 @@ mvp = mvp or {}
 -- print(mvp.type[mvp.type.string])
 -- > "string"
 
--- Load thirdparty libraries
-mvp.loader.LoadFolder('thirdparty')
+-- Load thirdparty libraries 
+mvp.loader.LoadFolder('thirdparty') 
 
 -- Load utilites
 mvp.loader.LoadFolder('core/utils')
@@ -59,6 +59,6 @@ mvp.loader.LoadFolder('menus')
 
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
-mvp.modules.Load()
+mvp.modules.Init()
 
-mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')
+mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')   

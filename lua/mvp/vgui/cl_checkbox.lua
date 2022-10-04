@@ -36,7 +36,7 @@ function PANEL:Paint(w, h)
 end
 
 function PANEL:PerformLayout(w, h)
-    self.iconWidth = self:GetChecked() and w or 0
+    self:Lerp('iconWidth', self:GetChecked() and w or 0, .3)
 end
 
 mvp.ui.Register('mvp.Checkbox', PANEL, 'DCheckBox')

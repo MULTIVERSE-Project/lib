@@ -2,6 +2,7 @@ local PANEL = {}
 local theme = mvp.themes.GetActive()
 
 function PANEL:Init()
+    print('init config')
     self.categories = {}
     self.inputs = {}
 
@@ -197,6 +198,7 @@ local typesMap = {
     end
 }
 function PANEL:AddInput(categ, type, name, value)
+    print('adding input', categ, type, name, value)
     if not typesMap[type] then return end
 
     categ.inputs = categ.inputs or {}

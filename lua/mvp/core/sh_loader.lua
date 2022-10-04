@@ -76,8 +76,8 @@ end
 --- Loads all files in a directory.
 -- @realm shared
 -- @param path Path to the directory to load.
-function mvp.loader.LoadFolder(path)
-    path = mvp.loader.relativePath .. path
+function mvp.loader.LoadFolder(path, fromLua)
+    path = (fromLua and '' or mvp.loader.relativePath) .. path
     local files, folders = file.Find(path .. '/*', 'LUA')
 
     for _, file in pairs(files) do
