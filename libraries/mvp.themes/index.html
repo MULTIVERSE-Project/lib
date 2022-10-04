@@ -28,6 +28,91 @@
 	<section>
 				<details class="category" open>
 					<summary>
+						<h2>Panels</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.button/">mvp.Button</a></summary>
+
+									<ul>
+
+
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.iconbutton/">mvp.IconButton</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#GetIcon">
+GetIcon
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColor">
+SetBackgroundColor
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColorHovered">
+SetBackgroundColorHovered
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetIcon">
+SetIcon
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
+						<h2>Included Modules</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../included modules/mvp.test/">mvp.test</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../included modules/mvp.test/#Test">
+Test
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
 						<h2>Libraries</h2>
 					</summary>
 
@@ -39,6 +124,12 @@
 									<ul>
 
 
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp/#Color">
+Color
+											</a>
+										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp/#Lang">
@@ -74,6 +165,13 @@ Get
 											<span class="realm server"></span>
 											<a href="../../libraries/mvp.config/#mvp.config.Load">
 Load
+													<span class="internal">internal</span>
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.LoadFromFolder">
+LoadFromFolder
 													<span class="internal">internal</span>
 											</a>
 										</li>
@@ -217,15 +315,15 @@ Get
 										</li>
 										<li>
 											<span class="realm shared"></span>
-											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
-Load
+											<a href="../../libraries/mvp.modules/#mvp.modules.Init">
+Init
+													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
 Load
-													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
@@ -294,6 +392,12 @@ GetAll
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.themes/#mvp.themes.Get">
 Get
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.themes/#mvp.themes.GetColor">
+GetColor
 											</a>
 										</li>
 										<li>
@@ -434,6 +538,37 @@ SanitazeType
 					</summary>
 
 					<ul>
+							<li>
+									<details >
+									<summary><a href="../../classes/module/">Module</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Hook">
+Hook
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Include">
+Include
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#IncludeFolder">
+IncludeFolder
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
 							<li>
 									<details >
 									<summary><a href="../../classes/panel/">Panel</a></summary>
@@ -614,6 +749,48 @@ SetVersion
 									<a class="type" href="../../classes/theme/#">Theme</a>
 
 								<p>The theme.</p>
+							</li>
+
+				</ul>
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.themes.GetColor">
+					<h1><span class="realm shared"></span></span>mvp.themes.GetColor(colorName)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/theme/sh_theme.lua#L61">View source &raquo;</a>
+
+					<p>Gets color of the active theme.</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">colorName</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The name of the color.</p>
+							</li>
+					</ul>
+
+
+				<h3>Returns</h3>
+				<ul>
+
+							<li>
+									<span class="type">Color</span>
+
+								<p>The color.</p>
 							</li>
 
 				</ul>

@@ -28,6 +28,91 @@
 	<section>
 				<details class="category" open>
 					<summary>
+						<h2>Panels</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.button/">mvp.Button</a></summary>
+
+									<ul>
+
+
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.iconbutton/">mvp.IconButton</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#GetIcon">
+GetIcon
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColor">
+SetBackgroundColor
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColorHovered">
+SetBackgroundColorHovered
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetIcon">
+SetIcon
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
+						<h2>Included Modules</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../included modules/mvp.test/">mvp.test</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../included modules/mvp.test/#Test">
+Test
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
 						<h2>Libraries</h2>
 					</summary>
 
@@ -39,6 +124,12 @@
 									<ul>
 
 
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp/#Color">
+Color
+											</a>
+										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp/#Lang">
@@ -74,6 +165,13 @@ Get
 											<span class="realm server"></span>
 											<a href="../../libraries/mvp.config/#mvp.config.Load">
 Load
+													<span class="internal">internal</span>
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.LoadFromFolder">
+LoadFromFolder
 													<span class="internal">internal</span>
 											</a>
 										</li>
@@ -217,15 +315,15 @@ Get
 										</li>
 										<li>
 											<span class="realm shared"></span>
-											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
-Load
+											<a href="../../libraries/mvp.modules/#mvp.modules.Init">
+Init
+													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
 Load
-													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
@@ -294,6 +392,12 @@ GetAll
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.themes/#mvp.themes.Get">
 Get
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.themes/#mvp.themes.GetColor">
+GetColor
 											</a>
 										</li>
 										<li>
@@ -434,6 +538,37 @@ SanitazeType
 					</summary>
 
 					<ul>
+							<li>
+									<details >
+									<summary><a href="../../classes/module/">Module</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Hook">
+Hook
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Include">
+Include
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#IncludeFolder">
+IncludeFolder
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
 							<li>
 									<details >
 									<summary><a href="../../classes/panel/">Panel</a></summary>
@@ -581,11 +716,11 @@ SetVersion
 		<section class="method">
 			<header>
 				<a class="anchor" id="mvp.config.Add">
-					<h1><span class="realm shared"></span></span>mvp.config.Add(key, value, description, callback, data, isServerOnly, isMapOnly)</h1>
+					<h1><span class="realm shared"></span></span>mvp.config.Add(key, value, callback, data, isServerOnly, isMapOnly)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L15">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L14">View source &raquo;</a>
 
 					<p>Creates a new config entry</p>
 			</header>
@@ -615,18 +750,6 @@ SetVersion
 
 
 								<p> the default value of the config entry</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">description</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> The description of the config entry</p>
 							</li>
 					</ul>
 
@@ -751,6 +874,42 @@ SetVersion
 					<p>Loads the config from the config file</p>
 			</header>
 
+
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="mvp.config.LoadFromFolder">
+					<h1><span class="realm shared"></span></span>mvp.config.LoadFromFolder(path)</h1>
+				</a>
+
+					<div class="notice error">
+						<div class="title">Internal</div>
+						<p>This is an internal function! You are able to use it, but you risk unintended side effects if used incorrectly.</p>
+					</div>
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/config/sh_config.lua#L140">View source &raquo;</a>
+
+					<p>Loads configs from folder with configs files</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">path</span>
+
+
+
+								<p>
+
+</p>
+							</li>
+					</ul>
 
 
 

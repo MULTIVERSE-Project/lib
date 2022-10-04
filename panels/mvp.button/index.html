@@ -2,13 +2,13 @@
 
 <html>
 	<head>
-		<title>Panel - Library Docs</title>
+		<title>mvp.Button - Library Docs</title>
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Panel - Library Docs" />
+		<meta property="og:title" content="mvp.Button - Library Docs" />
 		<meta property="og:site_name" content="MULTIVERSE Documentation" />
 
-			<meta property="og:description" content="" />
+			<meta property="og:description" content="Alternative to default DButton." />
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
 		<link rel="stylesheet" href="../../ldoc.css" />
@@ -33,7 +33,7 @@
 
 					<ul>
 							<li>
-									<details >
+									<details open>
 									<summary><a href="../../panels/mvp.button/">mvp.Button</a></summary>
 
 									<ul>
@@ -570,7 +570,7 @@ IncludeFolder
 									</details>
 							</li>
 							<li>
-									<details open>
+									<details >
 									<summary><a href="../../classes/panel/">Panel</a></summary>
 
 									<ul>
@@ -701,206 +701,14 @@ SetVersion
 					<div class="wrapper">
 
 <header class="module">
-	<h1>Panel</h1>
-	<h2>
-
-</h2>
+	<h1>mvp.Button</h1>
+	<h2>Alternative to default DButton.</h2>
 </header>
 
 <p>
 
 </p>
 
-	<h1 class="title">Functions</h1>
-
-		<section class="method">
-			<header>
-				<a class="anchor" id="Lerp">
-					<h1><span class="realm client"></span></span>Panel:Lerp(var, to, duration, callback)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L30">View source &raquo;</a>
-
-					<p>Lerping function.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">var</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> Variable to lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">to</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> To value.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">duration</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> duration of the lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">callback</span>
-
-									<span class="tag"><span class="type">function</span></span>
-
-
-								<p> Callback to call when the lerp is finished.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="LerpColor">
-					<h1><span class="realm client"></span></span>Panel:LerpColor(var, to, duration, callback)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L55">View source &raquo;</a>
-
-					<p>Color lerping function.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">var</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> Variable to lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">to</span>
-
-									<span class="tag"><span class="type">Color</span></span>
-
-
-								<p> To value.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">duration</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> duration of the lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">callback</span>
-
-									<span class="tag"><span class="type">function</span></span>
-
-
-								<p> Callback to call when the lerp is finished.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="On">
-					<h1><span class="realm client"></span></span>Panel:On(name, func)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L10">View source &raquo;</a>
-
-					<p>Helper function to set metafunctions wothout havimg to override the metatable.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">name</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> Name of the metafunction.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">func</span>
-
-									<span class="tag"><span class="type">function</span></span>
-
-
-								<p> Function to set.</p>
-							</li>
-					</ul>
-
-
-				<h3>Returns</h3>
-				<ul>
-
-							<li>
-									<a class="type" href="../../classes/panel/#">Panel</a>
-
-								<p>Self.</p>
-							</li>
-
-				</ul>
-
-
-		</section>
 
 					</div>
 			</article>

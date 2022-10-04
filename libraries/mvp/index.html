@@ -8,7 +8,7 @@
 		<meta property="og:title" content="mvp - Library Docs" />
 		<meta property="og:site_name" content="MULTIVERSE Documentation" />
 
-			<meta property="og:description" content="" />
+			<meta property="og:description" content="Top-level library containing all MVP libraries." />
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro" />
 		<link rel="stylesheet" href="../../ldoc.css" />
@@ -28,6 +28,91 @@
 	<section>
 				<details class="category" open>
 					<summary>
+						<h2>Panels</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.button/">mvp.Button</a></summary>
+
+									<ul>
+
+
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
+									<summary><a href="../../panels/mvp.iconbutton/">mvp.IconButton</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#GetIcon">
+GetIcon
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColor">
+SetBackgroundColor
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetBackgroundColorHovered">
+SetBackgroundColorHovered
+											</a>
+										</li>
+										<li>
+											<span class="realm client"></span>
+											<a href="../../panels/mvp.iconbutton/#SetIcon">
+SetIcon
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
+						<h2>Included Modules</h2>
+					</summary>
+
+					<ul>
+							<li>
+									<details >
+									<summary><a href="../../included modules/mvp.test/">mvp.test</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../included modules/mvp.test/#Test">
+Test
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+					</ul>
+				</details>
+				<details class="category" open>
+					<summary>
 						<h2>Libraries</h2>
 					</summary>
 
@@ -39,6 +124,12 @@
 									<ul>
 
 
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp/#Color">
+Color
+											</a>
+										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp/#Lang">
@@ -74,6 +165,13 @@ Get
 											<span class="realm server"></span>
 											<a href="../../libraries/mvp.config/#mvp.config.Load">
 Load
+													<span class="internal">internal</span>
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.config/#mvp.config.LoadFromFolder">
+LoadFromFolder
 													<span class="internal">internal</span>
 											</a>
 										</li>
@@ -217,15 +315,15 @@ Get
 										</li>
 										<li>
 											<span class="realm shared"></span>
-											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
-Load
+											<a href="../../libraries/mvp.modules/#mvp.modules.Init">
+Init
+													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.modules/#mvp.modules.Load">
 Load
-													<span class="internal">internal</span>
 											</a>
 										</li>
 										<li>
@@ -294,6 +392,12 @@ GetAll
 											<span class="realm shared"></span>
 											<a href="../../libraries/mvp.themes/#mvp.themes.Get">
 Get
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../libraries/mvp.themes/#mvp.themes.GetColor">
+GetColor
 											</a>
 										</li>
 										<li>
@@ -436,6 +540,37 @@ SanitazeType
 					<ul>
 							<li>
 									<details >
+									<summary><a href="../../classes/module/">Module</a></summary>
+
+									<ul>
+
+
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Hook">
+Hook
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#Include">
+Include
+											</a>
+										</li>
+										<li>
+											<span class="realm shared"></span>
+											<a href="../../classes/module/#IncludeFolder">
+IncludeFolder
+											</a>
+										</li>
+
+
+
+									</ul>
+									</details>
+							</li>
+							<li>
+									<details >
 									<summary><a href="../../classes/panel/">Panel</a></summary>
 
 									<ul>
@@ -567,17 +702,56 @@ SetVersion
 
 <header class="module">
 	<h1>mvp</h1>
-	<h2>
-
-</h2>
+	<h2>Top-level library containing all MVP libraries.</h2>
 </header>
 
-<p>
-
-</p>
+<p> A large majority of the library is split into respective libraries that
+ reside within <a href="../../libraries/mvp/#">mvp</a>.</p>
 
 	<h1 class="title">Functions</h1>
 
+		<section class="method">
+			<header>
+				<a class="anchor" id="Color">
+					<h1><span class="realm shared"></span></span>Color(colorName)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/theme/sh_themes_ext.lua#L7">View source &raquo;</a>
+
+					<p>Shortcut for <a href="../../libraries/mvp.themes/#mvp.themes.GetColor">mvp.themes.GetColor</a></p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">colorName</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The name of the color</p>
+							</li>
+					</ul>
+
+
+				<h3>Returns</h3>
+				<ul>
+
+							<li>
+									<a class="type" href="../../libraries/mvp/#Color">Color</a>
+
+								<p>The color</p>
+							</li>
+
+				</ul>
+
+
+		</section>
 		<section class="method">
 			<header>
 				<a class="anchor" id="Lang">
@@ -585,7 +759,7 @@ SetVersion
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_languages.lua#L76">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/languages/sh_lang_ext.lua#L8">View source &raquo;</a>
 
 					<p>Shortcut for <a href="../../libraries/mvp.languages/#mvp.languages.GetString">mvp.languages.GetString</a></p>
 			</header>

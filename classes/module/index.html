@@ -2,10 +2,10 @@
 
 <html>
 	<head>
-		<title>Panel - Library Docs</title>
+		<title>Module - Library Docs</title>
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Panel - Library Docs" />
+		<meta property="og:title" content="Module - Library Docs" />
 		<meta property="og:site_name" content="MULTIVERSE Documentation" />
 
 			<meta property="og:description" content="" />
@@ -539,7 +539,7 @@ SanitazeType
 
 					<ul>
 							<li>
-									<details >
+									<details open>
 									<summary><a href="../../classes/module/">Module</a></summary>
 
 									<ul>
@@ -570,7 +570,7 @@ IncludeFolder
 									</details>
 							</li>
 							<li>
-									<details open>
+									<details >
 									<summary><a href="../../classes/panel/">Panel</a></summary>
 
 									<ul>
@@ -701,7 +701,7 @@ SetVersion
 					<div class="wrapper">
 
 <header class="module">
-	<h1>Panel</h1>
+	<h1>Module</h1>
 	<h2>
 
 </h2>
@@ -715,148 +715,14 @@ SetVersion
 
 		<section class="method">
 			<header>
-				<a class="anchor" id="Lerp">
-					<h1><span class="realm client"></span></span>Panel:Lerp(var, to, duration, callback)</h1>
+				<a class="anchor" id="Hook">
+					<h1><span class="realm shared"></span></span>Module:Hook(name, func, customID)</h1>
 				</a>
 
 
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L30">View source &raquo;</a>
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_module.lua#L53">View source &raquo;</a>
 
-					<p>Lerping function.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">var</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> Variable to lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">to</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> To value.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">duration</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> duration of the lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">callback</span>
-
-									<span class="tag"><span class="type">function</span></span>
-
-
-								<p> Callback to call when the lerp is finished.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="LerpColor">
-					<h1><span class="realm client"></span></span>Panel:LerpColor(var, to, duration, callback)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L55">View source &raquo;</a>
-
-					<p>Color lerping function.</p>
-			</header>
-
-
-					<h3>Parameters</h3>
-
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">var</span>
-
-									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-
-
-								<p> Variable to lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">to</span>
-
-									<span class="tag"><span class="type">Color</span></span>
-
-
-								<p> To value.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">duration</span>
-
-									<span class="tag"><span class="type">number</span></span>
-
-
-								<p> duration of the lerp.</p>
-							</li>
-					</ul>
-
-					<ul>
-
-							<li>
-								<span class="tag parameter">callback</span>
-
-									<span class="tag"><span class="type">function</span></span>
-
-
-								<p> Callback to call when the lerp is finished.</p>
-							</li>
-					</ul>
-
-
-
-		</section>
-		<section class="method">
-			<header>
-				<a class="anchor" id="On">
-					<h1><span class="realm client"></span></span>Panel:On(name, func)</h1>
-				</a>
-
-
-					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/cl_panel.lua#L10">View source &raquo;</a>
-
-					<p>Helper function to set metafunctions wothout havimg to override the metatable.</p>
+					<p>Creates always unique hook for module.</p>
 			</header>
 
 
@@ -871,7 +737,7 @@ SetVersion
 									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
 
 
-								<p> Name of the metafunction.</p>
+								<p> The name of the hook.</p>
 							</li>
 					</ul>
 
@@ -883,7 +749,20 @@ SetVersion
 									<span class="tag"><span class="type">function</span></span>
 
 
-								<p> Function to set.</p>
+								<p> The function to call.</p>
+							</li>
+					</ul>
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">customID</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+									<span class="tag default">optional</span>
+
+								<p> Custom ID for hook.</p>
 							</li>
 					</ul>
 
@@ -892,12 +771,74 @@ SetVersion
 				<ul>
 
 							<li>
-									<a class="type" href="../../classes/panel/#">Panel</a>
+									<a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a>
 
-								<p>Self.</p>
+								<p>The hook ID.</p>
 							</li>
 
 				</ul>
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="Include">
+					<h1><span class="realm shared"></span></span>Module:Include(path)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_module.lua#L36">View source &raquo;</a>
+
+					<p>Includes a file relative to the module's directory.</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">path</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The file to include.</p>
+							</li>
+					</ul>
+
+
+
+		</section>
+		<section class="method">
+			<header>
+				<a class="anchor" id="IncludeFolder">
+					<h1><span class="realm shared"></span></span>Module:IncludeFolder(path)</h1>
+				</a>
+
+
+					<a class="reference" href="https://github.com/MULTIVERSE-Project/lib/blob/v2/lua/mvp/core/meta/sh_module.lua#L43">View source &raquo;</a>
+
+					<p>Includes a folder relative to the module's directory.</p>
+			</header>
+
+
+					<h3>Parameters</h3>
+
+
+					<ul>
+
+							<li>
+								<span class="tag parameter">path</span>
+
+									<span class="tag"><a class="type" href="https://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+
+								<p> The folder to include.</p>
+							</li>
+					</ul>
+
 
 
 		</section>
