@@ -1,6 +1,9 @@
 local theme = mvp.themes.GetActive()
 local PANEL = {}
 
+--- Alternative to default DButton.
+-- @panel mvp.Button
+
 AccessorFunc(PANEL, 'backgroundColor', 'BackgroundColor')
 AccessorFunc(PANEL, 'backgroundColorHover', 'BackgroundColorHover')
 

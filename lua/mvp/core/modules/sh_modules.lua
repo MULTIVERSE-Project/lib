@@ -3,11 +3,20 @@ mvp = mvp or {}
 mvp.modules = mvp.modules or {}
 mvp.modules.list = mvp.modules.list or {}
 
----
--- @string id
--- @string path
--- @bool single
--- @string[opt='MODULE'] var
+MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
+
+for name, hooks in pairs(MVP_HOOK_CACHE) do
+    for id, _ in pairs(hooks) do
+        hook.Remove(name, 'mvp.generatedHook.' .. id)
+        MVP_HOOK_CACHE[name][id] = nil
+    end
+end
+
+--- Loads module from parh with specified ID
+-- @string id ID of the module.
+-- @string path Path to folder/file that contains module.
+-- @bool single If true, module will be loaded from file, otherwise from folder.
+-- @string[opt='MODULE'] var custom var, for internal use only.
 -- @realm shared
 function mvp.modules.Load(id, path, single, var)
     MODULE = nil -- clear old info about module
@@ -56,9 +65,9 @@ function mvp.modules.Load(id, path, single, var)
     MODULE = nil
 end
 
---- 
+--- Loads all entities from specified folder.
 -- @realm shared
--- @tparam string path
+-- @tparam string path Path to folder that contains entities.
 function mvp.modules.LoadEntites(path)
     local files, folders
 
@@ -160,8 +169,8 @@ function mvp.modules.LoadEntites(path)
     HandleEntityInclusion('effects', 'EFFECT', effects and effects.Register, nil, true)
 end
 
----
--- @string path
+--- Loads all modules from specified folder.
+-- @string path Path to folder
 -- @realm shared
 function mvp.modules.LoadFromDir(path)
     local files, folders = file.Find(path .. '/*', 'LUA')
@@ -175,14 +184,14 @@ function mvp.modules.LoadFromDir(path)
     end
 end
 
----
--- @number id
+--- Gets module by id.
+-- @number id Module ID.
 -- @realm shared
 function mvp.modules.Get(id)
     return mvp.modules.list[id]
 end
 
----
+--- Load all modules from main folder.
 -- @internal
 -- @realm shared
 function mvp.modules.Init()

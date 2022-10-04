@@ -1,9 +1,30 @@
 local theme = mvp.themes.GetActive()
+--- Button with ability to render FontAwesome icons with text.
+-- Test
+-- @panel mvp.IconButton
 local PANEL = {}
 
+
+--- Sets background color.
+-- @function SetBackgroundColor
+-- @realm client
+-- @tparam Color color Color to be set as background color.
 AccessorFunc(PANEL, '_backgroundColor', 'BackgroundColor')
+
+--- Sets background color when button is hovered. 
+-- @function SetBackgroundColorHovered
+-- @realm client
+-- @tparam Color color Color to be set as background color when button is hovered.
 AccessorFunc(PANEL, 'backgroundColorHover', 'BackgroundColorHover')
 
+--- Sets the icon to be rendered.
+-- @function SetIcon
+-- @realm client
+-- @tparam string icon The icon to be rendered.
+
+--- Gets the icon to be rendered.
+-- @realm client
+-- @function GetIcon
 AccessorFunc(PANEL, 'icon', 'Icon')
 
 AccessorFunc(PANEL, 'outlineColor', 'OutlineColor')
