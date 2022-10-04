@@ -62,7 +62,7 @@ end
 --- Send and loads files.
 -- This function will determine if the file is a client file, server file or shared file and call the appropriate function.
 -- @realm shared
--- @param path Path to the file to load.
+-- @tparam string path Path to the file to load.
 function mvp.loader.LoadFile(path)
     if path:find('cl_') then
         mvp.loader.LoadCLFile(path)
@@ -75,7 +75,8 @@ end
 
 --- Loads all files in a directory.
 -- @realm shared
--- @param path Path to the directory to load.
+-- @tparam string path Path to the directory to load.
+-- @tparam[opt=false] boolean fromLua If true, the path will be relative to the lua/ folder.
 function mvp.loader.LoadFolder(path, fromLua)
     path = (fromLua and '' or mvp.loader.relativePath) .. path
     local files, folders = file.Find(path .. '/*', 'LUA')
