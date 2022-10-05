@@ -25,11 +25,13 @@ function PANEL:Init()
     self:SetTextColorHover(theme:GetColor('primary_text'))
 
     self:SetOutlineColor(theme:GetColor('accent'))
+
+    self.backgroundCurrentColor = self:GetBackgroundColor()
 end
 
 function PANEL:DefaultPaint(w, h)
-    draw.RoundedBox(5, 0, 0, w, h, theme:GetColor('accent'))
-    draw.RoundedBox(4, 1, 1, w - 2, h - 2, self.backgroundColor)
+    draw.RoundedBox(5, 0, 0, w, h, self:GetOutlineColor())
+    draw.RoundedBox(4, 1, 1, w - 2, h - 2, self.backgroundCurrentColor)
 
     local tw, th = self:GetTextSize()
 
@@ -37,21 +39,21 @@ function PANEL:DefaultPaint(w, h)
     if self:GetIcon() then
         local iw = h * .8
 
-        draw.SimpleText(self:GetText(), self:GetFont(), w * .5 + iw * .5 + 1, h * .5, theme:GetColor('primary_text'), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self:GetText(), self:GetFont(), w * .5 + iw * .5 + 1, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), h * .7, theme:GetColor('white'))
     else
-        draw.SimpleText(self:GetText(), self:GetFont(), w * .5, h * .5, theme:GetColor('primary_text'), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self:GetText(), self:GetFont(), w * .5, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
     
     return true 
 end
 
 function PANEL:OnCursorEntered()
-    self:LerpColor('backgroundColor', theme:GetColor('accent'), .2)
+    self:LerpColor('backgroundCurrentColor', self:GetBackgroundColorHover(), .2)
 end
 
 function PANEL:OnCursorExited()
-    self:LerpColor('backgroundColor', theme:GetColor('secondary_dark'), .2)
+    self:LerpColor('backgroundCurrentColor', self:GetBackgroundColor(), .2)
 end
 
 function PANEL:Paint(w, h)
@@ -64,6 +66,12 @@ function PANEL:PerformLayout(w, h)
     local iw = h - 8
 
     self:SetWide(tw + iw + 20)
+    
+end
+
+function PANEL:SetBackgroundColor(col)
+    self.backgroundColor = col
+    self.backgroundCurrentColor = col
 end
 
 mvp.ui.Register('mvp.Button', PANEL, 'DButton')

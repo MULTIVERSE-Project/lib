@@ -22,8 +22,13 @@ lang['arrayManagerHint1'] = 'This is the array manager. You can add, remove and 
 lang['arrayManagerHint2'] = 'Use "plus" icon to add a new entry, or use "delete" icon next to existing entry to delete it.'
 lang['arrayManagerHint3'] = 'Values will be auto-saved to your config manager once you close this window.'
 
--- Keys prefixed with "@" symbol are used for translating config keys and descriptions.
+-- Keys prefixed with "@" symbol are used for translating config keys, descriptions and categories.
 -- Keys suffixed with "_Desc" are used for translating config descriptions.
+-- Keys suffixed with "_Cat" are used for translating config categories.
+lang['@other_Cat'] = 'Other'
+lang['@base_Cat'] = 'Base'
+lang['@appearance_Cat'] = 'Appearance'
+
 lang['@allowConsoleCommand'] = 'Allow console command'
 lang['@allowConsoleCommand_Desc'] = 'Controls if menu console command enabled'
 lang['@configPopups'] = 'Config popups'

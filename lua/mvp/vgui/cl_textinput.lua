@@ -1,5 +1,7 @@
 local PANEL = {}
 
+AccessorFunc( PANEL, 'backgroundColor', 'BackgroundColor' )
+
 function PANEL:Init()
 
 	self:SetTall( 22 )
@@ -9,8 +11,10 @@ function PANEL:Init()
 	self:SetCursor( 'hand' )
 	self:SetFont( mvp.utils.GetFont(16, 'Proxima Nova Rg', 500) )
 
-    self:SetTextColor(color_white)
-    self:SetCursorColor(color_white)
+    self:SetTextColor(mvp.Color('primary_text'))
+    self:SetCursorColor(mvp.Color('primary_text'))
+
+	self:SetBackgroundColor( mvp.Color('primary_dark') )
 end
 
 function PANEL:OnCursorEntered()
@@ -21,7 +25,7 @@ end
 
 function PANEL:Paint( w, h )
 
-    draw.RoundedBox(4, 0, 0, w, h, Color(75,75,75))
+    draw.RoundedBox(4, 0, 0, w, h, self:GetBackgroundColor())
 
 	if ( self.GetPlaceholderText && self.GetPlaceholderColor && self:GetPlaceholderText() && self:GetPlaceholderText():Trim() != "" && self:GetPlaceholderColor() && ( !self:GetText() || self:GetText() == "" ) ) then
 

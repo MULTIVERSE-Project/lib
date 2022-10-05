@@ -10,7 +10,7 @@ function PANEL:Init()
     self.scroll:Dock(FILL)
 
     for k, v in pairs(mvp.config.stored) do
-        local categ = self:AddCategory(v.data.category)
+        local categ = self:AddCategory(v.data.category and mvp.Lang('@' .. v.data.category .. '_Cat') or mvp.Lang('@other_Cat'))
 
         self:AddInput(categ, v.type, k, v.value)
     end
@@ -54,7 +54,9 @@ function PANEL:Init()
     resetButton:SetPos(self.savePopup:GetWide() - 32 - 16, self.savePopup:GetTall() * .5 - 32 * .5)
 
     resetButton.DoClick = function(s)
-
+        for k, v in pairs(self.inputs) do
+            v:SetValue(mvp.config.stored[k].value)
+        end
     end
 end
 
@@ -193,6 +195,52 @@ local typesMap = {
                 currentValue = value
             end
         }
+
+        return input
+    end,
+    ['select'] = function(base, name, value)
+        local config = mvp.config.stored[name]
+
+        base:SetTall(56)
+        base.Paint = function(s, w, h)
+            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+
+        local input = vgui.Create('mvp.Combobox', base)
+        input:Dock(RIGHT)
+
+        local magicHappensHere = (56 - 22) * .5
+
+        input:DockMargin(0, magicHappensHere, 5, magicHappensHere)
+        input:SetText(value)
+        input:SetWide(300)
+
+        if config.data.GetValues then
+            for k, v in pairs(config.data.GetValues()) do
+                input:AddChoice(v.text, v.value, v.value == config.value)
+            end
+        end
+
+        function input:SetValue(value)
+            local values = config.data.GetValues and config.data.GetValues() or {}
+
+            for k, v in pairs(values) do
+                if v.value == value then
+                    self:ChooseOptionID(k)
+                    break
+                end
+            end
+            
+            return
+        end
+
+        function input:GetValue()
+            local _, data = self:GetSelected()
+            return data
+        end
 
         return input
     end

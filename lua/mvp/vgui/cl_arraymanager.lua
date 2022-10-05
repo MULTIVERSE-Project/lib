@@ -16,6 +16,7 @@ local typesMap = {
         input:SetText(value == 'nil' and '' or value)
 
         input:SetPlaceholderText(hint)
+        input:SetBackgroundColor(mvp.Color('secondary'))
 
         return input
     end,

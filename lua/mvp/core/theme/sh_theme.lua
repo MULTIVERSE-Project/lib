@@ -1,6 +1,6 @@
 --- @module mvp.themes
 mvp.themes = mvp.themes or {}
-mvp.themes.cache = mvp.themes.cache or {}
+mvp.themes.list = mvp.themes.list or {}
 
 mvp.themes.path = 'mvp/themes/'
 
@@ -34,12 +34,12 @@ function mvp.themes.Register(theme)
         return 
     end
 
-    -- if mvp.themes.cache[themeName] then
+    -- if mvp.themes.list[themeName] then
     --     mvp.utils.Error('Theme ' .. themeName .. ' already exists!')
     --     return
     -- end
 
-    mvp.themes.cache[themeName] = theme
+    mvp.themes.list[themeName] = theme
 end
 
 --- Gets a theme by name.
@@ -47,11 +47,14 @@ end
 -- @tparam string themeName The name of the theme.
 -- @treturn Theme The theme.
 function mvp.themes.Get(themeName)
-    return mvp.themes.cache[themeName]
+    return mvp.themes.list[themeName]
 end
 
+--- Gets active theme.
+-- @realm shared
+-- @treturn Theme The active theme.
 function mvp.themes.GetActive()
-    return mvp.themes.cache['MVP Default Dark Theme']
+    return mvp.themes.list[mvp.config.Get('theme', 'MVP Default Dark Theme')]
 end
 
 --- Gets color of the active theme.

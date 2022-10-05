@@ -86,5 +86,21 @@ end
 --- Colors scheme
 -- @table ThemeColors
 -- @realm shared
--- @field primary Primary color
--- @field secondary Secondary color
+-- @tfield Color primary Primary color
+-- @tfield Color primary_dark Primary Dark color
+-- @tfield Color secondary Secondary color
+-- @tfield Color secondary_dark Secondary dark color
+-- @tfield Color accent Accent color
+-- @tfield Color primary_text Primary text color
+-- @tfield Color secondary_text Secondary text color
+-- @tfield Color accent_text Accent text color
+-- @tfield Color red Red color
+-- @tfield Color green Green color
+-- @tfield Color blue Blue color
+-- @tfield Color yellow Yellow color
+-- @tfield Color purple Purple color
+-- @tfield Color pink Pink color
+-- @tfield Color brown Brown color
+-- @tfield Color grey Grey color
+-- @tfield Color white White color
+-- @tfield Color black Black color

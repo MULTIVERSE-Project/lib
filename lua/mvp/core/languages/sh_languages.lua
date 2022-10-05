@@ -3,6 +3,13 @@
 mvp.languages = mvp.languages or {}
 mvp.languages.list = mvp.languages.list or {}
 
+http.Fetch('https://raw.githubusercontent.com/MULTIVERSE-Project/lib/data/languages.json', function(body)
+    local data = util.JSONToTable(body)
+    mvp.languages.langCodes = data
+
+    mvp.utils.Print('Loaded ', Color(68, 189, 50), table.Count(data), color_white, ' language codes.')
+end)
+
 --- Adds a language to the list of available languages.
 -- @realm shared
 -- @tparam string id The language ID
