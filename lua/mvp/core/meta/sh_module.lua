@@ -76,3 +76,21 @@ function mvp.meta.module:Hook(name, func, customID)
 
     return customID
 end
+
+--- Disables module.
+-- You need server restart to apply changes.
+--
+-- This should be used only on server side to take effect, although it will work on client side too, but will have no effect.
+-- @realm shared
+-- @tparam bool disabled Should module be disabled?
+function mvp.meta.module:SetDisabled(disabled)
+    local info = mvp.data.Get('disabled_modules', {}, false, true)
+
+    if disabled then
+        info[self:GetID()] = true
+    else
+        info[self:GetID()] = nil
+    end
+
+    mvp.data.Set('disabled_modules', info, false)
+end
