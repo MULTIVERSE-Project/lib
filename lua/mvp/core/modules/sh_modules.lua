@@ -7,12 +7,12 @@ MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
 
 for name, hooks in pairs(MVP_HOOK_CACHE) do
     for id, _ in pairs(hooks) do
-        hook.Remove(name, 'mvp.generatedHook.' .. id)
+        hook.Remove(name, 'mvp.generatedHook.' .. name .. '.' .. id)
         MVP_HOOK_CACHE[name][id] = nil
     end
 end
 
---- Loads module from parh with specified ID
+--- Loads module from path with specified ID
 -- @string id ID of the module.
 -- @string path Path to folder/file that contains module.
 -- @bool single If true, module will be loaded from file, otherwise from folder.
@@ -198,3 +198,20 @@ function mvp.modules.Init()
     mvp.modules.LoadFromDir('mvp/modules')
     hook.Run('mvp.hooks.InitedCoreModules')
 end
+
+function mvp.modules.Reload()
+    for name, modules in pairs(MVP_HOOK_CACHE) do
+        for module, hooks in pairs(modules) do
+            for id, _ in pairs(hooks) do
+                hook.Remove(name, 'mvp.generatedHook.' .. module .. '.' .. id)
+                MVP_HOOK_CACHE[name][id] = nil
+            end
+        end
+    end
+
+    mvp.modules.Init()
+end
+
+concommand.Add('mvp_reload', function()
+    mvp.modules.Reload()
+end)

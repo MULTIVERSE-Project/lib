@@ -4,16 +4,23 @@
 local theme = mvp.themes.GetActive()
 local PANEL = {}
 
+DEFINE_BASECLASS( "DButton" )
 
 AccessorFunc(PANEL, 'backgroundColor', 'BackgroundColor')
+
+function PANEL:SetBackgroundColor(col)
+    self.backgroundColor = col
+    self.backgroundCurrentColor = col
+end
+
 AccessorFunc(PANEL, 'backgroundColorHover', 'BackgroundColorHover')
+AccessorFunc(PANEL, 'outlineColor', 'OutlineColor')
 
 AccessorFunc(PANEL, 'textColor', 'TextColor')
 AccessorFunc(PANEL, 'textColorHover', 'TextColorHover')
 
 AccessorFunc(PANEL, 'icon', 'Icon')
 
-AccessorFunc(PANEL, 'outlineColor', 'OutlineColor')
 
 function PANEL:Init()
     self:SetFont(mvp.utils.GetFont(16, 'Proxima Nova Rg', 500))
@@ -34,13 +41,11 @@ function PANEL:DefaultPaint(w, h)
     draw.RoundedBox(4, 1, 1, w - 2, h - 2, self.backgroundCurrentColor)
 
     local tw, th = self:GetTextSize()
-
-    
     if self:GetIcon() then
         local iw = h * .8
 
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5 + iw * .5 + 1, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), h * .7, theme:GetColor('white'))
+        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), th * .9, theme:GetColor('white'))
     else
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
@@ -51,7 +56,6 @@ end
 function PANEL:OnCursorEntered()
     self:LerpColor('backgroundCurrentColor', self:GetBackgroundColorHover(), .2)
 end
-
 function PANEL:OnCursorExited()
     self:LerpColor('backgroundCurrentColor', self:GetBackgroundColor(), .2)
 end
@@ -63,15 +67,17 @@ end
 
 function PANEL:PerformLayout(w, h)
     local tw, th = self:GetTextSize()
-    local iw = h - 8
 
-    self:SetWide(tw + iw + 20)
-    
-end
+    local size = w
 
-function PANEL:SetBackgroundColor(col)
-    self.backgroundColor = col
-    self.backgroundCurrentColor = col
+    if self:GetIcon() then
+        local iw = h
+        size = tw * 1.5 + iw + 2
+    else
+        size = tw * 1.3
+    end
+
+    self:SetWide(math.max(size, w))
 end
 
 mvp.ui.Register('mvp.Button', PANEL, 'DButton')

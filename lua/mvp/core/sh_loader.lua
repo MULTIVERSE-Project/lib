@@ -64,6 +64,7 @@ end
 -- @realm shared
 -- @tparam string path Path to the file to load.
 function mvp.loader.LoadFile(path)
+    print(path)
     if path:find('cl_') then
         mvp.loader.LoadCLFile(path)
     elseif path:find('sv_') then
@@ -79,6 +80,7 @@ end
 -- @tparam[opt=false] boolean fromLua If true, the path will be relative to the lua/ folder.
 function mvp.loader.LoadFolder(path, fromLua)
     path = (fromLua and '' or mvp.loader.relativePath) .. path
+    print(path)
     local files, folders = file.Find(path .. '/*', 'LUA')
 
     for _, file in pairs(files) do

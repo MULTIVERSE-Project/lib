@@ -126,3 +126,9 @@ function mvp.utils.UUID(lenght)
         return string.format('%x', v)
     end)
 end
+
+function mvp.utils.StripRealmPrefix(name)
+	local prefix = name:sub(1, 3)
+
+	return (prefix == "sh_" or prefix == "sv_" or prefix == "cl_") and name:sub(4) or name
+end

@@ -10,10 +10,12 @@ mvp.meta.module = mvp.meta.module or {
 
 MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
 
-for name, hooks in pairs(MVP_HOOK_CACHE) do
-    for id, _ in pairs(hooks) do
-        hook.Remove(name, 'mvp.generatedHook.' .. id)
-        MVP_HOOK_CACHE[name][id] = nil
+for name, modules in pairs(MVP_HOOK_CACHE) do
+    for module, hooks in pairs(modules) do
+        for id, _ in pairs(hooks) do
+            hook.Remove(name, 'mvp.generatedHook.' .. module .. '.' .. id)
+            MVP_HOOK_CACHE[name][id] = nil
+        end
     end
 end
 
@@ -41,7 +43,7 @@ end
 -- @realm shared
 -- @tparam string path The folder to include.
 function mvp.meta.module:IncludeFolder(path)
-    mvp.loader.LoadFolder(path)
+    mvp.loader.LoadFolder(self:GetPath() .. '/' .. path, true )
 end
 
 --- Creates always unique hook for module.
@@ -59,8 +61,9 @@ function mvp.meta.module:Hook(name, func, customID)
     end
 
     MVP_HOOK_CACHE[name] = MVP_HOOK_CACHE[name] or {}
+    MVP_HOOK_CACHE[name][self:GetName()] = MVP_HOOK_CACHE[name][self:GetName()] or {}
 
-    if MVP_HOOK_CACHE[name][customID] then
+    if MVP_HOOK_CACHE[name][self:GetName()][customID] then
         if isCustomIDGenerated then
             return self:Hook(name, func)
         else
@@ -68,7 +71,7 @@ function mvp.meta.module:Hook(name, func, customID)
         end
     end
 
-    MVP_HOOK_CACHE[name][customID] = true
+    MVP_HOOK_CACHE[name][self:GetName()][customID] = true
 
     hook.Add(name, 'mvp.generatedHook.' .. self:GetName() .. '.' .. customID, function(...)
         func(self, ...)

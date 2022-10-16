@@ -23,7 +23,7 @@ end
 
 function PANEL:Paint(w, h)
     if self:IsMenuOpen() then
-        draw.RoundedBoxEx(4, 0, 0, w, h, mvp.Color('primary'), true, true, false, false)
+        draw.RoundedBoxEx(4, 0, 0, w, h, Color(77,77,77), true, true, false, false)
     else
         
         draw.RoundedBox(5, 0, 0, w, h, mvp.Color('accent'))
