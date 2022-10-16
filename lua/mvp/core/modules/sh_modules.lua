@@ -5,6 +5,10 @@ mvp.modules.list = mvp.modules.list or {}
 
 MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
 
+if SERVER then 
+    util.AddNetworkString('mvp.SendDisabledModules')
+end
+
 for name, hooks in pairs(MVP_HOOK_CACHE) do
     for id, _ in pairs(hooks) do
         hook.Remove(name, 'mvp.generatedHook.' .. name .. '.' .. id)
@@ -20,8 +24,15 @@ end
 -- @realm shared
 function mvp.modules.Load(id, path, single, var)
     MODULE = nil -- clear old info about module
-    
-    -- @todo Проверка на то стоит ли модулю загружаться (отключение модулей?)
+
+    local disabledModules = mvp.modules.disabledModules
+
+    if disabledModules[id] then
+        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
+        
+        return
+    end
+
     var = var or 'MODULE'
     -- local oldPlugin = MODULE
 
@@ -196,6 +207,17 @@ end
 -- @realm shared
 function mvp.modules.Init()
     mvp.modules.LoadFromDir('mvp/modules')
+    
+    if SERVER then
+        mvp.modules.disabledModules = mvp.data.Get('disabled_modules')
+        
+        hook.Add('mvp.hooks.PlayerReady', 'SendDisabledModules', function(ply)
+            net.Start('mvp.SendDisabledModules')
+                net.WriteTable(mvp.modules.disabledModules)
+            net.Send(ply)
+        end)
+    end
+
     hook.Run('mvp.hooks.InitedCoreModules')
 end
 
@@ -215,3 +237,9 @@ end
 concommand.Add('mvp_reload', function()
     mvp.modules.Reload()
 end)
+
+if CLIENT then
+    net.Receive('mvp.SendDisabledModules', function()
+        mvp.modules.disabledModules = net.ReadTable()
+    end)
+end

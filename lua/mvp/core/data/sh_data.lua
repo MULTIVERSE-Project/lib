@@ -47,6 +47,7 @@ function mvp.data.Get(key, default, isMapOnly, skipCache)
 
     local preparedValue = file.Read(path, 'DATA')
     if preparedValue then
+        mvp.data.cache[isMapOnly and 'map' or 'global'][key] = util.JSONToTable(preparedValue)[1]
         return util.JSONToTable(preparedValue)[1]
     end
 
