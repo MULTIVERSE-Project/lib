@@ -65,4 +65,8 @@ mvp.loader.LoadFolder('menus')
 mvp.loader.LoadFolder('core/modules')
 mvp.modules.Init()
 
-mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')   
+mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')
+
+hook.Add('OnReloaded', 'mvp.Reload', function()
+    print('Reloading MVP...')
+end) 

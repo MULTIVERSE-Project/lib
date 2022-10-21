@@ -2,6 +2,7 @@
 mvp = mvp or {}
 mvp.modules = mvp.modules or {}
 mvp.modules.list = mvp.modules.list or {}
+mvp.modules.disabledModules = mvp.modules.disabledModules or {}
 
 MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
 
@@ -25,7 +26,7 @@ end
 function mvp.modules.Load(id, path, single, var)
     MODULE = nil -- clear old info about module
 
-    local disabledModules = mvp.modules.disabledModules
+    local disabledModules = mvp.modules.disabledModules or {}
 
     if disabledModules[id] then
         mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
@@ -52,10 +53,13 @@ function mvp.modules.Load(id, path, single, var)
     if not single then
         -- mvp.language.LoadFromDir(path .. '/languages')
         mvp.config.LoadFromFolder(path .. '/config')
+    end
+    mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
+
+    if not single then
         mvp.modules.LoadFromDir(path .. '/modules')
         mvp.modules.LoadEntites(path .. '/entities')
     end
-    mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
     
     MODULE.loading = false
 
