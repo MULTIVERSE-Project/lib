@@ -16,6 +16,10 @@ end
 AccessorFunc(PANEL, 'backgroundColorHover', 'BackgroundColorHover')
 AccessorFunc(PANEL, 'outlineColor', 'OutlineColor')
 
+AccessorFunc(PANEL, 'noDrawOutline', 'NoDrawOutline')
+
+AccessorFunc(PANEL, 'borderRadius', 'BorderRadius')
+
 AccessorFunc(PANEL, 'textColor', 'TextColor')
 AccessorFunc(PANEL, 'textColorHover', 'TextColorHover')
 
@@ -32,13 +36,17 @@ function PANEL:Init()
     self:SetTextColorHover(theme:GetColor('primary_text'))
 
     self:SetOutlineColor(theme:GetColor('accent'))
+    self:SetBorderRadius(4)
 
     self.backgroundCurrentColor = self:GetBackgroundColor()
 end
 
 function PANEL:DefaultPaint(w, h)
-    draw.RoundedBox(5, 0, 0, w, h, self:GetOutlineColor())
-    draw.RoundedBox(4, 1, 1, w - 2, h - 2, self.backgroundCurrentColor)
+    if not self:GetNoDrawOutline() then
+        draw.RoundedBox(self:GetBorderRadius() + 1, 0, 0, w, h, self:GetOutlineColor())
+    end 
+
+    draw.RoundedBox(self:GetBorderRadius(), self:GetNoDrawOutline() and 0 or 1, self:GetNoDrawOutline() and 0 or 1, w - (self:GetNoDrawOutline() and 0 or 2), h - (self:GetNoDrawOutline() and 0 or 2), self.backgroundCurrentColor)
 
     local tw, th = self:GetTextSize()
     if self:GetIcon() then

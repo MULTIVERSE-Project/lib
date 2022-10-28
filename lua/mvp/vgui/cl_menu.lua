@@ -186,7 +186,6 @@ function PANEL:Paint(w, h)
     draw.RoundedBox(0, 0, 0, w, h, self.backgroundCurrentColor)
 
     local tw, th = self:GetTextSize()
-
     
     if self:GetIcon() then
         local iw = h * .8

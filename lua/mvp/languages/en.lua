@@ -7,10 +7,33 @@ lang['menuConfig'] = 'Configuration'
 lang['menuModules'] = 'Modules'
 lang['menuPermissions'] = 'Permissions'
 lang['menuAbout'] = 'About'
+lang['menuWelcomeText1'] = 'Hi there %s!'
+lang['menuWelcomeText2'] = 'Glad to see you here.'
+
+lang['menuQuickActions'] = 'Quick actions'
+lang['menuCommunityActions'] = 'Community'
+lang['menuDangerActions'] = 'Danger area'
+
+lang['menuEditConfig'] = 'Edit config'
+lang['menuReloadLibConfig'] = 'Reload library configs'
+lang['menuReloadModulesConfig'] = 'Reload modules configs'
+lang['menuConfigDump'] = 'Create config dump'
+
+lang['menuReloadModules'] = 'Reload all modules'
+lang['menuCheckUpdates'] = 'Check modules updates'
+
+lang['menuReportBug'] = 'Report bug'
+lang['menuSupport'] = 'Need support?'
+lang['libraryDocs'] = 'Library documentation'
+lang['menuBuyModule'] = 'Buy custom module'
+
+lang['menuResetConfig'] = 'Reset config'
+lang['menuResetData'] = 'Reset all data'
 
 lang['aboutCreatedBy1'] = 'Created by %s'
-lang['aboutCreatedBy2'] = 'Created by %s & %s'
-lang['aboutJoinDiscord'] = 'Join Discord'
+lang['aboutCreatedBy2'] = 'Founded by %s & %s'
+
+lang['joinDiscord'] = 'Join Discord'
 
 lang['configUnsaved'] = 'UNSAVED CHANGES'
 lang['configPleaseSave'] = 'Please save/reset your changes'

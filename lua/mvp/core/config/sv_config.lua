@@ -38,8 +38,8 @@ hook.Add('mvp.hooks.PlayerReady', 'mvpConfigSend', function(ply)
 end)
 
 function mvp.config.Save()
-    local globals = mvp.data.Get('config', {}, false, true) -- global configs
-    local data = mvp.data.Get('config', {}, true, true) -- map only configs
+    local globals = {} -- mvp.data.Get('config', {}, false, true) -- global configs
+    local data = {} -- mvp.data.Get('config', {}, true, true) -- map only configs
 
     for k, v in pairs(mvp.config.GetChangedValues(false)) do
         if mvp.config.stored[k].mapOnly then

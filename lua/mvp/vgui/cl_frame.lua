@@ -52,6 +52,10 @@ function PANEL:DefaultPaint(w, h)
 end
 
 function PANEL:Paint(w, h)
+    if ( self.m_bBackgroundBlur ) then
+		Derma_DrawBackgroundBlur( self, self.m_fCreateTime )
+	end
+    
     self:DefaultPaint(w, h)
 end
 

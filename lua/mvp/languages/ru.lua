@@ -9,7 +9,7 @@ lang['menuPermissions'] = 'Права'
 lang['menuAbout'] = 'Об MULTIVERSE'
 
 lang['aboutCreatedBy1'] = 'Создал %s'
-lang['aboutCreatedBy2'] = 'Создано %s и %s'
+lang['aboutCreatedBy2'] = 'Основали %s и %s'
 lang['aboutJoinDiscord'] = 'Дискорд'
 
 lang['configUnsaved'] = 'Несохраненные изменения'
