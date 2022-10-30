@@ -25,9 +25,10 @@
 
   <img src="/images/mvp_base_glyph.png" width="256" height="256"/>
 
-  <h3 align="center">MULTIVERSE Project Library</h3>
+  <h3 align="center" style="margin-bottom: 0;">MULTIVERSE Project Library</h3>
+  <sup>( MVPL )</sup>
   <p align="center">
-    This is library for our scripts, this has no game content, only set of functions.
+    Open-source library for GMod servers that capible of easy in-game config integrations, modern UI and modules.
     <br />
     <br />
     <a href="https://github.com/MULTIVERSE-Project/lib/issues">Report Bug</a>
@@ -39,6 +40,9 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+
+This is our library to help you quickly develop addons for your servers. We have built many features into this library. Starting with in-game, to the ability to use FontAwesome icons.
+
 
 
 <!-- GETTING STARTED -->
@@ -95,9 +99,6 @@ MODULE:Hook('player_disconnect', function(self, data)
 		ply:ChatPrint( data.name .. ' disconnected!' )
 	end
 end)
-
-
-
 ```
 
 _For more examples, please refer to the [Documentation](https://docs.multiverse-project.com)_
@@ -108,15 +109,21 @@ _For more examples, please refer to the [Documentation](https://docs.multiverse-
 
 - [x] In-game config
 - [ ] Modules system
+  - [x] Entities-per-module
+  - [x] Config per module
+  - [ ] Ability to disable modules
+  - [ ] Modules dependencies
 - [ ] Complete UI set
   - [x] Buttons
   - [x] Categories
   - [x] Text inputs
   - [x] Frames
   - [ ] Pop-ups
-  - [ ] Modal windows
+  - [x] Modal windows
 - [x] Font Manager
   - [x] Font Awesome integration
+- [ ] Themes Manager
+  - [ ] In-game theme editor (maybe)
 
 
 See the [open issues](https://github.com/MULTIVERSE-Project/lib/issues) for a full list of proposed features (and known issues).
