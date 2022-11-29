@@ -8,7 +8,10 @@ MVP_HOOK_CACHE = MVP_HOOK_CACHE or {}
 
 if SERVER then 
     util.AddNetworkString('mvp.SendDisabledModules')
+    util.AddNetworkString('mvp.DisableModule')
 end
+
+mvp.permissions.Add('mvp.manageModules', 'superadmin')
 
 for name, hooks in pairs(MVP_HOOK_CACHE) do
     for id, _ in pairs(hooks) do
@@ -28,12 +31,6 @@ function mvp.modules.Load(id, path, single, var)
 
     local disabledModules = mvp.modules.disabledModules or {}
 
-    if disabledModules[id] then
-        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
-        
-        return
-    end
-
     var = var or 'MODULE'
     -- local oldPlugin = MODULE
 
@@ -51,13 +48,22 @@ function mvp.modules.Load(id, path, single, var)
     MODULE.loading = true -- сообщим о том что модуль загружаеться
 
     if not single then
-        -- mvp.language.LoadFromDir(path .. '/languages')
+        mvp.languages.LoadFromFolder(path .. '/languages')
         mvp.config.LoadFromFolder(path .. '/config')
     end
     mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
 
+    if disabledModules[id] then
+        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
+        mvp.modules.list[id] = MODULE
+        
+        MODULE.loading = false
+
+        return
+    end
+
     if not single then
-        mvp.modules.LoadFromDir(path .. '/modules')
+        mvp.modules.LoadFromFolder(path .. '/modules')
         mvp.modules.LoadEntites(path .. '/entities')
     end
     
@@ -187,7 +193,7 @@ end
 --- Loads all modules from specified folder.
 -- @string path Path to folder
 -- @realm shared
-function mvp.modules.LoadFromDir(path)
+function mvp.modules.LoadFromFolder(path)
     local files, folders = file.Find(path .. '/*', 'LUA')
 
     for k, v in pairs(files) do
@@ -196,6 +202,10 @@ function mvp.modules.LoadFromDir(path)
 
     for k, v in pairs(folders) do
         mvp.modules.Load(v, path .. '/' .. v)
+    end
+
+    if CLIENT then
+        RunConsoleCommand('spawnmenu_reload') -- dirty thing, but hey, it's working
     end
 end
 
@@ -209,9 +219,7 @@ end
 --- Load all modules from main folder.
 -- @internal
 -- @realm shared
-function mvp.modules.Init()
-    mvp.modules.LoadFromDir('mvp/modules')
-    
+function mvp.modules.Init()    
     if SERVER then
         mvp.modules.disabledModules = mvp.data.Get('disabled_modules')
         
@@ -220,9 +228,10 @@ function mvp.modules.Init()
                 net.WriteTable(mvp.modules.disabledModules)
             net.Send(ply)
         end)
-    end
 
-    hook.Run('mvp.hooks.InitedCoreModules')
+        mvp.modules.LoadFromDir('mvp/modules')
+        hook.Run('mvp.hooks.InitedCoreModules')
+    end    
 end
 
 function mvp.modules.Reload()
@@ -245,5 +254,26 @@ end)
 if CLIENT then
     net.Receive('mvp.SendDisabledModules', function()
         mvp.modules.disabledModules = net.ReadTable()
+
+        mvp.modules.LoadFromFolder('mvp/modules')
+        hook.Run('mvp.hooks.InitedCoreModules')
+    end)
+end
+
+
+if SERVER then
+    net.Receive('mvp.DisableModule', function(_, ply)
+        if not mvp.permissions.Check(ply, 'mvp.manageModules') then
+            return 
+        end
+
+        local id = net.ReadString()
+        local state = net.ReadBool()
+
+        local mod = mvp.modules.Get(id)
+
+        if not mod then return end
+
+        mod:SetDisabled(state)
     end)
 end

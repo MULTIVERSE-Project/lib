@@ -27,7 +27,7 @@ AccessorFunc(mvp.meta.module, 'm_Version', 'Version')
 
 AccessorFunc(mvp.meta.module, 'm_Icon', 'Icon')
 
-AccessorFunc(mvp.meta.module, 'm_Enabled', 'Enabled')
+-- AccessorFunc(mvp.meta.module, 'm_Enabled', 'Enabled')
 
 AccessorFunc(mvp.meta.module, 'm_Path', 'Path')
 
@@ -36,13 +36,21 @@ AccessorFunc(mvp.meta.module, 'm_Path', 'Path')
 -- @realm shared
 -- @tparam string path The file to include.
 function mvp.meta.module:Include(path)
-    mvp.loader.LoadFile(path)
+    if self:GetDisabled() then
+        return 
+    end
+
+    mvp.loader.LoadFile(self:GetPath() .. '/' .. path)
 end
 
 --- Includes a folder relative to the module's directory.
 -- @realm shared
 -- @tparam string path The folder to include.
 function mvp.meta.module:IncludeFolder(path)
+    if self:GetDisabled() then
+        return 
+    end
+
     mvp.loader.LoadFolder(self:GetPath() .. '/' .. path, true )
 end
 
@@ -53,6 +61,10 @@ end
 -- @tparam[opt] string customID Custom ID for hook.
 -- @treturn string The hook ID.
 function mvp.meta.module:Hook(name, func, customID)
+    if self:GetDisabled() then
+        return 
+    end
+
     local isCustomIDGenerated = false
     
     if not customID then
@@ -96,4 +108,10 @@ function mvp.meta.module:SetDisabled(disabled)
     end
 
     mvp.data.Set('disabled_modules', info, false)
+end
+
+function mvp.meta.module:GetDisabled()
+    local info = mvp.modules.disabledModules or mvp.data.Get('disabled_modules', {})
+
+    return info[self:GetID()] or false
 end
