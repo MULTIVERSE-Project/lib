@@ -15,19 +15,16 @@ mvp.data.cache = mvp.data.cache or {
 function mvp.data.Set(key, value, isMapOnly)
     -- mvp/global/{key}.txt
     -- mvp/{map}/{key}.txt
-    local folderPath = mvp.data.path .. (isMapOnly and ( game.GetMap() .. '/') or 'global/')
-    local path = mvp.data.path .. (isMapOnly and ( game.GetMap() .. '/') or 'global/') .. key .. '.txt'
+
+    local destination = isMapOnly and ( game.GetMap() .. '/') or 'global/'
+
+    local folderPath = mvp.data.path .. destination
+    local path = mvp.data.path .. destination .. key .. '.txt'
 
     file.CreateDir(folderPath)
-
-    local preparedValue = util.TableToJSON({value})
-    file.Write(path, preparedValue)
+    file.Write(path, util.TableToJSON({value}))
 
     mvp.data.cache[isMapOnly and 'map' or 'global'][key] = value
-
-    file.Write( "helloworld.txt", "This is the content!" )
-
-    print(path, preparedValue)
 end
 
 --- Gets value from data folder or cache.
@@ -41,14 +38,16 @@ function mvp.data.Get(key, default, isMapOnly, skipCache)
     -- mvp/{map}/{key}.txt
     local path = mvp.data.path .. (isMapOnly and ( game.GetMap() .. '/') or 'global/') .. key .. '.txt'
 
-    if not skipCache and mvp.data.cache[isMapOnly and 'map' or 'global'][key] then
-        return mvp.data.cache[isMapOnly and 'map' or 'global'][key]
+    local cacheType = isMapOnly and 'map' or 'global'
+
+    if not skipCache and mvp.data.cache[cacheType][key] then
+        return mvp.data.cache[cacheType][key]
     end
 
-    local preparedValue = file.Read(path, 'DATA')
-    if preparedValue then
-        mvp.data.cache[isMapOnly and 'map' or 'global'][key] = util.JSONToTable(preparedValue)[1]
-        return util.JSONToTable(preparedValue)[1]
+    local dataValue = file.Read(path, 'DATA')
+    if dataValue then
+        mvp.data.cache[cacheType][key] = util.JSONToTable(dataValue)[1]
+        return util.JSONToTable(dataValue)[1]
     end
 
     return default
