@@ -30,7 +30,7 @@ end
 function PANEL:Lerp(var, to, duration, callback)
     local value = self[var]
 
-    local a = self:NewAnimation(duration)
+    local a = self:NewAnimation(duration, 0, 0.5, callback)
 
     a.value = to
     a.Think = function(anim, pnl, fraction)
