@@ -4,6 +4,7 @@ local lang = {}
 lang['menuTitle'] = 'MULTIVERSE Menu'
 lang['menuHome'] = 'Home'
 lang['menuConfig'] = 'Configuration'
+lang['menuTools'] = 'Tools'
 lang['menuModules'] = 'Modules'
 lang['menuPermissions'] = 'Permissions'
 lang['menuAbout'] = 'About'
@@ -15,9 +16,10 @@ lang['menuCommunityActions'] = 'Community'
 lang['menuDangerActions'] = 'Danger area'
 
 lang['menuEditConfig'] = 'Edit config'
-lang['menuReloadLibConfig'] = 'Reload library configs'
-lang['menuReloadModulesConfig'] = 'Reload modules configs'
-lang['menuConfigDump'] = 'Create config dump'
+lang['menuIconPicker'] = 'Icon picker'
+lang['menuReloadLibConfig'] = 'Reload library configs' -- not used now
+lang['menuReloadModulesConfig'] = 'Reload modules configs' -- not used now
+lang['menuConfigDump'] = 'Create config dump' -- not used now
 
 lang['menuReloadModules'] = 'Reload all modules'
 lang['menuCheckUpdates'] = 'Check modules updates'
@@ -32,8 +34,9 @@ lang['menuResetData'] = 'Reset all data'
 
 lang['aboutCreatedBy1'] = 'Created by %s'
 lang['aboutCreatedBy2'] = 'Founded by %s & %s'
+lang['aboutJoinDiscord'] = 'Join Discord'
 
-lang['joinDiscord'] = 'Join Discord'
+lang['changelogsError'] = 'There was an error while fetching the changelogs, try again later.'
 
 lang['configUnsaved'] = 'UNSAVED CHANGES'
 lang['configPleaseSave'] = 'Please save/reset your changes'
