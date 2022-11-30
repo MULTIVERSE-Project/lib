@@ -132,23 +132,24 @@ local function createHomeContent(content)
         draw.SimpleText(mvp.Lang('menuQuickActions'), mvp.utils.GetFont(18, 'Proxima Nova Rg'), 10 + 5, 15, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
     end
 
-    createQuickActions(actionsMenus, mvp.Lang('menuConfig'), {
+    createQuickActions(actionsMenus, mvp.Lang('menuTools'), {
         {text = mvp.Lang('menuEditConfig'), click = function()
             content:Clear()
 
             local manager = vgui.Create('mvp.ConfigManager', content)
             manager:Dock(FILL)
         end, icon = 'f013'},
-        {text = mvp.Lang('menuReloadLibConfig'), icon = 'f2f9'},
-        {text = mvp.Lang('menuReloadModulesConfig'), icon = 'f2f9'},
-        {text = mvp.Lang('menuConfigDump'), color = mvp.Color('yellow'), icon = 'f1c0'},
-        
-    })
-
-    createQuickActions(actionsMenus, mvp.Lang('menuModules'), {
-        {text = mvp.Lang('menuReloadModules'), icon = 'f2f9'},
+        -- {text = mvp.Lang('menuReloadLibConfig'), icon = 'f2f9'},
+        -- {text = mvp.Lang('menuReloadModulesConfig'), icon = 'f2f9'},
+        {text = mvp.Lang('menuIconPicker'), icon = 'f1fb', click = function()
+            vgui.Create('mvp.IconPicker')
+        end},
         {text = mvp.Lang('menuCheckUpdates'), color = mvp.Color('green'), icon = 'f002'}
     })
+
+    -- createQuickActions(actionsMenus, mvp.Lang('menuModules'), {
+    --     {text = mvp.Lang('menuReloadModules'), icon = 'f2f9'},
+    -- })
 
     createQuickActions(actionsMenus, mvp.Lang('menuCommunityActions'), {
         {text = mvp.Lang('joinDiscord'), icon = 'f392', click = function()
@@ -168,10 +169,10 @@ local function createHomeContent(content)
         end}
     })
 
-    createQuickActions(actionsMenus, mvp.Lang('menuDangerActions'), {
-        {text = mvp.Lang('menuResetConfig'), color = mvp.Color('red'), icon = 'f794'},
-        {text = mvp.Lang('menuResetData'), color = mvp.Color('red'), icon = 'f071'},
-    })
+    -- createQuickActions(actionsMenus, mvp.Lang('menuDangerActions'), {
+    --     {text = mvp.Lang('menuResetConfig'), color = mvp.Color('red'), icon = 'f794'},
+    --     {text = mvp.Lang('menuResetData'), color = mvp.Color('red'), icon = 'f071'},
+    -- })
 
     actionsMenus:InvalidateLayout(true)
 
@@ -221,10 +222,13 @@ function mvp.Menu()
     end)
     sidebar:AddButton('boxes-stacked', mvp.Lang('menuModules'), function()
         content:Clear()
+
+        local manager = vgui.Create('mvp.ModulesManager', content)
+        manager:Dock(FILL)
     end)
-    sidebar:AddButton('key', mvp.Lang('menuPermissions'), function()
-        content:Clear()
-    end)
+    -- sidebar:AddButton('key', mvp.Lang('menuPermissions'), function()
+    --     content:Clear()
+    -- end)
     sidebar:AddButton('circle-question', mvp.Lang('menuAbout'), function()
         content:Clear()
 
@@ -360,12 +364,33 @@ function mvp.Menu()
             mvp.utils.DrawSubSection(w * .5, h * .5, 32, 5, 0 - ang, 240 - ang, 1, false)
         end
 
-        http.Fetch('https://multiverse-project.com/api/v1/changelogs/all', function(data, _, _, status)
+        http.Fetch('https://multiverse-project.com/api/v1/changelogs/all', function(data, _1, _2, status)
+
             if status ~= 200 then return end
             changelogs.loading = false
 
-            local response = util.JSONToTable(data)
-            PrintTable(response)
+            local status, result = pcall(util.JSONToTable, data)
+
+            if not status or not result then
+                local changelog = vgui.Create('EditablePanel', changelogs)
+                changelog:Dock(TOP)
+                changelog:SetTall(10)
+                changelog:DockMargin(0, 10, 0, 0)
+
+                function changelog:Paint(w, h)
+                    draw.RoundedBox(8, 0, 0, w, h, mvp.Color('secondary'))
+
+                    -- f071 f06a
+
+                    
+                    local _, th = draw.SimpleText(mvp.Lang('changelogsError'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500),  10 + 28, 10, mvp.Color('secondary_text'))
+                    
+                    mvp.utils.DrawIcon(18, (20 + th) * .5, 'f06a', 24, mvp.Color('red'))
+                    self:SetTall(20 + th)
+                end
+
+                return 
+            end
             
             for k, v in SortedPairsByMemberValue(response, 'created_at', true) do
                 local changelog = vgui.Create('EditablePanel', changelogs)
