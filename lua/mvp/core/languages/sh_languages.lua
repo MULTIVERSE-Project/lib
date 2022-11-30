@@ -36,7 +36,7 @@ end
 -- @realm shared
 -- @tparam string id The language ID
 function mvp.languages.Get(id)
-    return mvp.languages.list[id]
+    return mvp.languages.list[id] or id
 end
 
 --- Gets and formats a string from a language.
