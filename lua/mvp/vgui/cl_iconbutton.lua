@@ -39,24 +39,15 @@ function PANEL:Init()
 end
 
 function PANEL:DefaultPaint(w, h)
-    draw.RoundedBox(5, 0, 0, w, h, self.outlineColor)
-    draw.RoundedBox(4, 1, 1, w - 2, h - 2, self.backgroundColor)
 
-    mvp.utils.DrawIcon(w * .5, h * .5, self:GetIcon(), h - 8, theme:GetColor('white'))
+    if not self:GetNoDrawOutline() then
+        draw.RoundedBox(self:GetBorderRadius() + 1, 0, 0, w, h, self:GetOutlineColor())
+    end 
+
+    draw.RoundedBox(self:GetBorderRadius(), self:GetNoDrawOutline() and 0 or 1, self:GetNoDrawOutline() and 0 or 1, w - (self:GetNoDrawOutline() and 0 or 2), h - (self:GetNoDrawOutline() and 0 or 2), self.backgroundCurrentColor)
+
+    mvp.utils.DrawIcon(w * .5, h * .5, self:GetIcon(), h * .75, theme:GetColor('white'))
     
-    return true 
-end
-
-function PANEL:OnCursorEntered()
-    self:LerpColor('backgroundColor', self.backgroundColorHover, .2)
-end
-
-function PANEL:OnCursorExited()
-    self:LerpColor('backgroundColor', self._backgroundColor, .2)
-end
-
-function PANEL:Paint(w, h)
-    self:DefaultPaint(w, h)
     return true 
 end
 
@@ -64,4 +55,4 @@ function PANEL:PerformLayout(w, h)
     self:SetWide(h)
 end
 
-mvp.ui.Register('mvp.IconButton', PANEL, 'DButton')
+mvp.ui.Register('mvp.IconButton', PANEL, 'mvp.Button')
