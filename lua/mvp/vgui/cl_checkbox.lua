@@ -21,6 +21,12 @@ end
 function PANEL:OnChange(value)
     self:LerpColor('backgroundColor', value and theme:GetColor('accent') or theme:GetColor('secondary_dark'), .3)
     self:Lerp('iconWidth', value and self:GetWide() or 0, .3)
+
+    self:OnValueChanged(value)
+end
+
+function PANEL:OnValueChanged(val)
+    
 end
 
 function PANEL:OnCursorEntered()
