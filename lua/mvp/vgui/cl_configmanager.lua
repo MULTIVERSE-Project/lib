@@ -92,6 +92,33 @@ local typesMap = {
 
         return input
     end,
+    [mvp.type.number] = function(base, name, value)
+        local config = mvp.config.stored[name]
+
+        base:SetTall(56)
+        base.Paint = function(s, w, h)
+            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+
+        local input = vgui.Create('DNumSlider', base)
+        input:Dock(RIGHT)
+
+        local magicHappensHere = (56 - 22) * .5
+
+        input:DockMargin(0, magicHappensHere, 5, magicHappensHere)
+        input:SetWide(300)
+
+        input:SetMin(config.data.min or 0)
+        input:SetMax(config.data.max or 50)
+        input:SetDecimals(config.data.decimals or 0)
+
+        input:SetValue(value)
+
+        return input
+    end,
     [mvp.type.bool] = function(base, name, value)
         local config = mvp.config.stored[name]
 
@@ -215,7 +242,7 @@ local typesMap = {
         local magicHappensHere = (56 - 22) * .5
 
         input:DockMargin(0, magicHappensHere, 5, magicHappensHere)
-        input:SetText(value)
+        -- input:SetText(value)
         input:SetWide(300)
 
         if config.data.GetValues then
@@ -304,6 +331,7 @@ function PANEL:Think()
                         end
                     else
                         changed = true
+                        -- print(k2, v2:GetValue(), configEntry.value)
                         break
                     end
                 end
@@ -319,6 +347,7 @@ function PANEL:Think()
         end
     end
 
+    if not self.savePopup then return end
     if shouldPopup then
         self.savePopup:SetY(Lerp(FrameTime() * 5, self.savePopup:GetY(), self:GetTall() - self.savePopup:GetTall() - 35))
     else
