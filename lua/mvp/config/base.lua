@@ -47,29 +47,4 @@ mvp.config.Add('theme', 'MVP Default Dark Theme', nil, {
 
         return values
     end
-}) 
-
-mvp.config.Add('testArrayStrings', {['hello'] = 'world'}, nil, {
-    category = 'testing',
-
-    type = mvp.type.array,
-
-    key = {type = mvp.type.string, hint = 'Key hint'},
-    value = {type = mvp.type.string, hint = 'Value hint'},
-})
- 
-mvp.config.Add('testArrayBools', {['hello'] = true, ['world'] = false}, nil, {
-    category = 'testing',
-
-    type = mvp.type.array,
-    key = {type = mvp.type.string},
-    value = {type = mvp.type.bool},
-})
-
-mvp.config.Add('testNumber', 1, nil, {
-    category = 'testing',
-
-    type = mvp.type.number,
-    min = 5,
-    max = 100
 })
