@@ -22,6 +22,7 @@ concommand.Add('mvp_menu', function(ply)
         mvp.utils.Print('Use the ', Color(0, 255, 0), mvp.config.Get('chatCommand', '!mvp'), color_white, ' chat command to open the menu')
         return
     end
+
     if not mvp.permissions.Check(ply, 'mvp.admin') then return end
 
     mvp.Menu()

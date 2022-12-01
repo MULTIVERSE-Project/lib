@@ -3,6 +3,8 @@ mvp.config = mvp.config or {}
 
 mvp.config.stored = mvp.config.stored or {}
 
+mvp.permissions.Add( 'mvp.editConfigs', 'superadmin', 'Access to editing config' )
+
 --- Creates a new config entry
 -- @realm shared
 -- @tparam string key The key of the config entry

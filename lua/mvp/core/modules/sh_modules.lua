@@ -81,7 +81,7 @@ function mvp.modules.Load(id, path, single, var)
     
     mvp.modules.list[id] = MODULE
 
-    mvp.utils.Print('Module ', Color(0, 0, 255), id, color_white, ' loaded')
+    mvp.utils.Print('Module ', Color(0, 0, 255), MODULE:GetName(), color_white, ' ( ', Color(0, 255, 0), id, color_white,' ) loaded')
 
     MODULE = nil
 end
@@ -229,7 +229,7 @@ function mvp.modules.Init()
             net.Send(ply)
         end)
 
-        mvp.modules.LoadFromDir('mvp/modules')
+        mvp.modules.LoadFromFolder('mvp/modules')
         hook.Run('mvp.hooks.InitedCoreModules')
     end    
 end

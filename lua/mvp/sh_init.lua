@@ -69,4 +69,4 @@ mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin comman
 
 hook.Add('OnReloaded', 'mvp.Reload', function()
     print('Reloading MVP...')
-end) 
+end)  

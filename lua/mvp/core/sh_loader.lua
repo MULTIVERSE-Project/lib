@@ -15,7 +15,7 @@ local function p(...)
         return mvp.utils.Print(...)
     end
 
-    MsgC(rgb(0, 168, 255), '[MVP]', rgb(225, 177, 44), '[Loader] ', rgb(255, 255, 255), ...)
+    MsgC(Color(0, 168, 255), '[MVP]', Color(225, 177, 44), '[Loader] ', Color(255, 255, 255), ...)
     MsgC('\n')
 end
 
@@ -30,7 +30,7 @@ function mvp.loader.LoadCLFile(path)
         include(path)
     end
     
-    p('Loaded ', rgb(68, 189, 50), 'CL', rgb(255, 255, 255), ' file: ', path)
+    p(Color(255, 174, 0), '▐▌', color_white, ' Loaded ', Color(255, 174, 0), 'CL', Color(255, 255, 255), ' file: ', path)
 end
 
 
@@ -43,7 +43,7 @@ function mvp.loader.LoadSVFile(path)
         include(path)
     end
 
-    p('Loaded ', rgb(0, 151, 230), 'SV', rgb(255, 255, 255), ' file: ', path)
+    p(Color(0, 102, 255), '▐▌', color_white, ' Loaded ', Color(0, 102, 255), 'SV', Color(255, 255, 255), ' file: ', path)
 end
 
 --- Send and loads client files.
@@ -56,7 +56,7 @@ function mvp.loader.LoadSHFile(path)
     end
     include(path)
 
-    p('Loaded ', rgb(140, 122, 230), 'SH', rgb(255, 255, 255), ' file: ', path)
+    p(Color(255, 174, 0), '▐', Color(0, 102, 255), '▌', color_white, ' Loaded ', Color(255, 174, 0), 'S', Color(0, 102, 255), 'H', Color(255, 255, 255), ' file: ', path)
 end
 
 --- Send and loads files.

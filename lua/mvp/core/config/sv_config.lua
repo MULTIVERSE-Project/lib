@@ -55,7 +55,9 @@ end
 
 -- Handle config change request
 net.Receive('mvpConfigSet', function(_, ply)
-    -- @todo: check if player is admin
+    if not mvp.permissions.Check(ply, 'mvp.editConfigs') then
+        return 
+    end
 
     local key = net.ReadString()
     local value = net.ReadType()
