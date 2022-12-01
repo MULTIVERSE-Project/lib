@@ -41,9 +41,7 @@
 
 ## About The Project
 
-This is our library to help you quickly develop addons for your servers. We have built many features into this library. Starting with in-game, to the ability to use FontAwesome icons.
-
-
+This is our library to help you quickly develop addons for your servers. We have built many features into this library. Starting with in-game config, to the ability to use FontAwesome icons.
 
 <!-- GETTING STARTED -->
 
@@ -71,10 +69,7 @@ Firs of all, create your module folder in `addons/<your_addon_folder>/mvp/module
 
 :page_facing_up: Contents of: `sh_module.lua`
 ```lua
-local MODULE = mvp.modules.New({id = 'joinLeaveAnnouncer'})
---                              ^ optional values
--- id - replaces MODULE id. def: folder name
--- table - indecates if module should be registered as part of main table e.g. mvp.joinLeaveAnnouncer. def: true
+local MODULE = MODULE
 
 --[[
   Module details
@@ -111,18 +106,18 @@ _For more examples, please refer to the [Documentation](https://docs.multiverse-
 - [ ] Modules system
   - [x] Entities-per-module
   - [x] Config per module
-  - [ ] Ability to disable modules
+  - [x] Ability to disable modules
   - [ ] Modules dependencies
-- [ ] Complete UI set
+- [x] Complete UI set
   - [x] Buttons
   - [x] Categories
   - [x] Text inputs
   - [x] Frames
-  - [ ] Pop-ups
+  - [x] Pop-ups
   - [x] Modal windows
 - [x] Font Manager
   - [x] Font Awesome integration
-- [ ] Themes Manager
+- [x] Themes Manager
   - [ ] In-game theme editor (maybe)
 
 
