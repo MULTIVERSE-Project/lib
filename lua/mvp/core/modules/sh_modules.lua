@@ -34,6 +34,15 @@ function mvp.modules.Load(id, path, single, var)
     var = var or 'MODULE'
     -- local oldPlugin = MODULE
 
+    if disabledModules[id] then
+        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
+        mvp.modules.list[id] = MODULE
+        
+        MODULE.loading = false
+
+        return
+    end
+
     MODULE = setmetatable({}, {__index = mvp.meta.module})
 
     MODULE:SetID(id)
@@ -50,22 +59,10 @@ function mvp.modules.Load(id, path, single, var)
     if not single then
         mvp.languages.LoadFromFolder(path .. '/languages')
         mvp.config.LoadFromFolder(path .. '/config')
-    end
-    mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
-
-    if disabledModules[id] then
-        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
-        mvp.modules.list[id] = MODULE
-        
-        MODULE.loading = false
-
-        return
-    end
-
-    if not single then
         mvp.modules.LoadFromFolder(path .. '/modules')
         mvp.modules.LoadEntites(path .. '/entities')
     end
+    mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
     
     MODULE.loading = false
 
@@ -93,22 +90,22 @@ function mvp.modules.LoadEntites(path)
     local files, folders
 
     local function IncludeFiles(path2, bClientOnly)
-        if (SERVER and not bClientOnly) then
-            if (file.Exists(path2 .. 'init.lua', 'LUA')) then
-                mvp.loader.LoadFile(path2 .. 'init.lua', 'server')
-            elseif (file.Exists(path2 .. 'shared.lua', 'LUA')) then
-                mvp.loader.LoadFile(path2 .. 'shared.lua')
-            end
+		if (SERVER and !bClientOnly) then
+			if (file.Exists(path2..'init.lua', 'LUA')) then
+				mvp.loader.LoadFile(path2..'init.lua', 'server')
+			elseif (file.Exists(path2..'shared.lua', 'LUA')) then
+				mvp.loader.LoadFile(path2..'shared.lua')
+			end
 
-            if (file.Exists(path2 .. 'cl_init.lua', 'LUA')) then
-                mvp.loader.LoadFile(path2 .. 'cl_init.lua', 'client')
-            end
-        elseif (file.Exists(path2 .. 'cl_init.lua', 'LUA')) then
-            mvp.loader.LoadFile(path2 .. 'cl_init.lua', 'client')
-        elseif (file.Exists(path2 .. 'shared.lua', 'LUA')) then
-            mvp.loader.LoadFile(path2 .. 'shared.lua')
-        end
-    end
+			if (file.Exists(path2..'cl_init.lua', 'LUA')) then
+				mvp.loader.LoadFile(path2..'cl_init.lua', 'client')
+			end
+		elseif (file.Exists(path2..'cl_init.lua', 'LUA')) then
+			mvp.loader.LoadFile(path2..'cl_init.lua', 'client')
+		elseif (file.Exists(path2..'shared.lua', 'LUA')) then
+			mvp.loader.LoadFile(path2..'shared.lua')
+		end
+	end
 
     local function HandleEntityInclusion(folder, variable, register, default, clientOnly, create, complete)
         files, folders = file.Find(path .. '/' .. folder .. '/*', 'LUA')
@@ -136,8 +133,11 @@ function mvp.modules.LoadEntites(path)
             end
 
             if (isfunction(complete)) then
-                complete(_G[variable])
+                complete(v, _G[variable])
             end
+
+            mvp.utils.Print('Loaded entity ', v)
+            PrintTable(ents.FindByClass(v))
 
             _G[variable] = nil
         end
@@ -162,8 +162,11 @@ function mvp.modules.LoadEntites(path)
                 register(_G[variable], niceName)
             end
 
+            mvp.utils.Print('Loaded entity (file)', v)
+            PrintTable(ents.FindByClass(niceName) or {nothing = true})
+
             if (isfunction(complete)) then
-                complete(_G[variable])
+                complete(niceName, _G[variable])
             end
 
             _G[variable] = nil
@@ -175,8 +178,24 @@ function mvp.modules.LoadEntites(path)
         Type = 'anim',
         Base = 'base_gmodentity',
         Spawnable = true
-    }, false, nil, function(ent)
-        
+    }, false, nil, function(name, ent)
+        for _, entity in pairs( ents.FindByClass( name ) ) do
+
+			table.Merge( entity, ent )
+			if ( entity.OnReloaded ) then
+				entity:OnReloaded()
+			end
+
+		end
+
+		for _, e in pairs( ents.GetAll() ) do
+			if ( scripted_ents.IsBasedOn( e:GetClass(), name ) ) then
+				table.Merge( e, scripted_ents.Get( e:GetClass() ) )
+				if ( e.OnReloaded ) then
+					e:OnReloaded()
+				end
+			end
+		end
     end)
 
     -- Include weapons.
@@ -231,25 +250,34 @@ function mvp.modules.Init()
 
         mvp.modules.LoadFromFolder('mvp/modules')
         hook.Run('mvp.hooks.InitedCoreModules')
-    end    
+    end
 end
 
-function mvp.modules.Reload()
-    for name, modules in pairs(MVP_HOOK_CACHE) do
-        for module, hooks in pairs(modules) do
-            for id, _ in pairs(hooks) do
-                hook.Remove(name, 'mvp.generatedHook.' .. module .. '.' .. id)
-                MVP_HOOK_CACHE[name][id] = nil
+if SERVER then
+    --- Reloads all modules on server
+    -- @internal
+    -- @realm server
+    function mvp.modules.Reload()
+        for name, modules in pairs(MVP_HOOK_CACHE) do
+            for module, hooks in pairs(modules) do
+                for id, _ in pairs(hooks) do
+                    hook.Remove(name, 'mvp.generatedHook.' .. module .. '.' .. id)
+                    MVP_HOOK_CACHE[name][id] = nil
+                end
             end
         end
+    
+        mvp.modules.Init()
     end
+    
+    concommand.Add('mvp_reload', function()
+        mvp.modules.Reload()
 
-    mvp.modules.Init()
+        for k, v in pairs(player.GetAll()) do
+            v:SendLua('mvp.modules.LoadFromFolder("mvp/modules")')
+        end
+    end)
 end
-
-concommand.Add('mvp_reload', function()
-    mvp.modules.Reload()
-end)
 
 if CLIENT then
     net.Receive('mvp.SendDisabledModules', function()
@@ -259,7 +287,6 @@ if CLIENT then
         hook.Run('mvp.hooks.InitedCoreModules')
     end)
 end
-
 
 if SERVER then
     net.Receive('mvp.DisableModule', function(_, ply)
@@ -277,3 +304,7 @@ if SERVER then
         mod:SetDisabled(state)
     end)
 end
+
+hook.Add('InitPostEntity', 'mvp.init.ent.test', function()
+    PrintTable(ents.FindByClass('test_entity'))
+end)

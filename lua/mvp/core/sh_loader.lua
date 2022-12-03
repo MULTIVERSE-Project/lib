@@ -63,14 +63,15 @@ end
 -- This function will determine if the file is a client file, server file or shared file and call the appropriate function.
 -- @realm shared
 -- @tparam string path Path to the file to load.
-function mvp.loader.LoadFile(path)
-    if path:find('cl_') then
-        mvp.loader.LoadCLFile(path)
-    elseif path:find('sv_') then
-        mvp.loader.LoadSVFile(path)
-    else
-        mvp.loader.LoadSHFile(path)
-    end
+function mvp.loader.LoadFile(path, realm)
+	if ((realm == 'server' or path:find('sv_')) and SERVER) then
+		return mvp.loader.LoadSVFile(path)
+	elseif (realm == 'shared' or path:find('shared.lua') or path:find('sh_')) then
+
+		return mvp.loader.LoadSHFile(path)
+	elseif (realm == 'client' or path:find('cl_')) then
+		return mvp.loader.LoadCLFile(path)
+	end
 end
 
 --- Loads all files in a directory.

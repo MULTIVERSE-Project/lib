@@ -86,7 +86,7 @@ function mvp.meta.module:Hook(name, func, customID)
     MVP_HOOK_CACHE[name][self:GetName()][customID] = true
 
     hook.Add(name, 'mvp.generatedHook.' .. self:GetName() .. '.' .. customID, function(...)
-        func(self, ...)
+        return func(self, ...)
     end)
 
     return customID
@@ -110,6 +110,9 @@ function mvp.meta.module:SetDisabled(disabled)
     mvp.data.Set('disabled_modules', info, false)
 end
 
+--- Checks if module is disabled
+-- @realm shared
+-- @treturn bool is module disabled
 function mvp.meta.module:GetDisabled()
     local info = mvp.modules.disabledModules or mvp.data.Get('disabled_modules', {})
 

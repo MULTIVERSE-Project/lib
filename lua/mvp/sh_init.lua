@@ -12,24 +12,21 @@ mvp = mvp or {}
 -- included since they are not real types that can be compared with.
 -- @table mvp.type
 -- @realm shared
--- @field string A regular string. In the case of `mvp.command.Add`, this represents one word.
--- @field text A regular string. In the case of `mvp.command.Add`, this represents all words concatenated into a string.
+-- @field string A regular string.
 -- @field number Any number.
 -- @field player Any player that matches the given query string in `mvp.util.FindPlayer`.
 -- @field steamid A string that matches the Steam ID format of `STEAM_X:X:XXXXXXXX`.
 -- @field bool A string representation of a bool - `false` and `0` will return `false`, anything else will return `true`.
 -- @field color A color represented by its red/green/blue/alpha values.
 -- @field vector A 3D vector represented by its x/y/z values.
--- @field optional This is a special type that can be bitwise OR'd with any other type to make it optional.
--- @field array This is a special type that can be bitwise OR'd with any other type to make it an array of that type. Currently
--- only supported in `mvp.option.Add`.
+-- @field array Any table.
 -- @usage -- checking if type exists
 -- print(mvp.type[2] ~= nil)
 -- > true
 --
 -- -- getting name of type
 -- print(mvp.type[mvp.type.string])
--- > "string"
+-- > 'string'
 
 -- Load thirdparty libraries 
 mvp.loader.LoadFolder('thirdparty') 
@@ -48,7 +45,7 @@ mvp.loader.LoadFolder('core/config')
 mvp.config.Load()
 
 -- Load languages
-mvp.loader.LoadFolder('core/languages')
+mvp.loader.LoadFolder('core/languages') 
 mvp.languages.Init()
 
 -- Load themes
@@ -63,10 +60,10 @@ mvp.loader.LoadFolder('menus')
 
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
-mvp.modules.Init()
+
 
 mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')
 
-hook.Add('OnReloaded', 'mvp.Reload', function()
-    print('Reloading MVP...')
-end)  
+hook.Add( 'Initialize', 'mvp.init.modules', function()
+	mvp.modules.Init()
+end )
