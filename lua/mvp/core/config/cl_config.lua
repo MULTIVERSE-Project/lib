@@ -5,9 +5,11 @@ net.Receive('mvpConfigList', function()
     local data = net.ReadTable()
 
     for k, v in pairs(data) do
-        if mvp.config.stored[k] then
-            mvp.config.stored[k].value = v
+        if not mvp.config.stored[k] then
+            mvp.config.stored[k] = {} -- create dummy config
         end
+
+        mvp.config.stored[k].value = v
     end
 
     hook.Run('mvp.hooks.configLoaded')
