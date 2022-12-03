@@ -8,6 +8,10 @@ util.AddNetworkString('mvpConfigCommand')
 
 util.AddNetworkString('mvpConfigRequestFullConfig')
 
+--- Gets changed values in config
+-- @realm server
+-- @bool sanitaze if values should be sanitazed (removese server-only configurations)
+-- @treturn table changed values
 function mvp.config.GetChangedValues(sanitaze)
     local data = {}
     local configs = mvp.config.stored
@@ -25,6 +29,10 @@ function mvp.config.GetChangedValues(sanitaze)
     return data
 end
 
+--- Send information about configs to the player
+-- @realm server
+-- @tparam Player ply Player that will recive configs
+-- @bool sanitaze If values should be sanitazed
 function mvp.config.Send(ply, sanitaze)
     local configs = mvp.config.GetChangedValues(sanitaze)
 
@@ -37,6 +45,9 @@ hook.Add('mvp.hooks.PlayerReady', 'mvpConfigSend', function(ply)
     mvp.config.Send(ply, true)
 end)
 
+--- Saves config values
+-- @realm server
+-- @internal
 function mvp.config.Save()
     local globals = {} -- mvp.data.Get('config', {}, false, true) -- global configs
     local data = {} -- mvp.data.Get('config', {}, true, true) -- map only configs
@@ -68,7 +79,11 @@ net.Receive('mvpConfigSet', function(_, ply)
         return 
     end
 
-    mvp.config.Set(key, value)
+    local success, value = mvp.config.Set(key, value)
+
+    if not success then
+        return 
+    end
 
     mvp.utils.Print(Color(0, 0, 255), ply:Nick(), Color(255, 255, 255), ' changed ', Color(0, 255, 0), key, Color(255, 255, 255), ' to ', (type(value) == 'boolean' and (value and Color(0, 255, 0) or Color(255, 0, 0))) or Color(0, 0, 255), value)
 end)
