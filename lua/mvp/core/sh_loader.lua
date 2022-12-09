@@ -63,6 +63,7 @@ end
 -- This function will determine if the file is a client file, server file or shared file and call the appropriate function.
 -- @realm shared
 -- @tparam string path Path to the file to load.
+-- @tparam string realm used to forece load file on particular side, can be `server`, `shared` or `client`
 function mvp.loader.LoadFile(path, realm)
 	if ((realm == 'server' or path:find('sv_')) and SERVER) then
 		return mvp.loader.LoadSVFile(path)
