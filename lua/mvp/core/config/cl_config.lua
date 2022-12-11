@@ -1,15 +1,22 @@
 --- @module mvp.config
 mvp.config = mvp.config or {}
 
+function mvp.config.RequestConfigs()
+    net.Start('mvpConfigRequestFullConfig')
+    net.SendToServer()
+end
+
+hook.Add('mvp.hooks.InitedCoreModules', 'mvp.config.RequestModulesConfig', function()
+    mvp.config.RequestConfigs()
+end)
+
 net.Receive('mvpConfigList', function()
     local data = net.ReadTable()
 
     for k, v in pairs(data) do
-        if not mvp.config.stored[k] then
-            mvp.config.stored[k] = {} -- create dummy config
+        if mvp.config.stored[k] then
+            mvp.config.stored[k].value = v
         end
-
-        mvp.config.stored[k].value = v
     end
 
     hook.Run('mvp.hooks.configLoaded')

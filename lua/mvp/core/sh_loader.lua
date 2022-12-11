@@ -66,12 +66,11 @@ end
 function mvp.loader.LoadFile(path, realm)
 	if ((realm == 'server' or path:find('sv_')) and SERVER) then
 		return mvp.loader.LoadSVFile(path)
-	elseif (realm == 'shared' or path:find('shared.lua') or path:find('sh_')) then
-
-		return mvp.loader.LoadSHFile(path)
 	elseif (realm == 'client' or path:find('cl_')) then
 		return mvp.loader.LoadCLFile(path)
-	end
+    else
+        return mvp.loader.LoadSHFile(path)
+    end
 end
 
 --- Loads all files in a directory.

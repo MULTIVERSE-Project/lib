@@ -10,17 +10,7 @@ resource.AddFile('resource/fonts/fa-brands.ttf')
 resource.AddFile('resource/fonts/fa-regular.ttf')
 resource.AddFile('resource/fonts/fa-solid.ttf')
 
-util.AddNetworkString('mvpPlayerReady')
 util.AddNetworkString('mvpMenu')
-
--- Player ready
-net.Receive('mvpPlayerReady', function(len, ply)
-    if ply.mvpReady then return end
-
-    -- Set player ready
-    ply.mvpReady = true
-    hook.Run('mvp.hooks.PlayerReady', ply)
-end)
 
 -- handle menu command
 hook.Add('PlayerSay', 'mvp.hooks.OpenConfig', function(ply, text)      
@@ -31,4 +21,13 @@ hook.Add('PlayerSay', 'mvp.hooks.OpenConfig', function(ply, text)
     net.Send(ply)
 
     return true
+end)
+
+hook.Add('PlayerInitialSpawn', 'mvp.PlayerDetector', function(ply1)
+    hook.Add( 'SetupMove', 'mvp.waitPlayer.' .. ply1:UserID(), function( ply2, _, cmd )
+        if ply1 == ply2 and not cmd:IsForced() then
+            hook.Run( 'mvp.hooks.PlayerReady', ply2 )
+            hook.Remove( 'SetupMove', 'mvp.waitPlayer.' .. ply2:UserID() )
+        end
+    end )
 end)

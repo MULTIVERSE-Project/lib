@@ -3,13 +3,6 @@ mvp = mvp or {}
 
 include('mvp/core/sh_loader.lua')
 
--- Let server know we're ready to receive data
-hook.Add('InitPostEntity', 'mvpPlayerReady', function()
-    net.Start('mvpPlayerReady')
-    net.SendToServer()
-end)
-
-
 -- Handle menu opening
 net.Receive('mvpMenu', function()
     mvp.Menu()

@@ -41,10 +41,6 @@ function mvp.config.Send(ply, sanitaze)
     net.Send(ply)
 end
 
-hook.Add('mvp.hooks.PlayerReady', 'mvpConfigSend', function(ply)
-    mvp.config.Send(ply, true)
-end)
-
 --- Saves config values
 -- @realm server
 -- @internal
@@ -86,4 +82,13 @@ net.Receive('mvpConfigSet', function(_, ply)
     end
 
     mvp.utils.Print(Color(0, 0, 255), ply:Nick(), Color(255, 255, 255), ' changed ', Color(0, 255, 0), key, Color(255, 255, 255), ' to ', (type(value) == 'boolean' and (value and Color(0, 255, 0) or Color(255, 0, 0))) or Color(0, 0, 255), value)
+end)
+
+net.Receive('mvpConfigRequestFullConfig', function(_, ply)
+    if ply.mvpHasRequestedConfigs then
+        return 
+    end
+
+    ply.mvpHasRequestedConfigs = true
+    mvp.config.Send(ply, true)
 end)

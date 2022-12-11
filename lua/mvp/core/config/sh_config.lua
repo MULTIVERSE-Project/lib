@@ -196,6 +196,8 @@ function mvp.config.Load()
     end
 
     mvp.config.LoadFromFolder('mvp/config')
+
+    hook.Run('mvp.hooks.configsAdded')
 end
 
 --- Loads configs from folder with configs files

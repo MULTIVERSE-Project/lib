@@ -34,15 +34,6 @@ function mvp.modules.Load(id, path, single, var)
     var = var or 'MODULE'
     -- local oldPlugin = MODULE
 
-    if disabledModules[id] then
-        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
-        mvp.modules.list[id] = MODULE
-        
-        MODULE.loading = false
-
-        return
-    end
-
     MODULE = setmetatable({}, {__index = mvp.meta.module})
 
     MODULE:SetID(id)
@@ -56,14 +47,24 @@ function mvp.modules.Load(id, path, single, var)
 
     MODULE.loading = true -- сообщим о том что модуль загружаеться
 
-    if not single then
+    if not single and not disabledModules[id] then
         mvp.languages.LoadFromFolder(path .. '/languages')
         mvp.config.LoadFromFolder(path .. '/config')
         mvp.modules.LoadFromFolder(path .. '/modules')
         mvp.modules.LoadEntites(path .. '/entities')
     end
+
     mvp.loader.LoadFile(single and path or path .. '/sh_' .. var:lower() .. '.lua')
     
+    if disabledModules[id] then
+        mvp.utils.Print('Module ', Color(140, 122, 230), id, Color(255, 255, 255), ' is disabled. Skipping...')
+        mvp.modules.list[id] = MODULE
+        
+        MODULE.loading = false
+
+        return
+    end
+
     MODULE.loading = false
 
     hook.Run('mvp.hooks.ModuleLoaded', id, MODULE)
@@ -136,9 +137,6 @@ function mvp.modules.LoadEntites(path)
                 complete(v, _G[variable])
             end
 
-            mvp.utils.Print('Loaded entity ', v)
-            PrintTable(ents.FindByClass(v))
-
             _G[variable] = nil
         end
 
@@ -161,9 +159,6 @@ function mvp.modules.LoadEntites(path)
             else
                 register(_G[variable], niceName)
             end
-
-            mvp.utils.Print('Loaded entity (file)', v)
-            PrintTable(ents.FindByClass(niceName) or {nothing = true})
 
             if (isfunction(complete)) then
                 complete(niceName, _G[variable])
@@ -238,7 +233,8 @@ end
 --- Load all modules from main folder.
 -- @internal
 -- @realm shared
-function mvp.modules.Init()    
+function mvp.modules.Init()
+    
     if SERVER then
         mvp.modules.disabledModules = mvp.data.Get('disabled_modules')
         
@@ -304,7 +300,3 @@ if SERVER then
         mod:SetDisabled(state)
     end)
 end
-
-hook.Add('InitPostEntity', 'mvp.init.ent.test', function()
-    PrintTable(ents.FindByClass('test_entity'))
-end)

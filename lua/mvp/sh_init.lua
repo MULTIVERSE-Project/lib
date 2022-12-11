@@ -60,10 +60,6 @@ mvp.loader.LoadFolder('menus')
 
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
-
+mvp.modules.Init()
 
 mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')
-
-hook.Add( 'Initialize', 'mvp.init.modules', function()
-	mvp.modules.Init()
-end )
