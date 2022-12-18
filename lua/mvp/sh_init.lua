@@ -44,6 +44,9 @@ mvp.loader.LoadFolder('core/meta')
 mvp.loader.LoadFolder('core/config')
 mvp.config.Load()
 
+mvp.loader.LoadFolder('core/currencies')
+mvp.currencies.Init()
+
 -- Load languages
 mvp.loader.LoadFolder('core/languages') 
 mvp.languages.Init()

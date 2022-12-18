@@ -26,6 +26,22 @@ mvp.config.Add('language', 'en', nil, {
     end
 })
 
+mvp.config.Add('currency', 'blank', nil, {
+    category = 'base',
+    type = 'select', -- type for UI
+    
+    GetValues = function()
+        local currencies = mvp.currencies.list
+
+        local values = {}
+        for k, v in pairs(currencies) do
+            values[#values + 1] = {value = k, text = k}
+        end
+
+        return values
+    end
+})
+
 mvp.config.Add('tag', '[MVP]', nil, {
     category = 'appearance'
 })
