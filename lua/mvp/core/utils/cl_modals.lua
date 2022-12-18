@@ -65,6 +65,7 @@ function mvp.utils.QuerryPromt(strTitle, strText, ...)
 	Text:SetFont(mvp.utils.GetFont(16, 'Proxima Nova Rg'))
 	Text:SetText( strText or "Message Text (Second Parameter)" )
 	Text:SizeToContents()
+	Text:Dock(FILL)
 	Text:SetContentAlignment( 5 )
 	Text:SetTextColor( color_white )
 
@@ -99,13 +100,13 @@ function mvp.utils.QuerryPromt(strTitle, strText, ...)
 	end
 
 	local w, h = Text:GetSize()
-
+	
 	w = math.max( w, ButtonPanel:GetWide() )
 
 	Window:SetSize( math.max(w, 300) + 50, math.max(h, 75) + 25 + 45 + 10 )
 	Window:Center()
 
-	InnerPanel:StretchToParent( 5, 45, 5, 45 )
+	InnerPanel:StretchToParent( 5, 45, 5, 10 )
 
 	Text:StretchToParent( 5, 5, 5, 5 )
 

@@ -1,7 +1,5 @@
 mvp.utils = mvp.utils or {}
 
-
-
 function mvp.utils.AddPopup(text, icon, color, duration)
     assert(text, 'Cannot add popup without text!')
 

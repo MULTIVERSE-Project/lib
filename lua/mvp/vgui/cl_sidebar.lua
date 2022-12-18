@@ -22,7 +22,7 @@ function PANEL:Init()
     end
 end
 
-function PANEL:AddButton(icon, tooltip, click)
+function PANEL:AddButton(icon, tooltip, click, startActive)
     local button = vgui.Create('mvp.SidebarButton', self.scroll)
     
     button:SetIcon(icon)
@@ -31,7 +31,19 @@ function PANEL:AddButton(icon, tooltip, click)
     button:Dock(TOP)
     button:DockMargin(4, 5, 4, 0)
 
-    button.DoClick = click or function() end
+    button.isActive = startActive
+
+    button.DoClick = function()
+        if click and isfunction(click) then
+            click()
+        end
+
+        for k, v in pairs(self.buttons) do
+            v.isActive = false
+        end
+
+        button.isActive = true
+    end
 
     self.buttons[#self.buttons + 1] = button
 
@@ -72,10 +84,10 @@ function PANEL:Init()
 end
 
 function PANEL:DefaultPaint(w, h)
-    local innerSize = w * .8
+    local innerSize = w * .85
 
-    draw.RoundedBox(5, 0, 0, w, h, theme:GetColor('primary_dark'))
-    draw.RoundedBox(8, w * .5 - innerSize * .5, h * .5 - innerSize * .5, innerSize, innerSize, self.hoverBackground, 50)
+    draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('primary_dark'))
+    draw.RoundedBox(8, w * .5 - innerSize * .5, h * .5 - innerSize * .5, innerSize, innerSize, self.isActive and ColorAlpha(mvp.Color('accent'), 50) or self.hoverBackground, 50)
 
     mvp.utils.DrawIcon(w * .5, h * .5, self.icon, innerSize * .7, theme:GetColor('white'))
 end
@@ -100,6 +112,11 @@ function PANEL:OnCursorEntered()
         draw.SimpleText(self.tooltip, mvp.utils.GetFont(21, 'Proxima Nova Rg', 500), w * .5, h * .5, theme:GetColor('white'), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
     mvp.ui.tooltip.Think = function(s)
+        if not IsValid(self) then
+            s:Remove()
+            return 
+        end
+
         local x, y = self:LocalToScreen(0, 0)
         
         s:SetPos(x - s:GetWide() - 15, y + self:GetTall() * .5 - s:GetTall() * .5)
