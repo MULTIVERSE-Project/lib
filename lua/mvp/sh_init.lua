@@ -28,6 +28,14 @@ mvp = mvp or {}
 -- print(mvp.type[mvp.type.string])
 -- > 'string'
 
+--[[
+
+    ==============================
+     Loading sequence starts here
+    ==============================
+
+]]--
+
 -- Load thirdparty libraries 
 mvp.loader.LoadFolder('thirdparty') 
 
@@ -44,6 +52,7 @@ mvp.loader.LoadFolder('core/meta')
 mvp.loader.LoadFolder('core/config')
 mvp.config.Load()
 
+-- Load currencies support (@todo make this "gamemodes" support)
 mvp.loader.LoadFolder('core/currencies')
 mvp.currencies.Init()
 
@@ -52,7 +61,10 @@ mvp.loader.LoadFolder('core/languages')
 mvp.languages.Init()
 
 -- Load themes
-mvp.loader.LoadFolder('core/theme')
+mvp.loader.LoadFolder('core/themes')
+mvp.themes.Load() 
+-- Load fonts
+mvp.loader.LoadFolder('core/fonts')
 mvp.themes.Load() 
  
 -- Load UI system
@@ -64,5 +76,13 @@ mvp.loader.LoadFolder('menus')
 -- Load modules
 mvp.loader.LoadFolder('core/modules')
 mvp.modules.Init()
+
+--[[
+
+    ==============================
+      Loading sequence ends here
+    ==============================
+
+]]--
 
 mvp.permissions.Add('mvp.admin', 'admin', 'Allows access to all MVP admin commands.')

@@ -27,7 +27,7 @@ function mvp.utils.AddPopup(text, icon, color, duration)
 
     local textPnl = vgui.Create('DLabel', pnl)
     textPnl:SetText( text )
-    textPnl:SetFont(mvp.utils.GetFont(18, 'Proxima Nova Rg'))
+    textPnl:SetFont(mvp.Font(18))
 	textPnl:SizeToContents()
 	textPnl:SetContentAlignment( 4 )
 	textPnl:SetTextColor( mvp.Color('primary_text') )

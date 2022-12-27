@@ -55,13 +55,13 @@ function PANEL:Init()
 
     self.hint.Paint = function(s, w, h)
         local y = 5
-        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint1'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint1'), mvp.Font(18, 500), 20, y, mvp.Color(text_secondary), TEXT_ALIGN_LEFT)
         y = y + th
 
-        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint2'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        local _, th = draw.SimpleText(mvp.Lang('arrayManagerHint2'), mvp.Font(18, 500), 20, y, mvp.Color(text_secondary), TEXT_ALIGN_LEFT)
         y = y + th
 
-        draw.SimpleText(mvp.Lang('arrayManagerHint3'), mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 20, y, theme:GetColor('text_secondary'), TEXT_ALIGN_LEFT)
+        draw.SimpleText(mvp.Lang('arrayManagerHint3'), mvp.Font(18, 500), 20, y, mvp.Color(text_secondary), TEXT_ALIGN_LEFT)
     end
 
     self.add = vgui.Create('mvp.IconButton', self.hint)
@@ -70,8 +70,8 @@ function PANEL:Init()
     self.add:DockMargin(0, 15, 15, 15)
 
     self.add:SetIcon('plus')
-    self.add:SetBackgroundColorHover(theme:GetColor('green'))
-    self.add:SetOutlineColor(theme:GetColor('green'))
+    self.add:SetBackgroundColorHover(mvp.Color(green))
+    self.add:SetOutlineColor(mvp.Color(green))
 
     self.add.DoClick = function(s)
         self:AddEntry()
@@ -97,7 +97,7 @@ function PANEL:AddEntry(key, value)
     pnl:DockPadding(0, 5, 0, 5)
 
     pnl.Paint = function(s, w, h)
-        draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('primary_dark'))
+        draw.RoundedBox(8, 0, 0, w, h, mvp.Color(primary_dark))
     end
 
     pnl.remove = vgui.Create('mvp.IconButton', pnl)
@@ -106,8 +106,8 @@ function PANEL:AddEntry(key, value)
 
     pnl.remove:SetSize(25, 25)
 
-    pnl.remove:SetBackgroundColorHover(theme:GetColor('red'))
-    pnl.remove:SetOutlineColor(theme:GetColor('red'))
+    pnl.remove:SetBackgroundColorHover(mvp.Color(red))
+    pnl.remove:SetOutlineColor(mvp.Color(red))
 
     pnl.remove.DoClick = function(s)
         pnl:Remove()

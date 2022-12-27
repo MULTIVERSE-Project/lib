@@ -27,15 +27,15 @@ AccessorFunc(PANEL, 'icon', 'Icon')
 
 
 function PANEL:Init()
-    self:SetFont(mvp.utils.GetFont(16, 'Proxima Nova Rg', 500))
+    self:SetFont(mvp.Font(16, 500))
 
-    self:SetBackgroundColor(theme:GetColor('secondary_dark'))
-    self:SetBackgroundColorHover(theme:GetColor('accent'))
+    self:SetBackgroundColor(mvp.Color(secondary_dark))
+    self:SetBackgroundColorHover(mvp.Color(accent))
 
-    self:SetTextColor(theme:GetColor('primary_text'))
-    self:SetTextColorHover(theme:GetColor('primary_text'))
+    self:SetTextColor(mvp.Color(primary_text))
+    self:SetTextColorHover(mvp.Color(primary_text))
 
-    self:SetOutlineColor(theme:GetColor('accent'))
+    self:SetOutlineColor(mvp.Color(accent))
     self:SetBorderRadius(4)
 
     self.backgroundCurrentColor = self:GetBackgroundColor()
@@ -53,7 +53,7 @@ function PANEL:DefaultPaint(w, h)
         local iw = h * .8
 
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5 + iw * .5 + 1, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), th * .9, theme:GetColor('white'))
+        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), th * .9, mvp.Color(white))
     else
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end

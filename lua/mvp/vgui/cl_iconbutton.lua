@@ -30,10 +30,10 @@ AccessorFunc(PANEL, 'icon', 'Icon')
 AccessorFunc(PANEL, 'outlineColor', 'OutlineColor')
 
 function PANEL:Init()
-    self:SetBackgroundColor(theme:GetColor('secondary_dark'))
-    self:SetBackgroundColorHover(theme:GetColor('accent'))
+    self:SetBackgroundColor(mvp.Color(secondary_dark))
+    self:SetBackgroundColorHover(mvp.Color(accent))
 
-    self:SetOutlineColor(theme:GetColor('accent'))
+    self:SetOutlineColor(mvp.Color(accent))
 
     self.backgroundColor = self._backgroundColor
 end
@@ -46,7 +46,7 @@ function PANEL:DefaultPaint(w, h)
 
     draw.RoundedBox(self:GetBorderRadius(), self:GetNoDrawOutline() and 0 or 1, self:GetNoDrawOutline() and 0 or 1, w - (self:GetNoDrawOutline() and 0 or 2), h - (self:GetNoDrawOutline() and 0 or 2), self.backgroundCurrentColor)
 
-    mvp.utils.DrawIcon(w * .5, h * .5, self:GetIcon(), h * .75, theme:GetColor('white'))
+    mvp.utils.DrawIcon(w * .5, h * .5, self:GetIcon(), h * .75, mvp.Color(white))
     
     return true 
 end

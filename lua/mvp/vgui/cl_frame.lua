@@ -10,19 +10,19 @@ function PANEL:Init()
     self.closeBtn:SetSize(16, 16)
     self.closeBtn:SetPos(self:GetWide() - 16, 0)
 
-    self.closeBtn.backgroundColor = theme:GetColor('secondary')
+    self.closeBtn.backgroundColor = mvp.Color(secondary)
 
     self.closeBtn.Paint = function(s, w, h)
         draw.RoundedBoxEx(8, 0, 0, w, h, s.backgroundColor, false, true, false, false)
 
-        mvp.utils.DrawIcon(w * .5, h * .5, 'xmark', 32, theme:GetColor('white'))
+        mvp.utils.DrawIcon(w * .5, h * .5, 'xmark', 32, mvp.Color(white))
     end
 
     self.closeBtn.OnCursorEntered = function(s)
-        s:LerpColor('backgroundColor', theme:GetColor('red'), 0.2)
+        s:LerpColor('backgroundColor', mvp.Color(red), 0.2)
     end
     self.closeBtn.OnCursorExited = function(s)
-        s:LerpColor('backgroundColor', theme:GetColor('secondary'), 0.2)
+        s:LerpColor('backgroundColor', mvp.Color(secondary), 0.2)
     end
 
     self.closeBtn.DoClick = function()
@@ -37,18 +37,18 @@ function PANEL:Init()
 end
 
 function PANEL:DefaultPaint(w, h)    
-    draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('primary'))
+    draw.RoundedBox(8, 0, 0, w, h, mvp.Color(primary))
 
-    draw.RoundedBoxEx(8, 0, 0, w, 45, theme:GetColor('secondary'), true, true, false, false)
+    draw.RoundedBoxEx(8, 0, 0, w, 45, mvp.Color(secondary), true, true, false, false)
 
     local offset = 10
 
     if self.icon then
-        mvp.utils.DrawIcon(28, 45 * .5, self.icon, 24, theme:GetColor('text'))
+        mvp.utils.DrawIcon(28, 45 * .5, self.icon, 24, mvp.Color(text))
         offset = offset + 28 + 10
     end
 
-    draw.SimpleText(self.lblTitle:GetText(), mvp.utils.GetFont(24, 'Proxima Nova Regular'), offset, 45 * .5, theme:GetColor('text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(self.lblTitle:GetText(), mvp.Font(24), offset, 45 * .5, mvp.Color(text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 end
 
 function PANEL:Paint(w, h)

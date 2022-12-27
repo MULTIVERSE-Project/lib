@@ -9,7 +9,7 @@ function PANEL:Init()
 	self:SetKeyboardInputEnabled( true )
 
 	self:SetCursor( 'hand' )
-	self:SetFont( mvp.utils.GetFont(16, 'Proxima Nova Rg', 500) )
+	self:SetFont( mvp.Font(16, 500) )
 
     self:SetTextColor(mvp.Color('primary_text'))
     self:SetCursorColor(mvp.Color('primary_text'))

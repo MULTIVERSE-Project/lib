@@ -18,23 +18,23 @@ function PANEL:Init()
     self.savePopup = vgui.Create('EditablePanel', self)
     self.savePopup:SetY(ScrH())
     
-    surface.SetFont(mvp.utils.GetFont(21, 'Proxima Nova Rg', 500))
+    surface.SetFont(mvp.Font(21, 500))
     local textW, textH = surface.GetTextSize('UNSAVED CHANGES')
     self.savePopup:SetSize(textW + 64 + 16 + 128, 64)
     
     self.savePopup.Paint = function(s, w, h)
-        draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary'))
+        draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary))
 
-        mvp.utils.DrawIcon(32, h * .5, 'triangle-exclamation', 32, theme:GetColor('yellow'))
+        mvp.utils.DrawIcon(32, h * .5, 'triangle-exclamation', 32, mvp.Color(yellow))
 
-        draw.SimpleText('UNSAVED CHANGES', mvp.utils.GetFont(21, 'Proxima Nova Rg', 500), 64, h * .5 - textH * .5 + 2, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText('Please save/reset your changes', mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 64, h * .5 + textH * .5, theme:GetColor('primary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText('UNSAVED CHANGES', mvp.Font(21, 500), 64, h * .5 - textH * .5 + 2, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText('Please save/reset your changes', mvp.Font(18, 500), 64, h * .5 + textH * .5, mvp.Color(primary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
     local saveButton = vgui.Create('mvp.IconButton', self.savePopup)
     saveButton:SetIcon('floppy-disk')
-    saveButton:SetBackgroundColorHover(theme:GetColor('green'))
-    saveButton:SetOutlineColor(theme:GetColor('green'))
+    saveButton:SetBackgroundColorHover(mvp.Color(green))
+    saveButton:SetOutlineColor(mvp.Color(green))
     saveButton:SetSize(32, 32)
     saveButton:SetPos(self.savePopup:GetWide() - 64 - 16 - 5, self.savePopup:GetTall() * .5 - 32 * .5)
 
@@ -48,8 +48,8 @@ function PANEL:Init()
 
     local resetButton = vgui.Create('mvp.IconButton', self.savePopup)
     resetButton:SetIcon('rotate-left')
-    resetButton:SetBackgroundColorHover(theme:GetColor('red'))
-    resetButton:SetOutlineColor(theme:GetColor('red'))
+    resetButton:SetBackgroundColorHover(mvp.Color(red))
+    resetButton:SetOutlineColor(mvp.Color(red))
     resetButton:SetSize(32, 32)
     resetButton:SetPos(self.savePopup:GetWide() - 32 - 16, self.savePopup:GetTall() * .5 - 32 * .5)
 
@@ -67,10 +67,10 @@ local typesMap = {
 
         base:SetTall(56)
         base.Paint = function(s, w, h)
-            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+            draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
 
-            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.Font(24, 500), 16, h * .5 - 5, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.Font(16, 500), 16, h * .5 + 10, mvp.Color(secondary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('mvp.TextInput', base)
@@ -97,10 +97,10 @@ local typesMap = {
 
         base:SetTall(56)
         base.Paint = function(s, w, h)
-            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+            draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
 
-            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.Font(24, 500), 16, h * .5 - 5, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.Font(16, 500), 16, h * .5 + 10, mvp.Color(secondary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('DNumSlider', base)
@@ -124,10 +124,10 @@ local typesMap = {
 
         base:SetTall(56)
         base.Paint = function(s, w, h)
-            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+            draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
 
-            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.Font(24, 500), 16, h * .5 - 5, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.Font(16, 500), 16, h * .5 + 10, mvp.Color(secondary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('mvp.Checkbox', base)
@@ -156,10 +156,10 @@ local typesMap = {
 
         base:SetTall(56)
         base.Paint = function(s, w, h)
-            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+            draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
 
-            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.Font(24, 500), 16, h * .5 - 5, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.Font(16, 500), 16, h * .5 + 10, mvp.Color(secondary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local manager
@@ -230,10 +230,10 @@ local typesMap = {
 
         base:SetTall(56)
         base.Paint = function(s, w, h)
-            draw.RoundedBox(8, 0, 0, w, h, theme:GetColor('secondary_dark'))
+            draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
 
-            draw.SimpleText(mvp.Lang('@' .. name), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), 16, h * .5 - 5, theme:GetColor('accent_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 16, h * .5 + 10, theme:GetColor('secondary_text'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name), mvp.Font(24, 500), 16, h * .5 - 5, mvp.Color(accent_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('@' .. name .. '_Desc'), mvp.Font(16, 500), 16, h * .5 + 10, mvp.Color(secondary_text), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local input = vgui.Create('mvp.Combobox', base)
@@ -285,8 +285,8 @@ function PANEL:AddInput(categ, type, name, value)
     local reset = vgui.Create('mvp.IconButton', pnl)
     reset:Dock(RIGHT)
     reset:SetIcon('rotate-left')
-    reset:SetBackgroundColorHover(theme:GetColor('red'))
-    reset:SetOutlineColor(theme:GetColor('red'))
+    reset:SetBackgroundColorHover(mvp.Color(red))
+    reset:SetOutlineColor(mvp.Color(red))
     
     pnl.PerformLayout = function(s, w, h)
         reset:SetWide(22)
@@ -340,7 +340,7 @@ function PANEL:Think()
             v.hasUnsavedChanges = changed
         end
 
-        v:SetSideblockColor(mvp.utils.LerpColor(FrameTime() * 15, v:GetSideblockColor() or color_white, v.hasUnsavedChanges and theme:GetColor('yellow') or theme:GetColor('green')))
+        v:SetSideblockColor(mvp.utils.LerpColor(FrameTime() * 15, v:GetSideblockColor() or color_white, v.hasUnsavedChanges and mvp.Color(yellow) or mvp.Color(green)))
 
         if v.hasUnsavedChanges then
             shouldPopup = true

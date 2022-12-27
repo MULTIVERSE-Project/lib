@@ -14,7 +14,7 @@ local function createQuickActions(actionsPnl, title, buttons)
     function base:Paint(w, h)
         draw.RoundedBox(4, 0, 20, w, h - 20, mvp.Color('secondary_dark'))
 
-        draw.SimpleText(title, mvp.utils.GetFont(16, 'Proxima Nova Rg'), 0, 3, mvp.Color('text'))
+        draw.SimpleText(title, mvp.Font(16), 0, 3, mvp.Color('text'))
     end
 
     for k, v in pairs(buttons) do
@@ -58,16 +58,16 @@ local function createHomeContent(content)
 
     function welcome:Paint(w, h)
 
-        surface.SetFont(mvp.utils.GetFont(28, 'Proxima Nova Rg'))
+        surface.SetFont(mvp.Font(28))
 		local tw, th = surface.GetTextSize(mvp.Lang('menuWelcomeText1', LocalPlayer():Name()))
 
-		surface.SetFont(mvp.utils.GetFont(18, 'Proxima Nova Rg'))
+		surface.SetFont(mvp.Font(18))
 		local bw, bh = surface.GetTextSize(mvp.Lang('menuWelcomeText2'))
 
 		local y1, y2 = h / 2 - bh / 2, h  / 2 + th / 2
 
-        draw.SimpleText(mvp.Lang('menuWelcomeText1', LocalPlayer():Name()), mvp.utils.GetFont(28, 'Proxima Nova Rg'), 90, y1 + 8, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
-        draw.SimpleText(mvp.Lang('menuWelcomeText2'), mvp.utils.GetFont(18, 'Proxima Nova Rg'), 90, y2 + 8, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.Lang('menuWelcomeText1', LocalPlayer():Name()), mvp.Font(28), 90, y1 + 8, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.Lang('menuWelcomeText2'), mvp.Font(18), 90, y2 + 8, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
     end
 
     local avatarMask = vgui.Create('DPanel', content)
@@ -123,13 +123,13 @@ local function createHomeContent(content)
         draw.RoundedBox(4, 0, 15, w, h - 15, mvp.Color('accent'))
         draw.RoundedBox(4, 1, 15 + 1, w - 2, h - 15 - 2, mvp.Color('secondary'))
 
-        surface.SetFont(mvp.utils.GetFont(18, 'Proxima Nova Rg'))
+        surface.SetFont(mvp.Font(18))
         local tw, th = surface.GetTextSize(mvp.Lang('menuQuickActions'))
 
         draw.RoundedBox(5, 10 - 3 - 2, 15 - th * .5 - 3, tw + 10 + 6 + 4, th + 6, mvp.Color('accent'))
         draw.RoundedBox(4, 10 - 3, 15 - th * .5 - 3, tw + 10 + 6, th + 6, mvp.Color('secondary_dark'))
 
-        draw.SimpleText(mvp.Lang('menuQuickActions'), mvp.utils.GetFont(18, 'Proxima Nova Rg'), 10 + 5, 15, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
+        draw.SimpleText(mvp.Lang('menuQuickActions'), mvp.Font(18), 10 + 5, 15, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
     end
 
     createQuickActions(actionsMenus, mvp.Lang('menuTools'), {
@@ -239,11 +239,11 @@ function mvp.Menu()
         function credits:Paint(w, h)
             draw.RoundedBox(8, 0, 0, w, h, mvp.Color('secondary'))
             
-            draw.SimpleText('MULTIVERSE Library', mvp.utils.GetFont(28, 'Proxima Nova Rg', 500), w * .5 - 100, h * .5 - 10, mvp.Color('accent'), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('aboutCreatedBy1', 'Kot'), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), w * .5 - 115, h * .5 + 10, mvp.Color('text_primary'), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+            draw.SimpleText('MULTIVERSE Library', mvp.Font(28, 500), w * .5 - 100, h * .5 - 10, mvp.Color('accent'), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('aboutCreatedBy1', 'Kot'), mvp.Font(24, 500), w * .5 - 115, h * .5 + 10, mvp.Color('text_primary'), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 
-            draw.SimpleText('MULTIVERSE Project', mvp.utils.GetFont(28, 'Proxima Nova Rg', 500), w * .5 + 100, h * .5 - 10, mvp.Color('accent'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-            draw.SimpleText(mvp.Lang('aboutCreatedBy2', 'Kot', 'Ben'), mvp.utils.GetFont(24, 'Proxima Nova Rg', 500), w * .5 + 115, h * .5 + 10, mvp.Color('text_primary'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText('MULTIVERSE Project', mvp.Font(28, 500), w * .5 + 100, h * .5 - 10, mvp.Color('accent'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(mvp.Lang('aboutCreatedBy2', 'Kot', 'Ben'), mvp.Font(24, 500), w * .5 + 115, h * .5 + 10, mvp.Color('text_primary'), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         end
 
         local avatarKotMask = vgui.Create('DPanel', credits)
@@ -335,7 +335,7 @@ function mvp.Menu()
         local discordButton = vgui.Create('mvp.Button', content)
         discordButton:SetText(mvp.Lang('aboutJoinDiscord', 'Kot'))
         discordButton:SetSize(credits:GetWide() * .5 - 10, 32)
-        discordButton:SetFont(mvp.utils.GetFont(21, 'Proxima Nova Rg', 500))
+        discordButton:SetFont(mvp.Font(21, 500))
         discordButton:SetIcon('discord')
         discordButton:InvalidateLayout(true)
 
@@ -383,7 +383,7 @@ function mvp.Menu()
                     -- f071 f06a
 
                     
-                    local _, th = draw.SimpleText(mvp.Lang('changelogsError'), mvp.utils.GetFont(16, 'Proxima Nova Rg', 500),  10 + 28, 10, mvp.Color('secondary_text'))
+                    local _, th = draw.SimpleText(mvp.Lang('changelogsError'), mvp.Font(16, 500),  10 + 28, 10, mvp.Color('secondary_text'))
                     
                     mvp.utils.DrawIcon(18, (20 + th) * .5, 'f06a', 24, mvp.Color('red'))
                     self:SetTall(20 + th)
@@ -415,14 +415,14 @@ function mvp.Menu()
                     draw.RoundedBox(8, 0, 0, w, h, mvp.Color('secondary'))
                     local y = 10
 
-                    local _, th = draw.SimpleText(v.title, mvp.utils.GetFont(32, 'Proxima Nova Rg', 500), 10, y, mvp.Color('accent_text'))
+                    local _, th = draw.SimpleText(v.title, mvp.Font(32, 500), 10, y, mvp.Color('accent_text'))
                     y = y + th
-                    local _, th = draw.SimpleText(timePublised, mvp.utils.GetFont(16, 'Proxima Nova Rg', 500), 10, y, mvp.Color('secondary_text'))
+                    local _, th = draw.SimpleText(timePublised, mvp.Font(16, 500), 10, y, mvp.Color('secondary_text'))
                     y = y + th + 5
 
                     for k, info in ipairs(v.data.blocks) do
                         if info.type == 'paragraph' then
-                            surface.SetFont(mvp.utils.GetFont(18, 'Proxima Nova Rg', 500))
+                            surface.SetFont(mvp.Font(18, 500))
 
                             local _, lineHeight = surface.GetTextSize('\n')
 
@@ -431,12 +431,12 @@ function mvp.Menu()
                                 th = th + lineHeight * .5
                             end
 
-                            draw.DrawText(info.text, mvp.utils.GetFont(18, 'Proxima Nova Rg', 500), 15, y, mvp.Color('text'))
+                            draw.DrawText(info.text, mvp.Font(18, 500), 15, y, mvp.Color('text'))
                             y = y + th
                         end
 
                         if info.type == 'header' then
-                            local _, th = draw.SimpleText(info.text, mvp.utils.GetFont(sizesMap[info.data.level], 'Proxima Nova Rg', 500), 10, y, mvp.Color('text'))
+                            local _, th = draw.SimpleText(info.text, mvp.Font(sizesMap[info.data.level], 500), 10, y, mvp.Color('text'))
                             y = y + th
                         end
                     end

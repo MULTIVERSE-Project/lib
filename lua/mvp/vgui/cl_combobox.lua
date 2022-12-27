@@ -17,7 +17,7 @@ function PANEL:Init()
 	self:SetSortItems( true )
 
     self:SetTextColor(mvp.Color('primary_text'))
-    self:SetFont(mvp.utils.GetFont(18, 'Proxima Nova Rg'))
+    self:SetFont(mvp.Font(18))
 
 end
 

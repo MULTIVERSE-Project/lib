@@ -67,7 +67,7 @@ function mvp.utils.GetIcon(unicode, size, style)
         baseFont = 'Font Awesome 6 Brands Regular'
     end
 
-    local font = mvp.utils.GetFont(size, baseFont, 500)
+    local font = mvp.fonts.Get(size, baseFont, 500)
     local iconFont = font .. '_' .. unicode
 
     if mvp.utils.cachedIconFonts[iconFont] then
@@ -113,7 +113,7 @@ concommand.Add('mvp_fa_icons', function()
 
     local hint = vgutils.Create('DLabel', frame)
     hint:SetText('Click on the icon to copy it to clipboard')
-    hint:SetFont(mvp.utils.GetFont(24, 'Proxima Nova Regular', 200))
+    hint:SetFont(mvp.fonts.Get(24, 'Proxima Nova Regular', 200))
     hint:SetTextColor(color_white)
     hint:Dock(TOP)
 
