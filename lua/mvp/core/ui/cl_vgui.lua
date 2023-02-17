@@ -12,3 +12,9 @@ function mvp.ui.Register(name, panel, basePanel)
         vgui.Register(name, panel, basePanel)
     -- end)
 end
+
+local scrH = ScrH
+local max = math.max
+function mvp.ui.Scale(value)
+    return max(value * (scrH() / 1080), 1)
+end

@@ -23,15 +23,15 @@ function PANEL:AddModule(module)
         draw.RoundedBox(4, 0, 0, w, h, mvp.Color('secondary'))
 
         local y = 5
-        local tw, th = draw.SimpleText(module:GetName(), mvp.Font(24), 5, y, mvp.Color('text'))
+        local tw, th = draw.SimpleText(module:GetName(), mvp.Font(24), 5, y, mvp.Color('primary_text'))
         draw.SimpleText(Format('version %s', module:GetVersion()), mvp.Font(16), 5 + tw + 3, th * .5, mvp.Color('secondary_text'))
         y = y + th - 5
 
 
-        local _, th = draw.SimpleText(Format('Author: %s', module:GetAuthor()), mvp.Font(16), 5, y, mvp.Color('text'))
+        local _, th = draw.SimpleText(Format('Author: %s', module:GetAuthor()), mvp.Font(16), 5, y, mvp.Color('primary_text'))
         y = y + th + 5
 
-        local _, th = draw.SimpleText(module:GetDescription(), mvp.Font(18), 5, y, mvp.Color('text'))
+        local _, th = draw.SimpleText(module:GetDescription(), mvp.Font(18), 5, y, mvp.Color('primary_text'))
         y = y + th + 5
     end
 
@@ -40,7 +40,7 @@ function PANEL:AddModule(module)
     controls:DockMargin(0, 0, 0, 5)
 
     function controls:Paint(w, h)
-        draw.SimpleText('Enabled', mvp.Font(18), 30, h * .5, mvp.Color('text'), nil, TEXT_ALIGN_CENTER)
+        draw.SimpleText('Enabled', mvp.Font(18), 30, h * .5, mvp.Color('primary_text'), nil, TEXT_ALIGN_CENTER)
     end
 
     local enabled = vgui.Create('mvp.Checkbox', controls)

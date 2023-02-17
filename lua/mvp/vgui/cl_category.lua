@@ -13,7 +13,7 @@ function PANEL:DoClick()
 end
 
 function PANEL:Paint(w, h)
-    draw.SimpleText(self:GetText(), self:GetFont(), 5, h / 2, mvp.Color(text), 0, 1)
+    draw.SimpleText(self:GetText(), self:GetFont(), 5, h / 2, mvp.Color('primary_text'), 0, 1)
 
     return true
 end
@@ -35,19 +35,17 @@ function PANEL:Init()
     self.Header:SetTall(32)
 
     self:DockPadding(5, 0, 5, 5)
-
-    self.headerBackgroundColor = mvp.Color(secondary_dark)
 end
 
 function PANEL:DefaultPaint(w, h)
     local headerHeight = self:GetHeaderHeight()
 
     -- if not self:GetExpanded() then
-        draw.RoundedBox(8, 0, 0, w - 5, h, self.sideblockColor or mvp.Color(white))
+        draw.RoundedBox(8, 0, 0, w - 5, h, self.sideblockColor or mvp.Color('white'))
     -- end
     
-    draw.RoundedBoxEx(8, 5, 5, w - 5, h - 5, mvp.Color(secondary), false, false, true, true)
-    draw.RoundedBox(8, 5, 0, w - 5, headerHeight, self.headerBackgroundColor, true, true, not self:GetExpanded(), not self:GetExpanded())
+    draw.RoundedBoxEx(8, 5, 5, w - 5, h - 5, mvp.Color('secondary'), false, false, true, true)
+    draw.RoundedBox(8, 5, 0, w - 5, headerHeight, mvp.Color('secondary_dark'), true, true, not self:GetExpanded(), not self:GetExpanded())
         
 end
 

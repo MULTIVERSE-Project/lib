@@ -1,20 +1,23 @@
 local THEME = mvp.themes.New()
 
-THEME:SetName('MVP Default Dark Theme')
+THEME:SetName('MVP Default Light Theme')
 THEME:SetAuthor('MVP')
 THEME:SetDescription('Default library dark-theme')
 
 THEME:SetVersion('1.0.0')
 
-THEME:SetColor('primary', mvp.utils.HexToRGB('212121'))
-THEME:SetColor('primary_dark', mvp.utils.HexToRGB('252525'))
-THEME:SetColor('secondary', mvp.utils.HexToRGB('353535'))
-THEME:SetColor('secondary_dark', mvp.utils.HexToRGB('303030'))
+THEME:SetColor('primary', Color(224, 224, 224))
+THEME:SetColor('primary_dark', Color(200, 200, 200))
+THEME:SetColor('secondary', Color(231, 231, 231))
+THEME:SetColor('secondary_dark', Color(236, 236, 236))
 THEME:SetColor('accent', mvp.utils.HexToRGB('fbc531'))
 
-THEME:SetColor('primary_text', mvp.utils.HexToRGB('f5f6fa'))
-THEME:SetColor('secondary_text', mvp.utils.HexToRGB('dcdde1'))
-THEME:SetColor('accent_text', mvp.utils.HexToRGB('fbc531'))
+THEME:SetColor('primary_text', Color(41, 41, 41))
+THEME:SetColor('secondary_text', Color(41, 41, 41))
+THEME:SetColor('accent_text', Color(71, 71, 71))
+
+THEME:SetColor('icon', Color(255, 255, 255))
+THEME:SetColor('icon_dark', Color(100, 100, 100))
 
 THEME:SetColor('red', mvp.utils.HexToRGB('e84118'))
 THEME:SetColor('green', mvp.utils.HexToRGB('4cd137'))

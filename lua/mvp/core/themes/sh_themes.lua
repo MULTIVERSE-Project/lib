@@ -18,9 +18,9 @@ mvp.themes.path = 'mvp/themes/'
 -- mvp.themes.Register(theme)
 
 function mvp.themes.New()
-    local theme = {}
-    setmetatable(theme, {__index = mvp.meta.theme})
-    return theme
+    local theme = {colors = {}}
+    
+    return setmetatable(theme, {__index = mvp.meta.theme})
 end
 
 --- Registers new theme.
@@ -63,6 +63,7 @@ end
 -- @treturn Color The color.
 function mvp.themes.GetColor(colorName)
     local theme = mvp.themes.GetActive()
+    
     return theme:GetColor(colorName)
 end
 

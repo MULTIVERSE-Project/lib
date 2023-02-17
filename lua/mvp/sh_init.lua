@@ -70,7 +70,7 @@ mvp.themes.Load()
 -- Load UI system
 mvp.loader.LoadFolder('core/ui')
 -- Load UI elements
-mvp.loader.LoadFolder('vgui')
+mvp.loader.LoadFolder('terminal/vgui')
 mvp.loader.LoadFolder('menus')
 
 -- Load modules

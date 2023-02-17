@@ -53,3 +53,4 @@ function mvp.ui.DrawColoredText( textTab, font, x, y, startColor, xalign, yalign
 	return w, h
 
 end
+

@@ -45,7 +45,7 @@ function mvp.modules.Load(id, path, single, var)
         MODULE = mvp.modules.list[id]
     end
 
-    MODULE.loading = true -- сообщим о том что модуль загружаеться
+    MODULE.loading = true
 
     if not single and not disabledModules[id] then
         mvp.languages.LoadFromFolder(path .. '/languages')

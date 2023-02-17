@@ -29,13 +29,13 @@ AccessorFunc(PANEL, 'icon', 'Icon')
 function PANEL:Init()
     self:SetFont(mvp.Font(16, 500))
 
-    self:SetBackgroundColor(mvp.Color(secondary_dark))
-    self:SetBackgroundColorHover(mvp.Color(accent))
+    self:SetBackgroundColor(mvp.Color('secondary_dark'))
+    self:SetBackgroundColorHover(mvp.Color('accent'))
 
-    self:SetTextColor(mvp.Color(primary_text))
-    self:SetTextColorHover(mvp.Color(primary_text))
+    self:SetTextColor(mvp.Color('primary_text'))
+    self:SetTextColorHover(mvp.Color('primary_text'))
 
-    self:SetOutlineColor(mvp.Color(accent))
+    self:SetOutlineColor(mvp.Color('accent'))
     self:SetBorderRadius(4)
 
     self.backgroundCurrentColor = self:GetBackgroundColor()
@@ -53,7 +53,7 @@ function PANEL:DefaultPaint(w, h)
         local iw = h * .8
 
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5 + iw * .5 + 1, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), th * .9, mvp.Color(white))
+        mvp.utils.DrawIcon(w * .5 - tw * .5 - 1, h * .5, self:GetIcon(), th * .9, mvp.Color('white'))
     else
         draw.SimpleText(self:GetText(), self:GetFont(), w * .5, h * .5, self:GetTextColor(), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end

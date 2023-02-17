@@ -15,10 +15,10 @@ function PANEL:Init()
     vbar:SetHideButtons(true)
 
     function vbar:Paint(w, h)
-        draw.RoundedBox(0, 0, 0, w, h, mvp.Color(secondary_dark))
+        draw.RoundedBox(0, 0, 0, w, h, mvp.Color('secondary_dark'))
     end
     function vbar.btnGrip:Paint(w, h)
-        draw.RoundedBox(0, 0, 0, w, h, mvp.Color(primary_dark))
+        draw.RoundedBox(0, 0, 0, w, h, mvp.Color('primary_dark'))
     end
 end
 
@@ -61,7 +61,7 @@ function PANEL:SetStyle(style)
 end
 
 function PANEL:DefaultPaint(w, h)    
-    draw.RoundedBoxEx(8, 0, 0, w, h, mvp.Color(secondary_dark), false, false, true, false)
+    draw.RoundedBoxEx(8, 0, 0, w, h, mvp.Color('secondary_dark'), false, false, true, false)
 end
 
 function PANEL:Paint(w, h)
@@ -80,20 +80,20 @@ AccessorFunc(PANEL, 'icon', 'Icon')
 AccessorFunc(PANEL, 'tooltip', 'Tooltip')
 
 function PANEL:Init()
-    self.hoverBackground = ColorAlpha(mvp.Color(secondary_text), 0)
+    self.hoverBackground = ColorAlpha(mvp.Color('secondary_text'), 0)
 end
 
 function PANEL:DefaultPaint(w, h)
     local innerSize = w * .85
 
-    draw.RoundedBox(8, 0, 0, w, h, mvp.Color(primary_dark))
-    draw.RoundedBox(8, w * .5 - innerSize * .5, h * .5 - innerSize * .5, innerSize, innerSize, self.isActive and ColorAlpha(mvp.Color('accent'), 50) or self.hoverBackground, 50)
+    draw.RoundedBox(8, 0, 0, w, h, mvp.Color('primary_dark'))
+    draw.RoundedBox(8, w * .5 - innerSize * .5, h * .5 - innerSize * .5, innerSize, innerSize, self.isActive and ColorAlpha(mvp.Color('accent'), 200) or self.hoverBackground, 50)
 
-    mvp.utils.DrawIcon(w * .5, h * .5, self.icon, innerSize * .7, mvp.Color(white))
+    mvp.utils.DrawIcon(w * .5, h * .5, self.icon, innerSize * .7, mvp.Color('icon'))
 end
 
 function PANEL:OnCursorEntered()
-    self:LerpColor('hoverBackground', ColorAlpha(mvp.Color(secondary_text), 50), .2)
+    self:LerpColor('hoverBackground', ColorAlpha(mvp.Color('secondary_text'), 50), .2)
 
     if IsValid(mvp.ui.tooltip) then
         mvp.ui.tooltip:Remove()
@@ -107,9 +107,9 @@ function PANEL:OnCursorEntered()
     mvp.ui.tooltip:SetDrawOnTop( true )
     
     mvp.ui.tooltip.Paint = function(s, w, h)
-        draw.RoundedBox(8, 0, 0, w, h, mvp.Color(secondary_dark))
+        draw.RoundedBox(8, 0, 0, w, h, mvp.Color('secondary_dark'))
 
-        draw.SimpleText(self.tooltip, mvp.Font(21, 500), w * .5, h * .5, mvp.Color(white), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self.tooltip, mvp.Font(21, 500), w * .5, h * .5, mvp.Color('primary_text'), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
     mvp.ui.tooltip.Think = function(s)
         if not IsValid(self) then
@@ -124,7 +124,7 @@ function PANEL:OnCursorEntered()
 end
 
 function PANEL:OnCursorExited()
-    self:LerpColor('hoverBackground', ColorAlpha(mvp.Color(secondary_text), 0), .2)
+    self:LerpColor('hoverBackground', ColorAlpha(mvp.Color('secondary_text'), 0), .2)
 
     if IsValid(mvp.ui.tooltip) then
         mvp.ui.tooltip:Remove()

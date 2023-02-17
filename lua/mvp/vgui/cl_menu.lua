@@ -103,7 +103,7 @@ function PANEL:Paint( w, h )
 	if ( !self:GetPaintBackground() ) then return end
 
 	-- derma.SkinHook( 'Paint', 'Menu', self, w, h )
-    draw.RoundedBoxEx(4, 0, 0, w, h, self.Standalone and mvp.Color("primary") or Color(77, 77, 77), self.Standalone, self.Standalone, true, true)
+    draw.RoundedBoxEx(4, 0, 0, w, h, self.Standalone and mvp.Color('"primary"') or Color(77, 77, 77), self.Standalone, self.Standalone, true, true)
 	return true
 
 end
