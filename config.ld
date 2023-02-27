@@ -10,7 +10,7 @@ module_file = {
 
 dir = "docs/html"
 project = "MULTIVERSE Project"
-title = "Library Docs"
+title = "Terminal Documentation"
 
 no_space_before_args = true
 style = "docs/css"
