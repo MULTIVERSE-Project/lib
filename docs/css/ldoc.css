@@ -302,10 +302,9 @@ article header {
 }
 
 article header h1 {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-	padding-bottom: 8px;
 	font-family: var(--font-style-code);
 	margin: 0;
+	border: none;
 }
 
 article header h2 {
@@ -318,6 +317,15 @@ article header h2 {
 article header.module a {
 	color: white !important;
 	text-decoration: underline;
+}
+
+article header .module-title {
+	padding-bottom: 8px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+article header .module-title p{
+	margin: 0;
 }
 
 details.category > summary {

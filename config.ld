@@ -10,7 +10,7 @@ module_file = {
 
 dir = "docs/html"
 project = "MULTIVERSE Project"
-title = "Library Docs"
+title = "Terminal Documentation"
 
 no_space_before_args = true
 style = "docs/css"
@@ -33,7 +33,8 @@ pretty_topic_names = true -- strips extension from manual filenames, this does n
 
 custom_tags = {
 	{"realm", hidden = true},
-	{"internal", hidden = true}
+	{"internal", hidden = true},
+	{"inherits", hidden = true}
 }
 
 custom_display_name_handler = function(item, default_handler)
@@ -52,7 +53,7 @@ end
 
 new_type("hooks", "Hooks", true)
 new_type("panel", "Panels", true)
-new_type("ext", "Included Modules", true)
+new_type("mvpmod", "Included Modules", true)
 
 -- MULTIVERSE types
 tparam_alias("mvptype", "mvp.type")
