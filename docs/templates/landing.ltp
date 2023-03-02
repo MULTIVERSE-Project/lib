@@ -7,7 +7,13 @@
 
 <div class="wrapper">
 	<h2>Introduction</h2>
-	<p>This is the documentation for our library. It contains all useful information for productive development based on it. The library is a collection of useful functions and classes for GMod development. It is designed to be used in a modular way, so that it can be used in different projects.</p>
+	<p>Welcome to the documentation page for Terminal, a powerful GMod script that provides a collection of utilities and pre-built UI components to enhance your gaming experience. Terminal is designed to simplify complex tasks and streamline your workflow, allowing you to focus on what matters most - playing and enjoying GMod.</p>
+
+	<p>Whether you are a seasoned GMod developer or a newcomer to the GLua scripting, Terminal is an indispensable tool that will take your developing experience to the next level. With its wide range of features and customizable settings, Terminal offers a seamless experience that caters to your unique needs and preferences.</p>
+
+	<p>In this documentation page, you will find all the information you need to get started with Terminal, from installation and configuration to a comprehensive guide to its features and functionalities. We have also included examples and code snippets to help you better understand how to use Terminal in your own GMod projects.</p>
+
+	<p>Thank you for choosing Terminal, and we hope that this documentation page will help you make the most of this powerful GMod script.</p>
 
 	<h2>Credits</h2>
 	<ul>
