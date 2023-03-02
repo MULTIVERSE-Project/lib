@@ -1,5 +1,5 @@
-name: Docs
-on: [push, pull_request]
+name: Production documentation
+on: [push]
 
 jobs: 
   docs:
@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          path: lib
+          path: repo
 
       - uses: leafo/gh-actions-lua@v8.0.0
         with:
@@ -27,18 +27,20 @@ jobs:
         run: luarocks make
 
       - name: Build docs
-        working-directory: lib
+        working-directory: repo
         run: ldoc . --fatalwarnings
 
       - name: Copy assets
-        working-directory: lib
+        working-directory: repo
         run: |
           cp -v docs/css/* docs/html
           cp -v docs/js/* docs/html
       - name: Deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/v2' && github.repository == 'MULTIVERSE-Project/lib' && success()
+        if: github.ref == 'refs/heads/main' && success()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: lib/docs/html
-          cname: docs.multiverse-project.com
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: MULTIVERSE-Project/documentation
+          publish_branch: production
+          publish_dir: repo/docs/html
+          destination_dir: ./${{ github.event.repository.name }}
