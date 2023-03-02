@@ -2,7 +2,7 @@
 <header class="module">
 	<div class="module-title">
 		<h1>{{mod.name}}</h1>
-		{% if (mod.tags.inherits) then %}
+		{% if ( mod.type == "panel" and mod.tags.inherits) then %}
 			<p>Inheriths from {* ldoc.markup("@{" .. mod.tags.inherits[1] .. "}") *}</p>
 		{% end %}
 	</div>

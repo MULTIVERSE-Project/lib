@@ -53,7 +53,7 @@ end
 
 new_type("hooks", "Hooks", true)
 new_type("panel", "Panels", true)
-new_type("ext", "Included Modules", true)
+new_type("mvpmod", "Included Modules", true)
 
 -- MULTIVERSE types
 tparam_alias("mvptype", "mvp.type")
