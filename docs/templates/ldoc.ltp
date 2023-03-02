@@ -2,7 +2,7 @@
 {%
 local baseUrl = ldoc.css:gsub("ldoc.css", "")
 local repo = "https://github.com/MULTIVERSE-Project/lib/"
-local pageTitle = mod and (ldoc.display_name(mod) .. " - " .. ldoc.title) or ldoc.title
+local pageTitle = mod and (ldoc.display_name(mod) .. " - " .. ldoc.project) or (ldoc.project .. " - " .. ldoc.title)
 
 local oldmarkup = ldoc.markup
 function ldoc.markup(text, item)

@@ -9,8 +9,8 @@ module_file = {
 }
 
 dir = "docs/html"
-project = "MULTIVERSE Project"
-title = "Terminal Documentation"
+project = "Terminal"
+title = "MULTIVERSE Project"
 
 no_space_before_args = true
 style = "docs/css"
