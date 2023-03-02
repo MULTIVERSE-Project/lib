@@ -1,6 +1,3 @@
---- Alternative to default DButton.
--- @panel mvp.Button
-
 local theme = mvp.themes.GetActive()
 local PANEL = {}
 
