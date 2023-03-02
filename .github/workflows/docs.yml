@@ -24,7 +24,8 @@ jobs:
         run: luarocks make
 
       - name: Add LDoc to PATH
-        run: echo "$GITHUB_WORKSPACE/ldoc" >> $GITHUB_PATH
+        run: |
+          echo "::add-path::${{ github.workspace }}/ldoc"
 
   build-docs:
     name: Build docs
