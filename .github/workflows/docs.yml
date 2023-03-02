@@ -27,11 +27,6 @@ jobs:
         working-directory: ldoc
         run: luarocks make
 
-      - name: Print ls of ldoc directory
-        run: ls -la ldoc
-
-      - name: Add LDoc to PATH
-        run: echo "$GITHUB_WORKSPACE/ldoc/ldoc" >> $GITHUB_PATH
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
@@ -45,9 +40,9 @@ jobs:
 
       - name: Build docs
         working-directory: repo
-        run: |
-          echo $GITHUB_PATH
-          ldoc . --fatalwarnings
+        env:
+          PATH: ${{ github.workspace }}/ldoc/ldoc:$PATH
+        run: ldoc . --fatalwarnings
 
   deploy-docs:
     name: Deploy docs
