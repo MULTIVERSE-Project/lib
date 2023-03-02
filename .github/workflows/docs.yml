@@ -30,7 +30,7 @@ jobs:
       - name: Print ls of ldoc directory
         run: ls -la ldoc
 
-      - name: Add LDock to PATH
+      - name: Add LDoc to PATH
         run: echo "$GITHUB_WORKSPACE/ldoc/ldoc" >> $GITHUB_PATH
   build-docs:
     name: Build docs
@@ -45,7 +45,9 @@ jobs:
 
       - name: Build docs
         working-directory: repo
-        run: ldoc . --fatalwarnings
+        run: |
+          echo $GITHUB_WORKSPACE
+          ldoc . --fatalwarnings
 
   deploy-docs:
     name: Deploy docs
