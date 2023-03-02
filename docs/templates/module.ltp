@@ -1,6 +1,12 @@
 
 <header class="module">
-	<h1>{{mod.name}}</h1>
+	<div class="module-title">
+		<h1>{{mod.name}}</h1>
+		{% if (mod.tags.inherits) then %}
+			<p>Inheriths from {* ldoc.markup("@{" .. mod.tags.inherits[1] .. "}") *}</p>
+		{% end %}
+	</div>
+	
 	<h2>{* ldoc.markup(mod.summary) *}</h2>
 </header>
 
