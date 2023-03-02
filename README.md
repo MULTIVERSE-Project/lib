@@ -96,7 +96,7 @@ MODULE:Hook('player_disconnect', function(self, data)
 end)
 ```
 
-_For more examples, please refer to the [Documentation](https://docs.multiverse-project.com)_
+_For more examples, please refer to the [Documentation](https://docs.multiverse-project.com/lib/)_
 
 <!-- ROADMAP -->
 
