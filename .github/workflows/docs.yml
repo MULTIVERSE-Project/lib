@@ -31,7 +31,7 @@ jobs:
         run: ls -la ldoc
 
       - name: Add LDock to PATH
-        run: echo "$GITHUB_WORKSPACE/ldoc" >> $GITHUB_PATH
+        run: echo "$GITHUB_WORKSPACE/ldoc/ldoc" >> $GITHUB_PATH
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
