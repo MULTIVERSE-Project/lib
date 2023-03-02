@@ -46,7 +46,7 @@ jobs:
       - name: Build docs
         working-directory: repo
         run: |
-          echo $GITHUB_WORKSPACE
+          echo $GITHUB_PATH
           ldoc . --fatalwarnings
 
   deploy-docs:
