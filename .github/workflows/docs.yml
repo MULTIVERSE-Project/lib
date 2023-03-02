@@ -41,7 +41,7 @@ jobs:
       - name: Build docs
         working-directory: repo
         env:
-          PATH: ${{ github.workspace }}/ldoc/ldoc:$PATH
+          PATH: ${{ github.workspace }}/ldoc/ldoc
         run: ldoc . --fatalwarnings
 
   deploy-docs:
