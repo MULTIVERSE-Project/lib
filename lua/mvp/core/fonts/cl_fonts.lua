@@ -13,6 +13,34 @@ mvp.fonts.cachedFonts = mvp.fonts.cachedFonts or {}
 -- 
 -- print(font) -- "mvp_12_Roboto_400"
 function mvp.fonts.Get(size, font, weight)
+    size = mvp.ui.Scale(size)
+
+    weight = weight or 400
+    local fontName = 'mvp_' .. size .. '_' .. font .. '_' .. weight
+
+    if mvp.fonts.cachedFonts[fontName] then
+        return fontName
+    end
+
+    surface.CreateFont(fontName, {
+        size = size,
+        weight = weight,
+        font = font,
+        extended = true
+    })
+
+    mvp.fonts.cachedFonts[fontName] = true
+
+    return fontName
+end
+
+--- Creates a new unscaled font or returns a cached one if it has been created before.
+-- @realm client
+-- @tparam number size The name of the font.
+-- @tparam string font The font to use
+-- @tparam[opt=400] number weight The font weight
+-- @treturn string The created font. Name will follow this format: `mvp_<size>_<font>_<weight>`
+function mvp.fonts.GetUnscaled(size, font, weight)   
     weight = weight or 400
     local fontName = 'mvp_' .. size .. '_' .. font .. '_' .. weight
 
