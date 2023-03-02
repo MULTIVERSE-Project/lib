@@ -6,10 +6,6 @@ jobs:
     name: Build LDoc
     runs-on: ubuntu-latest
 
-    # add ldoc to path
-    env:
-      PATH: ${{ github.workspace }}/ldoc/bin:$PATH
-
     steps:
       - uses: leafo/gh-actions-lua@v8.0.0
         with:
@@ -28,8 +24,10 @@ jobs:
         run: luarocks make
 
       - name: Print ls of ldoc directory
-        run: ls -la ldoc       
+        run: ls -la ldoc
 
+      - name: Add LDock to PATH
+        run: echo "$GITHUB_WORKSPACE/ldoc" >> $GITHUB_PATH
   build-docs:
     name: Build docs
     runs-on: ubuntu-latest
