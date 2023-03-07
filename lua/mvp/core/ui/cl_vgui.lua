@@ -18,3 +18,24 @@ local max = math.max
 function mvp.ui.Scale(value)
     return max(value * (scrH() / 1080), 1)
 end
+
+--- Table of sound keys and their paths.
+-- @table SoundKeys
+-- @realm client
+-- @field click `terminal/ui/click.ogg` The click sound.
+-- @field hover `terminal/ui/hover.ogg` The hover sound.
+local sounds = {
+    ["click"] = "terminal/ui/click.ogg",
+    ["hover"] = "terminal/ui/hover.ogg"
+}
+
+--- Plays a sound.
+-- @realm client
+-- @tparam string soundName The name of the sound to play from `SoundKeys`.
+function mvp.ui.Sound(soundName)
+    if not sounds[soundName] then
+        return 
+    end
+
+    surface.PlaySound(sounds[soundName])
+end

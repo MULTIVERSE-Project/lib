@@ -1,8 +1,19 @@
+--- @module mvp.ui.gradients
+
 mvp.ui = mvp.ui or {}
 mvp.ui.gradients = {}
 local gradientTexture = surface.GetTextureID("gui/gradient")
 local whiteMaterial = Material("vgui/white")
 
+--- Draws a gradient
+-- @realm client
+-- @tparam number x The x position
+-- @tparam number y The y position
+-- @tparam number w The width
+-- @tparam number h The height
+-- @tparam number r The rotation
+-- @tparam Color startColor The start color
+-- @tparam Color endColor The end color
 function mvp.ui.gradients.DrawGradient(x, y, w, h, r, startColor, endColor)
     local distance = w * .5
     local offsetX = 0
@@ -36,8 +47,29 @@ end
 
 mvp.ui.gradients.cache = {}
 
-function mvp.ui.gradients.CreateHTMLGradient(id, w, h, rotation, cornerRadius, startColor, endColor, dynamic, manual)
+--- Creates a gradient material from HTML
+-- @realm client
+-- @tparam string id The id of the gradient for caching purposes
+-- @tparam number w The width
+-- @tparam number h The height
+-- @tparam string rotation The rotation
+-- @tparam string cornerRadius The corner radius
+-- @tparam string startColor The start color
+-- @tparam string endColor The end color
+-- @tparam boolean ignoreCache Whether to ignore the cache
+-- @tparam boolean manual Whether to return the HTML panel
+-- @treturn string The id of the gradient
+-- @usage
+-- local gradient = mvp.ui.gradients.CreateHTMLGradient("test", 100, 100, "0deg", "0px", "rgba(32,32,32,1)", "rgba(51,51,51,1)")
+-- mvp.ui.gradients.DrawHTMLGradient(gradient, 0, 0, 100, 100)
+-- @see mvp.ui.gradients.DrawHTMLGradient
+function mvp.ui.gradients.CreateHTMLGradient(id, w, h, rotation, cornerRadius, startColor, endColor, ignoreCache, manual)
+    if (not ignoreCache and mvp.ui.gradients.cache[id]) then
+        return id
+    end
+    
     mvp.ui.gradients.DeleteHTMLGradient(id)
+
     rotation = rotation or "0deg"
     startColor = startColor or "rgba(32,32,32,1)"
     endColor = endColor or "rgba(51,51,51,1)"
@@ -47,7 +79,7 @@ function mvp.ui.gradients.CreateHTMLGradient(id, w, h, rotation, cornerRadius, s
 
     local html = vgui.Create("DHTML")
     html:SetSize(w, h)
-    html:SetVisible(true )
+    html:SetVisible(false)
     html:SetHTML(style .. [[
         <div class="gradient"></div>
     ]])
@@ -79,8 +111,6 @@ function mvp.ui.gradients.CreateHTMLGradient(id, w, h, rotation, cornerRadius, s
             local scale_x = w / tw -- scale factor for width
             local scale_y = h / th -- scale factor for height
 
-            print(scale_x, scale_y)
-
             local matdata = {
                 ["$basetexture"] = material:GetName(),
                 ["$basetexturetransform"] = "center 0 0 scale " .. scale_x .. " " .. scale_y .. " rotate 0 translate 0 0",
@@ -92,22 +122,28 @@ function mvp.ui.gradients.CreateHTMLGradient(id, w, h, rotation, cornerRadius, s
                 ["$vertexcolor"] = "1"
             }
 
-            -- Create the model material
             mvp.ui.gradients.cache[id].mat = CreateMaterial(id, "UnlitGeneric", matdata)
-            print("created html ", id)
 
-            if (not dynamic) then
-                PrintTable(mvp.ui.gradients.cache[id].mat:GetColor(400, 400))
-                timer.Simple(0.001, function()
-                    html:Remove()
-                end)
-            end
+            timer.Simple(5, function() -- janky solution, but it works
+                html:Remove()
+            end)
         end
     end)
 
     return id
 end
 
+--- Draws a gradient material from HTML
+-- @realm client
+-- @tparam string id The id of the gradient
+-- @tparam number x The x position
+-- @tparam number y The y position
+-- @tparam number w The width
+-- @tparam number h The height
+-- @usage
+-- local gradient = mvp.ui.gradients.CreateHTMLGradient("test", 100, 100, "0deg", "0px", "rgba(32,32,32,1)", "rgba(51,51,51,1)")
+-- mvp.ui.gradients.DrawHTMLGradient(gradient, 0, 0, 100, 100)
+-- @see mvp.ui.gradients.CreateHTMLGradient
 function mvp.ui.gradients.DrawHTMLGradient(id, x, y, w, h)
     local gradient = mvp.ui.gradients.cache[id]
     if (not gradient) then return end
@@ -119,6 +155,12 @@ function mvp.ui.gradients.DrawHTMLGradient(id, x, y, w, h)
     surface.DrawTexturedRect(x, y, w, h)
 end
 
+--- Deletes a gradient material from HTML
+-- @realm client
+-- @tparam string id The id of the gradient
+-- @usage
+-- mvp.ui.gradients.DeleteHTMLGradient("test")
+-- @see mvp.ui.gradients.CreateHTMLGradient
 function mvp.ui.gradients.DeleteHTMLGradient(id)
     local gradient = mvp.ui.gradients.cache[id]
     if (not gradient) then return end

@@ -1,12 +1,13 @@
 --- @module mvp.ui
 mvp.ui = mvp.ui or {}
 
---- Default easing function
+--- Easing function for animations.
 -- @realm client
--- @tparam number t
--- @tparam number b
--- @tparam number c
--- @tparam number d
+-- @param t number
+-- @param b number
+-- @param c number
+-- @param d number
+-- @treturn number
 function mvp.ui.Ease(t, b, c, d)
     t = t / d
     local ts = t * t

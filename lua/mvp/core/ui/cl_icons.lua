@@ -99,3 +99,21 @@ function mvp.ui.DrawIcon(x, y, unicode, size, color, style)
 
     return icon
 end
+
+--- Draws [Font Awesome](https://fontawesome.com/search?m=free&s=brands%2Csolid) icon with alignment control.
+-- @realm client
+-- @tparam number x X position of the icon.
+-- @tparam number y Y position of the icon.
+-- @tparam string unicode Unicode of the icon from Font Awesome site.
+-- @tparam[opt=16] number size Size of the icon.
+-- @tparam[opt=color_white] Color color Color of the icon.
+-- @tparam[opt] string style Style of the icon. Function will try to determine style automatically if not specified.
+-- @tparam[opt=TEXT_ALIGN_CENTER] number alignX Horizontal alignment of the icon.
+-- @tparam[opt=TEXT_ALIGN_CENTER] number alignY Vertical alignment of the icon.
+-- @treturn IconData Icon table.
+function mvp.ui.DrawIconExt(x, y, unicode, size, color, style, alignX, alignY)
+    local icon = mvp.ui.GetIcon(unicode, size, style)
+    draw.SimpleText(icon.text, icon.font, x, y, color or color_white, alignX, alignY)
+
+    return icon
+end

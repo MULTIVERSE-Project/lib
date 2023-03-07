@@ -1,6 +1,19 @@
 --- @module mvp.ui
 mvp.ui = mvp.ui or {}
 
+--- Draws text with color support
+-- @realm client
+-- @tparam table textTab Table of strings and colors
+-- @tparam string font Font to use
+-- @tparam number x X position
+-- @tparam number y Y position
+-- @tparam Color startColor Color to start with
+-- @tparam number xalign Horizontal alignment
+-- @tparam number yalign Vertical alignment
+-- @treturn number Width of the text
+-- @treturn number Height of the text
+-- @usage
+-- mvp.ui.DrawColoredText( {Color(255, 0, 0), 'Hello ', Color(0, 255, 0), 'World!'}, 'DermaDefault', 0, 0, nil, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP )
 function mvp.ui.DrawColoredText( textTab, font, x, y, startColor, xalign, yalign )
 	text = ''
 	font = font or "DermaDefault"
