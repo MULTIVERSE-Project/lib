@@ -116,6 +116,13 @@ function PANEL:Init()
     self._startColor = Color(244, 144, 12)
     self._endColor = Color(161, 100, 0)
 
+    self.startColor = self._startColor
+    self.endColor = self._endColor
+    self.startColorHovered = Color(185, 109, 10)
+    self.endColorHovered = Color(112, 69, 0)
+    self.startColorFlash = Color(255, 145, 0)
+    self.endColorFlash = Color(216, 133, 0)
+
     self._text = "Label"
 end
 
