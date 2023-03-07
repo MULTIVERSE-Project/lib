@@ -134,3 +134,13 @@ function mvp.utils.StripRealmPrefix(name)
 
 	return (prefix == "sh_" or prefix == "sv_" or prefix == "cl_") and name:sub(4) or name
 end
+
+function mvp.utils.Switch(input, cases)
+	if cases[input] then
+		return cases[input]()
+	end
+
+	if cases["default"] then
+		return cases["default"]()
+	end
+end
